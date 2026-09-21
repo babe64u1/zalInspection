@@ -1,0 +1,17 @@
+{
+  "name": "zalInspection — Portal Inspektor Otomotif",
+  "short_name": "zalInspection",
+  "description": "Aplikasi inspeksi mobil bekas profesional dan mandiri 152 titik BeliMobilGue-style dengan visual damage stencil.",
+  "start_url": "./admin.html",
+  "display": "standalone",
+  "background_color": "#0D1B24",
+  "theme_color": "#F5A623",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D1B24'/><circle cx='50' cy='50' r='36' fill='%23F5A623'/><path d='M35 50 L45 60 L65 40' stroke='%230D1B24' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#F5A623">
 <style>
 :root{
   --ink:#0D1B24;
@@ -462,6 +464,19 @@ table.data-table tr:hover td{background:#F8FAFC}
             </button>
           </div>
 
+          <!-- ALGORITHMIC GRADING LIVE BANNER -->
+          <div style="background:var(--blue-bg); border:1px solid rgba(37,99,235,.25); border-radius:10px; padding:14px 18px; margin-bottom:18px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+            <div>
+              <span style="font-size:11px; font-family:var(--mono); text-transform:uppercase; color:var(--blue); font-weight:800; letter-spacing:.06em">Kalkulator Algoritma Standar SNI/BNSP:</span>
+              <div style="font-size:15px; font-weight:800; color:var(--ink); margin-top:2px" id="liveCalculatedSummary">
+                Skor Akumulasi: 92/100 · Rekomendasi Grade A- (Sangat Baik)
+              </div>
+            </div>
+            <button type="button" class="btn btn-dark" style="height:34px; font-size:12px" onclick="applyCalculatedGrade()">
+              Terapkan Hasil Algoritma ke Form
+            </button>
+          </div>
+
           <div class="form-grid" style="margin-bottom:18px">
             <div class="input-group">
               <label>Foto Utama Mobil (URL / Link)</label>
@@ -744,6 +759,16 @@ function renderKPIs() {
   document.getElementById('kpiCompleted').textContent = appointments.filter(a => a.status === 'Completed').length;
 }
 
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function renderAppointments(list = appointments) {
   const tbody = document.getElementById('appointmentTableBody');
   tbody.innerHTML = '';
@@ -755,29 +780,30 @@ function renderAppointments(list = appointments) {
 
   list.forEach(a => {
     const tr = document.createElement('tr');
-    const badgeClass = a.status.toLowerCase().replace(/\s+/g, '');
+    const badgeClass = escapeHtml(a.status.toLowerCase().replace(/\s+/g, ''));
+    const safePhoneDigits = String(a.phone || '').replace(/[^0-9]/g, '');
 
     tr.innerHTML = `
-      <td style="font-family:var(--mono); font-weight:700; color:var(--ink-3)">${a.id}</td>
+      <td style="font-family:var(--mono); font-weight:700; color:var(--ink-3)">${escapeHtml(a.id)}</td>
       <td>
-        <strong>${a.customer}</strong>
+        <strong>${escapeHtml(a.customer)}</strong>
         <div style="font-size:12px; color:#50626E; font-family:var(--mono)">
-          <a href="https://wa.me/${a.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--green)">
-            WA: ${a.phone}
+          <a href="https://wa.me/${safePhoneDigits}" target="_blank" style="color:var(--green)">
+            WA: ${escapeHtml(a.phone)}
           </a>
         </div>
       </td>
       <td>
-        <strong style="color:var(--ink)">${a.car}</strong>
-        <div style="font-size:12px; color:#6B7280; font-family:var(--mono)">${a.plate || '-'}</div>
+        <strong style="color:var(--ink)">${escapeHtml(a.car)}</strong>
+        <div style="font-size:12px; color:#6B7280; font-family:var(--mono)">${escapeHtml(a.plate || '-')}</div>
       </td>
       <td>
-        <div>${a.date} · ${a.time || '10:00 WIB'}</div>
-        <div style="font-size:12px; color:#6B7280">${a.location}</div>
+        <div>${escapeHtml(a.date)} · ${escapeHtml(a.time || '10:00 WIB')}</div>
+        <div style="font-size:12px; color:#6B7280">${escapeHtml(a.location)}</div>
       </td>
-      <td><span style="font-size:12.5px; font-weight:600">${a.package}</span></td>
+      <td><span style="font-size:12.5px; font-weight:600">${escapeHtml(a.package)}</span></td>
       <td>
-        <select onchange="updateInspector('${a.id}', this.value)" style="font-size:12px; border:1px solid var(--line); border-radius:6px; padding:3px 6px; background:#fff">
+        <select onchange="updateInspector('${escapeHtml(a.id)}', this.value)" style="font-size:12px; border:1px solid var(--line); border-radius:6px; padding:3px 6px; background:#fff">
           <option ${a.inspector==='Belum Ditugaskan'?'selected':''}>Belum Ditugaskan</option>
           <option ${a.inspector==='Rian Pratama'?'selected':''}>Rian Pratama</option>
           <option ${a.inspector==='Bambang Suherman'?'selected':''}>Bambang Suherman</option>
@@ -785,20 +811,20 @@ function renderAppointments(list = appointments) {
         </select>
       </td>
       <td>
-        <span class="status-badge ${badgeClass}">${a.status}</span>
+        <span class="status-badge ${badgeClass}">${escapeHtml(a.status)}</span>
       </td>
       <td style="text-align:right">
         <div style="display:inline-flex; gap:6px">
           ${a.status === 'Completed' ? `
-            <a href="laporan.html?id=${a.id}" target="_blank" class="btn btn-outline" style="height:32px; font-size:12px; padding:0 10px; color:var(--blue)">
+            <a href="laporan.html?id=${encodeURIComponent(a.id)}" target="_blank" class="btn btn-outline" style="height:32px; font-size:12px; padding:0 10px; color:var(--blue)">
               Lihat Laporan ↗
             </a>
           ` : `
-            <button class="btn btn-primary" onclick="startInspection('${a.id}')" style="height:32px; font-size:12px; padding:0 10px">
+            <button class="btn btn-primary" onclick="startInspection('${escapeHtml(a.id)}')" style="height:32px; font-size:12px; padding:0 10px">
               Input Inspeksi ✍
             </button>
           `}
-          <button class="btn btn-outline" onclick="deleteAppointment('${a.id}')" style="height:32px; font-size:12px; padding:0 8px; color:var(--red)" title="Hapus">
+          <button class="btn btn-outline" onclick="deleteAppointment('${escapeHtml(a.id)}')" style="height:32px; font-size:12px; padding:0 8px; color:var(--red)" title="Hapus">
             ✕
           </button>
         </div>
@@ -943,10 +969,10 @@ function renderDamagesTable() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="font-weight:700">${d.num || (idx+1)}</td>
-      <td><span style="font-weight:700; text-transform:capitalize">${d.type}</span></td>
+      <td><span style="font-weight:700; text-transform:capitalize">${escapeHtml(d.type)}</span></td>
       <td>
-        <strong>${d.label}</strong>
-        <div style="font-size:11.5px; color:#50626E">${d.note}</div>
+        <strong>${escapeHtml(d.label)}</strong>
+        <div style="font-size:11.5px; color:#50626E">${escapeHtml(d.note)}</div>
       </td>
       <td style="text-align:right">
         <button type="button" onclick="removeDamage(${idx})" style="border:none; background:none; color:var(--red); font-weight:700; cursor:pointer">✕</button>
@@ -954,6 +980,7 @@ function renderDamagesTable() {
     `;
     tbody.appendChild(tr);
   });
+  recalculateLiveGrade();
 }
 
 function removeDamage(index) {
@@ -1234,8 +1261,96 @@ function handleManualBooking(e) {
   alert(`Jadwal booking ${newAppt.id} berhasil ditambahkan!`);
 }
 
+/* ==================== AUTOMATED CAR GRADING ALGORITHM ==================== */
+function calculateCarGrade() {
+  let score = 100;
+
+  const floodSafe = document.getElementById('chkFlood') ? document.getElementById('chkFlood').checked : true;
+  const crashSafe = document.getElementById('chkCrash') ? document.getElementById('chkCrash').checked : true;
+  const odoSafe = document.getElementById('chkOdo') ? document.getElementById('chkOdo').checked : true;
+
+  // Disqualifiers
+  if (!floodSafe) return { grade: "D", score: 40, verdict: "TIDAK DIREKOMENDASIKAN — Terindikasi bekas terendam banjir (risiko korosi ECU dan jalur kelistrikan fatal)." };
+  if (!crashSafe) return { grade: "D", score: 48, verdict: "PERINGATAN KERUSAKAN — Terindikasi bekas tabrakan besar pada rangka sasis / apron / pilar utama." };
+  if (!odoSafe) return { grade: "C", score: 62, verdict: "PERINGATAN ODOMETER — Jarak tempuh fisik terindikasi manipulasi / tidak sinkron rekam servis berkala." };
+
+  // Checklist deductions
+  CHECKLIST_ZONES.forEach(z => {
+    z.items.forEach(it => {
+      if (it.status === 'fail') score -= 5;
+      else if (it.status === 'warn') score -= 1.5;
+    });
+  });
+
+  // Stencil damage deductions
+  currentDamages.forEach(d => {
+    if (d.type === 'rusak') score -= 4;
+    else if (d.type === 'dempul') score -= 2;
+    else if (d.type === 'penyok') score -= 1.5;
+    else if (d.type === 'baret') score -= 1;
+  });
+
+  score = Math.max(30, Math.min(100, Math.round(score)));
+
+  let grade = "A";
+  let verdict = "Kondisi Istimewa — Mobil sangat terawat, mesin halus, bodi mulus orisinil, siap pakai tanpa perbaikan berarti.";
+  if (score >= 92) {
+    grade = "A";
+    verdict = "Kondisi Istimewa — Mobil sangat terawat, mesin halus, bodi mulus orisinil, siap pakai tanpa perbaikan.";
+  } else if (score >= 84) {
+    grade = "A-";
+    verdict = "Sangat Baik — Mesin & transmisi prima, minus hanya kosmetik wajar pemakaian sehari-hari.";
+  } else if (score >= 74) {
+    grade = "B";
+    verdict = "Baik — Kondisi layak pakai, memerlukan servis komponen minor / perawatan berkala.";
+  } else if (score >= 60) {
+    grade = "C";
+    verdict = "Cukup — Terdapat PR suku cadang yang perlu diganti segera, disarankan negosiasi potongan harga.";
+  } else {
+    grade = "D";
+    verdict = "Kurang Direkomendasikan — Biaya perbaikan tinggi dan banyak temuan minus signifikan.";
+  }
+
+  return { grade, score, verdict };
+}
+
+function recalculateLiveGrade() {
+  const result = calculateCarGrade();
+  const summaryEl = document.getElementById('liveCalculatedSummary');
+  if (summaryEl) {
+    summaryEl.textContent = `Skor Akumulasi: ${result.score}/100 · Rekomendasi Grade ${result.grade} (${result.grade === 'A' || result.grade === 'A-' ? 'Layak Beli' : 'Perlu Perhatian'})`;
+  }
+}
+
+function applyCalculatedGrade() {
+  const result = calculateCarGrade();
+  const gradeSelect = document.getElementById('fGrade');
+  if (gradeSelect) gradeSelect.value = result.grade;
+  const verdictArea = document.getElementById('fVerdict');
+  if (verdictArea) verdictArea.value = result.verdict;
+  alert(`Rekomendasi Algoritma Berhasil Diterapkan:\nGrade: ${result.grade} (Skor: ${result.score}/100)`);
+}
+
+// Hook critical checkboxes to recalculate
+['chkFlood', 'chkCrash', 'chkOdo'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', recalculateLiveGrade);
+});
+
+// PWA Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => {
+      console.log('SW registration note:', err);
+    });
+  });
+}
+
 // Init run
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', () => {
+  init();
+  recalculateLiveGrade();
+});
 </script>
 </body>
 </html>
