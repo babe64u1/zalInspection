@@ -184,6 +184,10 @@ table.data-table tr:hover td{background:#F8FAFC}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
         Arsip Laporan Digital
       </button>
+      <button class="nav-tab-btn" onclick="switchTab('b2b', this)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        B2B Showroom &amp; Fleet
+      </button>
     </nav>
 
     <div class="user-profile">
@@ -625,6 +629,108 @@ table.data-table tr:hover td{background:#F8FAFC}
         </div>
       </div>
     </section>
+
+    <!-- ==================== TAB 4: B2B SHOWROOM & FLEET INVENTORY ==================== -->
+    <section id="tab-b2b" class="tab-content">
+      <div class="toolbar" style="flex-wrap:wrap; gap:16px">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px">
+            <h2 style="font-family:var(--display); font-size:20px; font-weight:800; margin:0">Armada Inventori Showroom Rekanan (B2B Fleet)</h2>
+            <span style="font-size:11px; font-family:var(--mono); font-weight:800; background:rgba(30,158,90,.15); color:var(--green); border:1px solid rgba(30,158,90,.3); padding:2px 8px; border-radius:12px">B2B SLA &lt;4 JAM</span>
+          </div>
+          <p style="margin:4px 0 0; font-size:13.5px; color:var(--mist)">Kelola sertifikasi inspeksi mobil massal independen, cetak sertifikat display kaca showroom, dan integrasi API Dealer Management System (DMS).</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn btn-outline" onclick="openApiSimulatorModal()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Simulasi API / Webhook DMS
+          </button>
+          <button class="btn btn-primary" onclick="openAddShowroomUnitModal()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            + Tambah Unit Showroom
+          </button>
+        </div>
+      </div>
+
+      <!-- SHOWROOM SELECTOR BAR -->
+      <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 20px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px">
+        <div style="display:flex; align-items:center; gap:12px">
+          <span style="font-weight:700; font-size:13.5px; color:var(--ink)">Pilih Showroom Rekanan:</span>
+          <select id="b2bShowroomSelector" onchange="switchShowroom(this.value)" style="font-weight:700; font-size:13px; padding:6px 12px; border:1px solid var(--line); border-radius:8px; background:#F8FAFC">
+            <option value="showroom_1">Garasi Auto Utama — Kelapa Gading, Jakarta Utara</option>
+            <option value="showroom_2">Prima Mobilindo — Bintaro Sektor 7, Tangerang Selatan</option>
+            <option value="showroom_3">Mandiri Motor Perkasa — Summarecon Bekasi</option>
+          </select>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; font-size:12.5px; color:var(--mist)">
+          <span>ID Rekanan: <strong style="color:var(--ink); font-family:var(--mono)" id="b2bPartnerId">DLR-JKT-001</strong></span>
+          <span>•</span>
+          <span>PIC Showroom: <strong style="color:var(--ink)" id="b2bPartnerPic">Bpk. Herman (0812-8821-900)</strong></span>
+        </div>
+      </div>
+
+      <!-- B2B FLEET KPI METRICS -->
+      <div class="kpi-grid" style="margin-bottom:24px">
+        <div class="kpi-card">
+          <div class="kpi-title">Total Stok di Showroom</div>
+          <div class="kpi-num" id="b2bKpiTotal">12</div>
+          <div class="kpi-sub">Unit terdaftar dalam inventori</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Tersertifikasi Lulus (Grade A/B)</div>
+          <div class="kpi-num" id="b2bKpiCertified" style="color:var(--green)">10</div>
+          <div class="kpi-sub">Siap dipajang &amp; bergaransi</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Rata-rata Skor Inspeksi</div>
+          <div class="kpi-num" id="b2bKpiAvgScore" style="color:var(--blue)">94.2%</div>
+          <div class="kpi-sub">Standar tinggi mutu kendaraan</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Estimasi Valuasi Inventori</div>
+          <div class="kpi-num" id="b2bKpiTotalVal" style="color:var(--amber-deep); font-size:22px">Rp 3,85 M</div>
+          <div class="kpi-sub">Total nilai pasar stok terlindungi</div>
+        </div>
+      </div>
+
+      <!-- INVENTORY FLEET TABLE -->
+      <div class="table-card">
+        <div style="padding:14px 20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px">
+          <div style="display:flex; gap:12px; align-items:center">
+            <strong style="font-size:14px">Daftar Unit Armada Showroom</strong>
+            <span style="font-size:12px; color:var(--mist)" id="b2bTableCountBadge">Menampilkan 12 unit</span>
+          </div>
+          <div style="display:flex; gap:8px">
+            <input type="text" id="b2bSearchInput" placeholder="Cari mobil, nopol, VIN..." oninput="filterShowroomInventory()" style="padding:5px 10px; font-size:12.5px; border:1px solid var(--line); border-radius:6px; width:220px">
+            <select id="b2bStatusFilter" onchange="filterShowroomInventory()" style="padding:5px 10px; font-size:12.5px; border:1px solid var(--line); border-radius:6px">
+              <option value="all">Semua Status Inspeksi</option>
+              <option value="Certified">Tersertifikasi Lulus</option>
+              <option value="Pending">Menunggu Inspeksi</option>
+              <option value="MinorPR">Ada PR Minor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Unit Kendaraan &amp; Nopol</th>
+                <th>Tahun &amp; Odometer</th>
+                <th>Harga Jual Showroom</th>
+                <th>Status Inspeksi</th>
+                <th>Grade zalInspection</th>
+                <th>3 Jaminan Utama</th>
+                <th style="text-align:right">Aksi Showroom</th>
+              </tr>
+            </thead>
+            <tbody id="b2bInventoryTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -669,6 +775,200 @@ table.data-table tr:hover td{background:#F8FAFC}
       <div style="display:flex; justify-content:flex-end; gap:10px">
         <button type="button" class="btn btn-outline" onclick="closeModal()">Batal</button>
         <button type="submit" class="btn btn-primary">Simpan Jadwal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: CETAK DISPLAY KACA SHOWROOM (WINDOW STICKER CERTIFICATE) -->
+<div class="modal-backdrop" id="b2bDisplayStickerModal">
+  <div class="modal-box" style="max-width:620px">
+    <div class="modal-head">
+      <div>
+        <h3 style="margin:0">Sertifikat Display Kaca Showroom</h3>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--mist)">Lembar pajangan kaca mobil berstandar inspeksi independen zalInspection.</p>
+      </div>
+      <button onclick="closeB2bModals()" style="border:none; background:none; font-size:18px; cursor:pointer">✕</button>
+    </div>
+
+    <!-- PRINTABLE STICKER CARD PREVIEW -->
+    <div id="printableStickerCard" style="border:2px solid #0D1B24; border-radius:14px; padding:24px; background:#fff; position:relative; box-shadow:0 8px 24px rgba(0,0,0,.08); margin-bottom:18px">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #0D1B24; padding-bottom:14px; margin-bottom:16px">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px">
+            <span style="background:#0D1B24; color:#fff; border-radius:6px; padding:3px 8px; font-weight:800; font-size:12px">zalInspection</span>
+            <span style="font-family:var(--mono); font-size:11px; font-weight:700; color:#F5A623">INDEPENDENT VERIFIED</span>
+          </div>
+          <h2 style="font-family:var(--display); font-size:19px; margin:6px 0 0; color:#0D1B24" id="stkCarTitle">Honda CR-V 1.5 Turbo Prestige</h2>
+          <div style="font-size:12.5px; color:#50626E" id="stkCarSub">2021 · Matic (CVT) · Plat B 1842 UYJ</div>
+        </div>
+        <div style="text-align:center; border:2.5px solid #1E9E5A; border-radius:10px; padding:6px 14px; background:rgba(30,158,90,.08)">
+          <span style="font-family:var(--mono); font-size:9.5px; font-weight:800; color:#1E9E5A; display:block">GRADE RESMI</span>
+          <div style="font-family:var(--display); font-size:28px; font-weight:900; color:#1E9E5A; line-height:1" id="stkGrade">A-</div>
+        </div>
+      </div>
+
+      <!-- 3 GUARANTEES PILLARS -->
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:18px; text-align:center">
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:8px 4px">
+          <div style="font-size:15px; color:#16A34A; font-weight:800">✓ LOLOS</div>
+          <div style="font-size:11px; font-weight:700; color:#14532D">Bebas Banjir</div>
+        </div>
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:8px 4px">
+          <div style="font-size:15px; color:#16A34A; font-weight:800">✓ LOLOS</div>
+          <div style="font-size:11px; font-weight:700; color:#14532D">Bebas Tabrakan Rangka</div>
+        </div>
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:8px 4px">
+          <div style="font-size:15px; color:#16A34A; font-weight:800">✓ LOLOS</div>
+          <div style="font-size:11px; font-weight:700; color:#14532D">Odometer Asli</div>
+        </div>
+      </div>
+
+      <!-- SCORES & QR CODE -->
+      <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:14px 18px">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:12px">
+          <div><span style="color:#64748B">Struktur &amp; Rangka:</span> <strong id="stkScStruktur">96%</strong></div>
+          <div><span style="color:#64748B">Mesin &amp; Transmisi:</span> <strong id="stkScMesin">92%</strong></div>
+          <div><span style="color:#64748B">Interior &amp; Fitur:</span> <strong id="stkScInterior">90%</strong></div>
+          <div><span style="color:#64748B">Kaki-kaki Kolong:</span> <strong id="stkScKaki">85%</strong></div>
+        </div>
+        <div style="text-align:center; padding-left:14px; border-left:1px solid #CBD5E1">
+          <svg width="54" height="54" viewBox="0 0 25 25" fill="#0D1B24">
+            <rect x="1" y="1" width="7" height="7" fill="none" stroke="#0D1B24" stroke-width="1.2"/>
+            <rect x="3" y="3" width="3" height="3"/>
+            <rect x="17" y="1" width="7" height="7" fill="none" stroke="#0D1B24" stroke-width="1.2"/>
+            <rect x="19" y="3" width="3" height="3"/>
+            <rect x="1" y="17" width="7" height="7" fill="none" stroke="#0D1B24" stroke-width="1.2"/>
+            <rect x="3" y="19" width="3" height="3"/>
+            <rect x="10" y="2" width="2" height="5"/>
+            <rect x="10" y="9" width="4" height="2"/>
+            <rect x="10" y="13" width="2" height="4"/>
+            <rect x="18" y="10" width="2" height="3"/>
+            <rect x="18" y="18" width="4" height="4"/>
+          </svg>
+          <span style="display:block; font-size:8px; font-family:var(--mono); font-weight:700; color:#50626E; margin-top:2px">SCAN VERIFIKASI</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; font-size:10.5px; color:#889DB0; display:flex; justify-content:space-between; align-items:center">
+        <span id="stkCertNo">Sertifikat No: ZAL-CERT-2026-0842</span>
+        <span id="stkDate">Inspeksi: 21 Sep 2026</span>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center">
+      <span style="font-size:12px; color:var(--mist)">Ukuran pas untuk ditempel di kaca samping pengemudi</span>
+      <div style="display:flex; gap:10px">
+        <button type="button" class="btn btn-outline" onclick="closeB2bModals()">Tutup</button>
+        <button type="button" class="btn btn-primary" onclick="printStickerCard()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Cetak Sertifikat Display
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SIMULASI REST API & WEBHOOK INGESTION -->
+<div class="modal-backdrop" id="b2bApiSimulatorModal">
+  <div class="modal-box" style="max-width:680px">
+    <div class="modal-head">
+      <div>
+        <h3 style="margin:0">Developer Playground: B2B DMS Ingestion API</h3>
+        <p style="margin:2px 0 0; font-size:12px; color:var(--mist)">Simulasi webhook sinkronisasi otomatis dari sistem inventory showroom ke zalInspection.</p>
+      </div>
+      <button onclick="closeB2bModals()" style="border:none; background:none; font-size:18px; cursor:pointer">✕</button>
+    </div>
+
+    <div style="background:#0D1B24; border-radius:10px; padding:16px; color:#E2E8F0; font-family:var(--mono); font-size:12px; margin-bottom:16px">
+      <div style="color:#94A3B8; margin-bottom:6px"># HTTP Request Endpoint</div>
+      <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px">
+        <span style="background:#10B981; color:#064E3B; font-weight:800; padding:2px 6px; border-radius:4px">POST</span>
+        <span style="color:#38BDF8">https://api.zalinspection.com/v1/b2b/fleet/ingest</span>
+      </div>
+      <div style="color:#94A3B8; margin-bottom:4px"># Headers:</div>
+      <div style="color:#CBD5E1; margin-bottom:12px">Authorization: Bearer zal_sec_live_9921_b2b_fleet_token<br>Content-Type: application/json</div>
+      <div style="color:#94A3B8; margin-bottom:4px"># JSON Webhook Payload:</div>
+      <textarea id="b2bApiPayload" rows="7" style="width:100%; background:#1A2C38; border:1px solid #334155; border-radius:6px; color:#F1F5F9; font-family:var(--mono); font-size:12px; padding:8px">{
+  "dealer_id": "DLR-JKT-001",
+  "dealer_name": "Garasi Auto Utama",
+  "vin": "MHRRW1880MJ109923",
+  "car_title": "Mazda CX-5 2.5 Elite AT",
+  "year": 2022,
+  "plate": "B 2291 KLO",
+  "odometer": "31.500 km",
+  "price": "Rp 435.000.000",
+  "priority_dispatch": true
+}</textarea>
+    </div>
+
+    <div id="b2bApiResponseBox" style="display:none; background:rgba(30,158,90,.15); border:1px solid #1E9E5A; border-radius:8px; padding:12px 16px; margin-bottom:16px; font-family:var(--mono); font-size:12px">
+      <div style="color:#1E9E5A; font-weight:700">✓ HTTP 201 Created — Webhook Dispatched Successfully!</div>
+      <div style="color:var(--ink); margin-top:4px" id="b2bApiResponseText">Unit Mazda CX-5 berhasil ditambahkan ke inventori Garasi Auto Utama &amp; tiket inspeksi terdaftar otomatis.</div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center">
+      <span style="font-size:12px; color:var(--mist)">Dokumentasi API v1.2 zalInspection</span>
+      <div style="display:flex; gap:10px">
+        <button type="button" class="btn btn-outline" onclick="closeB2bModals()">Tutup</button>
+        <button type="button" class="btn btn-primary" id="btnDispatchWebhook" onclick="dispatchMockWebhook()">
+          Kirim Data Webhook DMS (Simulasi) ⚡
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: TAMBAH UNIT SHOWROOM MANUAL -->
+<div class="modal-backdrop" id="b2bAddUnitModal">
+  <div class="modal-box" style="max-width:550px">
+    <div class="modal-head">
+      <h3>Tambah Unit ke Stok Showroom</h3>
+      <button onclick="closeB2bModals()" style="border:none; background:none; font-size:18px; cursor:pointer">✕</button>
+    </div>
+    <form onsubmit="handleAddShowroomUnit(event)">
+      <div class="input-group" style="margin-bottom:12px">
+        <label>Showroom Rekanan *</label>
+        <select id="mB2bShowroomSelect" style="font-weight:700">
+          <option value="showroom_1">Garasi Auto Utama — Kelapa Gading</option>
+          <option value="showroom_2">Prima Mobilindo — Bintaro</option>
+          <option value="showroom_3">Mandiri Motor Perkasa — Bekasi</option>
+        </select>
+      </div>
+      <div class="input-group" style="margin-bottom:12px">
+        <label>Merek &amp; Model Mobil *</label>
+        <input type="text" id="mB2bCarTitle" required placeholder="cth. Hyundai Creta 1.5 Prime IVT 2022">
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px">
+        <div class="input-group">
+          <label>Nomor Polisi (Plat) *</label>
+          <input type="text" id="mB2bPlate" required placeholder="B 1928 XYZ">
+        </div>
+        <div class="input-group">
+          <label>Tahun Pembuatan *</label>
+          <input type="number" id="mB2bYear" required value="2022">
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px">
+        <div class="input-group">
+          <label>Odometer *</label>
+          <input type="text" id="mB2bOdo" required placeholder="cth. 38.000 km" value="38.000 km">
+        </div>
+        <div class="input-group">
+          <label>Harga Jual Showroom *</label>
+          <input type="text" id="mB2bPrice" required placeholder="Rp 295.000.000" value="Rp 295.000.000">
+        </div>
+      </div>
+      <div class="input-group" style="margin-bottom:16px">
+        <label>Status Permintaan Inspeksi</label>
+        <select id="mB2bInspRequest">
+          <option value="immediate">Jadwalkan Inspeksi Langsung (Prioritas B2B)</option>
+          <option value="draft">Simpan Draf Unit (Inspeksi Nanti)</option>
+        </select>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:10px">
+        <button type="button" class="btn btn-outline" onclick="closeB2bModals()">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan ke Inventori</button>
       </div>
     </form>
   </div>
@@ -794,6 +1094,445 @@ let selectedDamageType = 'baret';
 let currentAdminStencilAngle = 'top';
 let activeEditingBookingId = "INSP-2026-0842";
 
+/* ==================== B2B SHOWROOM & FLEET DATA & LOGIC ==================== */
+const B2B_SHOWROOMS = {
+  showroom_1: {
+    id: "DLR-JKT-001",
+    name: "Garasi Auto Utama",
+    location: "Kelapa Gading, Jakarta Utara",
+    pic: "Bpk. Herman (0812-8821-900)",
+    inventory: [
+      {
+        id: "FLEET-001",
+        title: "Honda CR-V 1.5 Turbo Prestige",
+        plate: "B 1842 UYJ",
+        year: 2021,
+        odometer: "42.850 km",
+        price: "Rp 385.000.000",
+        dateIn: "18 Sep 2026",
+        status: "Certified",
+        grade: "A-",
+        score: 92,
+        scores: { struktur: 96, mesin: 92, interior: 90, kaki: 85 },
+        guarantees: { flood: true, crash: true, odo: true },
+        reportId: "INSP-2026-0842"
+      },
+      {
+        id: "FLEET-002",
+        title: "Toyota Fortuner 2.8 VRZ 4x2 AT",
+        plate: "B 1984 UZZ",
+        year: 2022,
+        odometer: "28.100 km",
+        price: "Rp 535.000.000",
+        dateIn: "19 Sep 2026",
+        status: "Certified",
+        grade: "A",
+        score: 96,
+        scores: { struktur: 98, mesin: 96, interior: 95, kaki: 94 },
+        guarantees: { flood: true, crash: true, odo: true },
+        reportId: "INSP-2026-0840"
+      },
+      {
+        id: "FLEET-003",
+        title: "Mitsubishi Pajero Sport Dakar 4x2",
+        plate: "B 1198 KJH",
+        year: 2020,
+        odometer: "64.000 km",
+        price: "Rp 440.000.000",
+        dateIn: "20 Sep 2026",
+        status: "MinorPR",
+        grade: "B",
+        score: 78,
+        scores: { struktur: 95, mesin: 82, interior: 75, kaki: 68 },
+        guarantees: { flood: true, crash: true, odo: true },
+        reportId: "INSP-2026-0844"
+      },
+      {
+        id: "FLEET-004",
+        title: "Honda HR-V 1.5 SE CVT",
+        plate: "B 2011 PRQ",
+        year: 2022,
+        odometer: "19.800 km",
+        price: "Rp 365.000.000",
+        dateIn: "21 Sep 2026",
+        status: "Pending",
+        grade: "-",
+        score: 0,
+        scores: { struktur: 0, mesin: 0, interior: 0, kaki: 0 },
+        guarantees: { flood: false, crash: false, odo: false },
+        reportId: null
+      }
+    ]
+  },
+  showroom_2: {
+    id: "DLR-TGR-004",
+    name: "Prima Mobilindo",
+    location: "Bintaro Sektor 7, Tangerang Selatan",
+    pic: "Ibu Silvia (0813-9988-112)",
+    inventory: [
+      {
+        id: "FLEET-005",
+        title: "Toyota Kijang Innova Zenix 2.0 Q Hybrid",
+        plate: "B 2031 TZL",
+        year: 2023,
+        odometer: "14.200 km",
+        price: "Rp 565.000.000",
+        dateIn: "19 Sep 2026",
+        status: "Certified",
+        grade: "A",
+        score: 97,
+        scores: { struktur: 99, mesin: 98, interior: 96, kaki: 95 },
+        guarantees: { flood: true, crash: true, odo: true },
+        reportId: "INSP-2026-0843"
+      },
+      {
+        id: "FLEET-006",
+        title: "Hyundai Creta 1.5 Prime IVT",
+        plate: "B 1278 FGT",
+        year: 2022,
+        odometer: "25.600 km",
+        price: "Rp 315.000.000",
+        dateIn: "20 Sep 2026",
+        status: "Certified",
+        grade: "A-",
+        score: 89,
+        scores: { struktur: 94, mesin: 90, interior: 88, kaki: 84 },
+        guarantees: { flood: true, crash: true, odo: true },
+        reportId: "INSP-2026-0839"
+      }
+    ]
+  },
+  showroom_3: {
+    id: "DLR-BKS-007",
+    name: "Mandiri Motor Perkasa",
+    location: "Summarecon Bekasi",
+    pic: "Bpk. Rahmat (0817-5544-221)",
+    inventory: [
+      {
+        id: "FLEET-007",
+        title: "Toyota Raize 1.0T GR Sport TSS",
+        plate: "B 2419 BKS",
+        year: 2022,
+        odometer: "21.400 km",
+        price: "Rp 235.000.000",
+        dateIn: "17 Sep 2026",
+        status: "Certified",
+        grade: "A",
+        score: 94,
+        scores: { struktur: 96, mesin: 94, interior: 94, kaki: 92 },
+        guarantees: { flood: true, crash: true, odo: true },
+        reportId: "INSP-2026-0835"
+      }
+    ]
+  }
+};
+
+let activeShowroomId = 'showroom_1';
+let currentFleetData = JSON.parse(localStorage.getItem('zal_b2b_fleet') || 'null') || B2B_SHOWROOMS;
+
+function saveFleetData() {
+  localStorage.setItem('zal_b2b_fleet', JSON.stringify(currentFleetData));
+}
+
+function switchShowroom(showroomId) {
+  activeShowroomId = showroomId;
+  const showroom = currentFleetData[showroomId];
+  if (!showroom) return;
+
+  document.getElementById('b2bPartnerId').textContent = showroom.id;
+  document.getElementById('b2bPartnerPic').textContent = showroom.pic;
+
+  renderB2bInventory();
+  updateB2bKPIs();
+}
+
+function updateB2bKPIs() {
+  const showroom = currentFleetData[activeShowroomId];
+  if (!showroom) return;
+
+  const inv = showroom.inventory;
+  const total = inv.length;
+  const certified = inv.filter(it => it.status === 'Certified').length;
+  const certifiedItems = inv.filter(it => it.score > 0);
+  const avgScore = certifiedItems.length > 0 
+    ? (certifiedItems.reduce((acc, it) => acc + it.score, 0) / certifiedItems.length).toFixed(1) + '%'
+    : '0%';
+
+  let totalValRaw = 0;
+  inv.forEach(it => {
+    const num = parseInt(String(it.price || '').replace(/[^0-9]/g, '')) || 0;
+    totalValRaw += num;
+  });
+  const totalValFormatted = totalValRaw >= 1000000000
+    ? 'Rp ' + (totalValRaw / 1000000000).toFixed(2) + ' M'
+    : 'Rp ' + (totalValRaw / 1000000).toFixed(0) + ' Jt';
+
+  document.getElementById('b2bKpiTotal').textContent = total;
+  document.getElementById('b2bKpiCertified').textContent = certified;
+  document.getElementById('b2bKpiAvgScore').textContent = avgScore;
+  document.getElementById('b2bKpiTotalVal').textContent = totalValFormatted;
+}
+
+function renderB2bInventory(list = null) {
+  const showroom = currentFleetData[activeShowroomId];
+  if (!showroom) return;
+
+  const items = list !== null ? list : showroom.inventory;
+  const tbody = document.getElementById('b2bInventoryTableBody');
+  if (!tbody) return;
+
+  tbody.innerHTML = '';
+  document.getElementById('b2bTableCountBadge').textContent = `Menampilkan ${items.length} unit`;
+
+  if (items.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:#8898A4">Tidak ada unit kendaraan yang sesuai dengan filter.</td></tr>`;
+    return;
+  }
+
+  items.forEach(u => {
+    const tr = document.createElement('tr');
+    
+    let statusBadge = '';
+    if (u.status === 'Certified') {
+      statusBadge = '<span class="status-badge completed">✓ Lulus Terverifikasi</span>';
+    } else if (u.status === 'Pending') {
+      statusBadge = '<span class="status-badge pending">⏳ Butuh Inspeksi</span>';
+    } else {
+      statusBadge = '<span class="status-badge inprogress">▲ Ada PR Minor</span>';
+    }
+
+    let gradePill = '';
+    if (u.grade === 'A' || u.grade === 'A-') {
+      gradePill = `<span style="display:inline-block; font-family:var(--display); font-weight:800; font-size:14px; color:#1E9E5A; background:rgba(30,158,90,.12); padding:3px 10px; border-radius:8px; border:1px solid rgba(30,158,90,.3)">${escapeHtml(u.grade)} (${u.score}%)</span>`;
+    } else if (u.grade === 'B') {
+      gradePill = `<span style="display:inline-block; font-family:var(--display); font-weight:800; font-size:14px; color:var(--amber-deep); background:rgba(245,166,35,.15); padding:3px 10px; border-radius:8px; border:1px solid rgba(245,166,35,.3)">${escapeHtml(u.grade)} (${u.score}%)</span>`;
+    } else {
+      gradePill = `<span style="color:#94A3B8; font-weight:700">-</span>`;
+    }
+
+    const guaranteesHtml = (u.guarantees && u.guarantees.flood) 
+      ? `<span style="font-size:11px; font-weight:700; color:#16A34A; background:#DCFCE7; padding:2px 6px; border-radius:4px">✓ 3 Jaminan Aman</span>`
+      : `<span style="font-size:11px; color:#94A3B8">Belum Diuji</span>`;
+
+    tr.innerHTML = `
+      <td>
+        <strong style="color:var(--ink); font-size:13.5px">${escapeHtml(u.title)}</strong>
+        <div style="font-size:12px; font-family:var(--mono); color:#64748B">${escapeHtml(u.plate)}</div>
+      </td>
+      <td>
+        <div>${escapeHtml(String(u.year))}</div>
+        <div style="font-size:12px; color:#64748B">${escapeHtml(u.odometer)}</div>
+      </td>
+      <td><strong style="font-family:var(--mono); color:var(--ink)">${escapeHtml(u.price)}</strong></td>
+      <td>${statusBadge}</td>
+      <td>${gradePill}</td>
+      <td>${guaranteesHtml}</td>
+      <td style="text-align:right">
+        <div style="display:inline-flex; gap:6px; flex-wrap:wrap; justify-content:flex-end">
+          ${u.status === 'Certified' || u.status === 'MinorPR' ? `
+            <a href="laporan.html?id=${encodeURIComponent(u.reportId || 'INSP-2026-0842')}" target="_blank" class="btn btn-outline" style="height:30px; font-size:11.5px; padding:0 8px; color:var(--blue)">
+              Laporan ↗
+            </a>
+            <button class="btn btn-dark" onclick="openStickerModal('${escapeHtml(u.id)}')" style="height:30px; font-size:11.5px; padding:0 8px">
+              Cetak Display Kaca
+            </button>
+          ` : `
+            <button class="btn btn-primary" onclick="dispatchDirectInspection('${escapeHtml(u.id)}')" style="height:30px; font-size:11.5px; padding:0 8px">
+              Tugaskan Inspeksi ✍
+            </button>
+          `}
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function filterShowroomInventory() {
+  const showroom = currentFleetData[activeShowroomId];
+  if (!showroom) return;
+
+  const query = document.getElementById('b2bSearchInput').value.toLowerCase().trim();
+  const status = document.getElementById('b2bStatusFilter').value;
+
+  const filtered = showroom.inventory.filter(u => {
+    const matchQ = !query || 
+      u.title.toLowerCase().includes(query) ||
+      u.plate.toLowerCase().includes(query) ||
+      String(u.year).includes(query);
+    const matchS = status === 'all' || u.status === status;
+    return matchQ && matchS;
+  });
+
+  renderB2bInventory(filtered);
+}
+
+function openStickerModal(unitId) {
+  const showroom = currentFleetData[activeShowroomId];
+  if (!showroom) return;
+  const unit = showroom.inventory.find(u => u.id === unitId);
+  if (!unit) return;
+
+  document.getElementById('stkCarTitle').textContent = unit.title;
+  document.getElementById('stkCarSub').textContent = `${unit.year} · ${unit.odometer} · Plat ${unit.plate}`;
+  document.getElementById('stkGrade').textContent = unit.grade;
+  document.getElementById('stkScStruktur').textContent = (unit.scores ? unit.scores.struktur : 96) + '%';
+  document.getElementById('stkScMesin').textContent = (unit.scores ? unit.scores.mesin : 92) + '%';
+  document.getElementById('stkScInterior').textContent = (unit.scores ? unit.scores.interior : 90) + '%';
+  document.getElementById('stkScKaki').textContent = (unit.scores ? unit.scores.kaki : 85) + '%';
+  document.getElementById('stkCertNo').textContent = `Sertifikat No: ZAL-CERT-2026-${unit.id.replace(/[^0-9]/g,'') || '8842'}`;
+  document.getElementById('stkDate').textContent = `Inspeksi: ${new Date().toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric'})}`;
+
+  document.getElementById('b2bDisplayStickerModal').classList.add('open');
+}
+
+function printStickerCard() {
+  window.print();
+}
+
+function openApiSimulatorModal() {
+  document.getElementById('b2bApiSimulatorModal').classList.add('open');
+}
+
+function openAddShowroomUnitModal() {
+  document.getElementById('mB2bShowroomSelect').value = activeShowroomId;
+  document.getElementById('b2bAddUnitModal').classList.add('open');
+}
+
+function closeB2bModals() {
+  document.getElementById('b2bDisplayStickerModal').classList.remove('open');
+  document.getElementById('b2bApiSimulatorModal').classList.remove('open');
+  document.getElementById('b2bAddUnitModal').classList.remove('open');
+}
+
+function dispatchMockWebhook() {
+  const btn = document.getElementById('btnDispatchWebhook');
+  btn.disabled = true;
+  btn.innerHTML = 'Mengirim Webhook... ⏳';
+
+  setTimeout(() => {
+    let payload;
+    try {
+      payload = JSON.parse(document.getElementById('b2bApiPayload').value);
+    } catch(err) {
+      alert("Format JSON payload tidak valid!");
+      btn.disabled = false;
+      btn.innerHTML = 'Kirim Data Webhook DMS (Simulasi) ⚡';
+      return;
+    }
+
+    const showroomKey = payload.dealer_id === 'DLR-TGR-004' ? 'showroom_2' : (payload.dealer_id === 'DLR-BKS-007' ? 'showroom_3' : 'showroom_1');
+    const targetShowroom = currentFleetData[showroomKey];
+
+    const newUnit = {
+      id: "FLEET-" + Math.floor(100 + Math.random()*899),
+      title: payload.car_title || "Kendaraan Baru",
+      plate: payload.plate || ("B " + Math.floor(1000 + Math.random()*8999) + " DMS"),
+      year: payload.year || 2023,
+      odometer: payload.odometer || "20.000 km",
+      price: payload.price || "Rp 350.000.000",
+      dateIn: "Hari Ini",
+      status: "Certified",
+      grade: "A",
+      score: 95,
+      scores: { struktur: 97, mesin: 95, interior: 94, kaki: 92 },
+      guarantees: { flood: true, crash: true, odo: true },
+      reportId: "INSP-2026-0842"
+    };
+
+    targetShowroom.inventory.unshift(newUnit);
+    saveFleetData();
+
+    // Also queue appointment
+    const newAppt = {
+      id: "INSP-DMS-" + Math.floor(1000 + Math.random()*8999),
+      customer: `[B2B] ${targetShowroom.name}`,
+      phone: "628128821900",
+      car: newUnit.title,
+      plate: newUnit.plate,
+      location: targetShowroom.location,
+      package: "B2B Fleet Inspection",
+      date: new Date().toISOString().split('T')[0],
+      time: "Prioritas <4 Jam",
+      inspector: "Rian Pratama",
+      status: "In Progress"
+    };
+    appointments.unshift(newAppt);
+    saveAppointments();
+
+    btn.disabled = false;
+    btn.innerHTML = 'Kirim Data Webhook DMS (Simulasi) ⚡';
+
+    const respBox = document.getElementById('b2bApiResponseBox');
+    respBox.style.display = 'block';
+    document.getElementById('b2bApiResponseText').textContent = `Unit ${newUnit.title} (${newUnit.plate}) sukses diinjeksi via Webhook ke ${targetShowroom.name}. Tiket antrean inspeksi #${newAppt.id} terbit.`;
+
+    if (activeShowroomId === showroomKey) {
+      renderB2bInventory();
+      updateB2bKPIs();
+    }
+  }, 400);
+}
+
+function handleAddShowroomUnit(event) {
+  event.preventDefault();
+  const sKey = document.getElementById('mB2bShowroomSelect').value;
+  const targetShowroom = currentFleetData[sKey];
+
+  const newUnit = {
+    id: "FLEET-" + Math.floor(100 + Math.random()*899),
+    title: document.getElementById('mB2bCarTitle').value,
+    plate: document.getElementById('mB2bPlate').value,
+    year: parseInt(document.getElementById('mB2bYear').value) || 2022,
+    odometer: document.getElementById('mB2bOdo').value,
+    price: document.getElementById('mB2bPrice').value,
+    dateIn: "Hari Ini",
+    status: "Pending",
+    grade: "-",
+    score: 0,
+    scores: { struktur: 0, mesin: 0, interior: 0, kaki: 0 },
+    guarantees: { flood: false, crash: false, odo: false },
+    reportId: null
+  };
+
+  targetShowroom.inventory.unshift(newUnit);
+  saveFleetData();
+  closeB2bModals();
+
+  if (activeShowroomId === sKey) {
+    renderB2bInventory();
+    updateB2bKPIs();
+  }
+
+  alert(`Unit ${newUnit.title} berhasil ditambahkan ke inventori ${targetShowroom.name}!`);
+}
+
+function dispatchDirectInspection(unitId) {
+  const showroom = currentFleetData[activeShowroomId];
+  const unit = showroom.inventory.find(u => u.id === unitId);
+  if (!unit) return;
+
+  const apptId = "INSP-B2B-" + Math.floor(1000 + Math.random()*8999);
+  const newAppt = {
+    id: apptId,
+    customer: `[B2B] ${showroom.name}`,
+    phone: "628128821900",
+    car: unit.title,
+    plate: unit.plate,
+    location: showroom.location,
+    package: "B2B Fleet Priority",
+    date: new Date().toISOString().split('T')[0],
+    time: "Segera",
+    inspector: "Rian Pratama",
+    status: "Pending"
+  };
+
+  appointments.unshift(newAppt);
+  saveAppointments();
+  alert(`Tiket inspeksi prioritas dibuat: ${apptId}. Mengarahkan ke form input inspeksi.`);
+  startInspection(apptId);
+}
+
 /* ==================== APP LIFECYCLE ==================== */
 function init() {
   loadAppointments();
@@ -803,6 +1542,8 @@ function init() {
   renderStencilPins();
   renderDamagesTable();
   renderReportsArchive();
+  renderB2bInventory();
+  updateB2bKPIs();
   document.getElementById('mDate').min = new Date().toISOString().split('T')[0];
 }
 
