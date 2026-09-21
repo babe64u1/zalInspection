@@ -117,17 +117,46 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .trust-item b{display:block; color:#FFFFFF; font-size:14px; margin-bottom:2px}
 .trust-item svg{flex-shrink:0; margin-top:2px; color:var(--amber)}
 
-/* Hero Visual Box */
+/* Hero Visual Dossier Console */
 .hero-visual{position:relative; border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--border-dark);
   box-shadow:var(--shadow-dark); background:var(--surface-dark-2)}
-.hero-scan-img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover}
+.hero-dossier-topbar{padding:14px 18px; background:rgba(9,13,18,0.95); border-bottom:1px solid var(--border-dark);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px}
+.hdt-badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:11px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--amber-light); font-weight:700}
+.hdt-inspector{display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:11px;
+  color:#34D399; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.25); padding:3px 9px; border-radius:4px}
+.hdt-inspector::before{content:""; width:6px; height:6px; border-radius:50%; background:#10B981; box-shadow:0 0 6px #10B981}
+.hero-vehicle-meta{padding:10px 18px; background:rgba(22,34,50,0.85); border-bottom:1px solid var(--border-dark);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:12px; color:#94A3B8}
+.hero-vehicle-meta b{color:#FFFFFF; font-size:13px; font-family:var(--font-display)}
+.hero-vehicle-meta span{font-family:var(--font-mono); font-size:11px}
+
+.hero-photo-wrap{position:relative; overflow:hidden; background:#000}
+.hero-dossier-photo{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover; transition:transform .4s ease}
+.hero-photo-wrap:hover .hero-dossier-photo{transform:scale(1.02)}
+
 .hud-pill{position:absolute; font-family:var(--font-mono); font-size:11px; font-weight:700; padding:6px 12px; border-radius:6px;
-  background:rgba(9,13,18,0.85); backdrop-filter:blur(8px); display:flex; align-items:center; gap:7px}
-.hud-p1{top:16px; left:16px; border:1px solid rgba(16,185,129,0.3); color:#34D399}
-.hud-p2{top:16px; right:16px; border:1px solid rgba(6,182,212,0.3); color:#38BDF8}
+  background:rgba(9,13,18,0.88); backdrop-filter:blur(8px); display:flex; align-items:center; gap:7px; box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+.hud-p1{top:16px; left:16px; border:1px solid rgba(16,185,129,0.4); color:#34D399}
+.hud-p2{top:16px; right:16px; border:1px solid rgba(245,158,11,0.4); color:#FBBF24}
+.hud-stamp{position:absolute; bottom:14px; left:14px; right:14px; background:rgba(9,13,18,0.88); backdrop-filter:blur(8px);
+  border:1px solid var(--border-dark); border-radius:6px; padding:8px 12px; font-size:11.5px; color:#CBD5E1;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px}
+.hud-stamp b{color:#FFFFFF; font-family:var(--font-mono); font-size:11px; font-weight:700}
+.hud-stamp span{color:var(--text-dim); font-size:11px}
+
+/* Live Diagnostic Telemetry Grid */
+.hero-telemetry-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-dark); border-top:1px solid var(--border-dark)}
+.ht-col{background:rgba(15,23,34,0.98); padding:9px 10px; text-align:center}
+.ht-label{font-family:var(--font-mono); font-size:10px; color:#64748B; text-transform:uppercase; display:block; margin-bottom:2px}
+.ht-value{font-family:var(--font-mono); font-size:12px; font-weight:700; color:#F1F5F9}
+.ht-value.ok{color:#34D399}
+.ht-value.amber{color:var(--amber-light)}
+@media (max-width:480px){.hero-telemetry-strip{grid-template-columns:1fr 1fr}}
 
 /* Terminal Card */
-.terminal-compact{padding:20px 22px; background:rgba(15,23,34,0.96); border-top:1px solid var(--border-dark)}
+.terminal-compact{padding:18px 20px; background:rgba(15,23,34,0.96); border-top:1px solid var(--border-dark)}
 .terminal-head{display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:11px;
   letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px}
 .terminal-head .live{display:inline-flex; align-items:center; gap:6px; color:var(--amber-light)}
@@ -156,16 +185,62 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .standard-text b{display:block; font-size:14px; color:#FFFFFF}
 .standard-text span{font-size:12px; color:#94A3B8}
 
-/* SPLIT REVEAL FLAGSHIP SECTION */
+/* FORENSIC INVESTIGATION DOSSIER SECTION */
 .split-section{background:var(--bg-dark); color:#FFFFFF; border-bottom:1px solid var(--border-dark); padding:96px 0}
-.split-header{text-align:center; max-width:760px; margin:0 auto 48px}
+.split-header{text-align:center; max-width:800px; margin:0 auto 40px}
 .split-header h2{font-size:clamp(30px,4.2vw,46px); color:#FFFFFF}
-.split-box{border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--border-dark); box-shadow:var(--shadow-dark); position:relative; background:var(--surface-dark)}
-.split-img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover}
-.split-badge-left{position:absolute; top:24px; left:24px; background:rgba(9,13,18,0.85); backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:8px 16px; font-family:var(--font-mono); font-size:12px; color:#CBD5E1}
-.split-badge-right{position:absolute; top:24px; right:24px; background:rgba(9,13,18,0.85); backdrop-filter:blur(8px);
-  border:1px solid rgba(6,182,212,0.4); border-radius:8px; padding:8px 16px; font-family:var(--font-mono); font-size:12px; color:#38BDF8}
+
+.forensic-dossier{background:var(--surface-dark); border:1px solid var(--border-dark); border-radius:var(--r-lg);
+  overflow:hidden; box-shadow:var(--shadow-dark)}
+.forensic-tabs{display:grid; grid-template-columns:repeat(4,1fr); background:rgba(9,13,18,0.85); border-bottom:1px solid var(--border-dark)}
+@media (max-width:860px){.forensic-tabs{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.forensic-tabs{grid-template-columns:1fr}}
+.ft-btn{background:transparent; border:none; border-bottom:2px solid transparent; border-right:1px solid var(--border-dark);
+  padding:16px 14px; text-align:left; color:#94A3B8; cursor:pointer; transition:all .15s}
+.ft-btn:last-child{border-right:none}
+.ft-btn:hover{background:rgba(255,255,255,0.03); color:#FFFFFF}
+.ft-btn.active{background:rgba(245,158,11,0.08); border-bottom-color:var(--amber); color:#FFFFFF}
+.ft-num{font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--amber-light); display:block; margin-bottom:4px}
+.ft-title{font-family:var(--font-display); font-size:13.5px; font-weight:700; line-height:1.3; display:block}
+
+.forensic-grid{display:grid; grid-template-columns:1fr 1.08fr; gap:0; align-items:stretch}
+@media (max-width:960px){.forensic-grid{grid-template-columns:1fr}}
+
+.fg-card{padding:32px 30px; display:flex; flex-direction:column}
+@media (max-width:600px){.fg-card{padding:24px 20px}}
+.fg-showroom{background:rgba(15,23,34,0.6); border-right:1px solid var(--border-dark)}
+@media (max-width:960px){.fg-showroom{border-right:none; border-bottom:1px solid var(--border-dark)}}
+.fg-zal{background:rgba(22,34,50,0.6)}
+
+.fg-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px}
+.fg-tag{font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  padding:4px 10px; border-radius:5px}
+.tag-showroom{background:rgba(148,163,184,0.12); color:#CBD5E1; border:1px solid rgba(148,163,184,0.25)}
+.tag-zal{background:rgba(245,158,11,0.14); color:var(--amber-light); border:1px solid rgba(245,158,11,0.3)}
+
+.fg-badge-status{font-family:var(--font-mono); font-size:11px; font-weight:700; padding:4px 9px; border-radius:4px}
+.status-warn{background:rgba(245,158,11,0.12); color:#FBBF24; border:1px solid rgba(245,158,11,0.25)}
+.status-danger{background:rgba(239,68,68,0.14); color:#F87171; border:1px solid rgba(239,68,68,0.3)}
+
+.fg-title{font-size:22px; color:#FFFFFF; margin-bottom:10px; font-weight:800}
+.fg-desc{font-size:14px; color:#94A3B8; line-height:1.6; margin:0 0 20px}
+
+.fg-points-box{background:rgba(0,0,0,0.25); border:1px solid var(--border-dark); border-radius:var(--r-md); padding:18px 20px; margin-bottom:20px; flex-grow:1}
+.fg-points-box.zal-box{background:rgba(9,13,18,0.6); border-color:rgba(245,158,11,0.2)}
+.fg-box-label{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:#64748B; font-weight:700; display:block; margin-bottom:10px}
+.fg-list{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.fg-list li{display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#E2E8F0; line-height:1.5}
+.fg-showroom .fg-list li::before{content:"•"; color:#94A3B8; font-size:18px; line-height:1}
+.fg-zal .fg-list li::before{content:"⚠"; color:var(--amber); font-size:14px; line-height:1.4}
+
+.fg-risk-alert{display:flex; align-items:flex-start; gap:12px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2);
+  border-radius:10px; padding:14px 16px; font-size:12.5px; color:#FDE68A; line-height:1.5}
+.fg-risk-alert svg{color:var(--amber); flex-shrink:0; margin-top:2px}
+
+.fg-financial-impact{background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:10px; padding:16px 18px}
+.ffi-label{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:#FCA5A5; font-weight:700}
+.ffi-val{font-family:var(--font-mono); font-size:24px; font-weight:800; color:#F87171; margin:4px 0 6px}
+.ffi-advice{font-size:12.5px; color:#FECACA; line-height:1.45}
 
 .split-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:28px}
 @media (max-width:960px){.split-cards{grid-template-columns:1fr 1fr}}
@@ -476,15 +551,55 @@ footer.site a:hover{color:#FFFFFF}
         </div>
       </div>
 
-      <!-- Hero Cinematic Holographic Scanner Card -->
-      <div class="hero-visual" aria-label="Visualisasi Pemindaian Holografik Digital zalInspection">
-        <div style="position:relative">
-          <img src="hero-inspection-scan.jpg" alt="Visualisasi Pemindaian Holografik Digital zalInspection" class="hero-scan-img" width="1280" height="720">
+      <!-- Hero Authentic Vehicle Inspection Dossier & Command Console -->
+      <div class="hero-visual" aria-label="Konsol Audit Forensik & Verifikasi Lapangan zalInspection">
+        <div class="hero-dossier-topbar">
+          <div class="hdt-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>DOKUMEN AUDIT FISIK #ZAL-JKT-8821</span>
+          </div>
+          <div class="hdt-inspector">
+            <span>INSPEKTOR BNSP AKTIF DI LOKASI</span>
+          </div>
+        </div>
+
+        <div class="hero-vehicle-meta">
+          <div><b>Honda CR-V 1.5 Turbo Prestige</b> · 2019</div>
+          <span>VIN: MHRRU8850KK102948 · Plat: B 1029 ZAL</span>
+        </div>
+
+        <!-- Real Photographic Inspection Documentation -->
+        <div class="hero-photo-wrap">
+          <img src="paint-inspection-gauge.jpg" alt="Dokumentasi Lapangan Nyata Pengukuran Ketebalan Cat Kap Mesin zalInspection" class="hero-dossier-photo" width="1280" height="720">
           <div class="hud-pill hud-p1">
-            <span style="color:#34D399">●</span> CHASSIS INTEGRITY: PASS
+            <span style="color:#34D399">●</span> TITIK UJI #04: KAP MESIN
           </div>
           <div class="hud-pill hud-p2">
-            <span style="color:#38BDF8">▲</span> PAINT: 92-120 µm
+            <span style="color:#FBBF24">▲</span> TEBAL CAT: 92.4 µm (OEM)
+          </div>
+          <div class="hud-stamp">
+            <b>HASIL: CAT ORISINIL PABRIK</b>
+            <span>Substrat: Aluminium · Bebas Dempul</span>
+          </div>
+        </div>
+
+        <!-- Telemetry Parameters Strip -->
+        <div class="hero-telemetry-strip">
+          <div class="ht-col">
+            <span class="ht-label">Idling RPM</span>
+            <span class="ht-value ok">740 RPM</span>
+          </div>
+          <div class="ht-col">
+            <span class="ht-label">Suhu Mesin</span>
+            <span class="ht-value">88°C</span>
+          </div>
+          <div class="ht-col">
+            <span class="ht-label">DTC Error</span>
+            <span class="ht-value ok">0 Codes</span>
+          </div>
+          <div class="ht-col">
+            <span class="ht-label">Odometer ECU</span>
+            <span class="ht-value amber">54.120 km</span>
           </div>
         </div>
         
@@ -553,22 +668,83 @@ footer.site a:hover{color:#FFFFFF}
   </div>
 </div>
 
-<!-- FLAGSHIP SPLIT REVEAL SECTION -->
+<!-- FLAGSHIP FORENSIC REVEAL SECTION -->
 <section id="reveal" class="split-section">
   <div class="wrap">
     <div class="split-header reveal">
       <p class="eyebrow">Mengapa Bodi Berkilau Bisa Menipu?</p>
-      <h2>Mata Awam vs Scanner Diagnostik zalInspection</h2>
-      <p class="sub" style="color:#94A3B8; margin:14px auto 0">Showroom dapat memoles cat hingga berkilau dan menyemprotkan pewangi kabin. Namun instrumen kami melihat tembus sampai ke sasis tersembunyi, jeroan mesin, dan sistem komputer internal.</p>
+      <h2>Mata Awam vs Instrumen Diagnostik zalInspection</h2>
+      <p class="sub" style="color:#94A3B8; margin:14px auto 0">Showroom dapat memoles cat hingga berkilau dan menyemprotkan pewangi kabin. Namun instrumen kami membongkar riwayat tersembunyi hingga ke sasis apron, jeroan mesin, residu lumpur banjir, dan log komputer transmisi.</p>
     </div>
 
-    <div class="split-box reveal">
-      <img src="car-split-reveal.jpg" alt="Perbandingan Visual Showroom vs Pemindaian Sinar X zalInspection" class="split-img" width="1280" height="720">
-      <div class="split-badge-left">
-        SISI KIRI: TAMPILAN SHOWROOM
+    <!-- INTERACTIVE FORENSIC COMPARISON DOSSIER -->
+    <div class="forensic-dossier reveal">
+      <!-- Category Tabs -->
+      <div class="forensic-tabs" id="forensicTabs">
+        <button type="button" class="ft-btn active" data-tab="sasis">
+          <span class="ft-num">01</span>
+          <span class="ft-title">Struktur Sasis &amp; Tiang Rangka</span>
+        </button>
+        <button type="button" class="ft-btn" data-tab="cat">
+          <span class="ft-num">02</span>
+          <span class="ft-title">Ketebalan Cat vs Dempul</span>
+        </button>
+        <button type="button" class="ft-btn" data-tab="banjir">
+          <span class="ft-num">03</span>
+          <span class="ft-title">Kelistrikan &amp; Residu Banjir</span>
+        </button>
+        <button type="button" class="ft-btn" data-tab="odometer">
+          <span class="ft-num">04</span>
+          <span class="ft-title">Log ECU Transmisi vs Spidometer</span>
+        </button>
       </div>
-      <div class="split-badge-right">
-        SISI KANAN: RADIUS SCANNER ZALINSPECTION
+
+      <!-- Dual Comparison Cards -->
+      <div class="forensic-grid">
+        <!-- Kolom Kiri: Kasat Mata Showroom -->
+        <div class="fg-card fg-showroom">
+          <div class="fg-head">
+            <span class="fg-tag tag-showroom">KASAT MATA · KLAIM PENJUAL</span>
+            <span class="fg-badge-status status-warn">Bisa Menipu Awam</span>
+          </div>
+          <h3 class="fg-title" id="fgShowroomTitle">Tampak Mulus &amp; Garis Sela Bodi Rapi</h3>
+          <p class="fg-desc" id="fgShowroomDesc">Di showroom, mobil tampak sempurna dari luar. Bodi lurus, celah bumper tertutup rapi, dan polesan eksterior mengilap memberi ilusi bahwa mobil bebas insiden.</p>
+          <div class="fg-points-box">
+            <span class="fg-box-label">Yang Dilihat &amp; Didengar Pembeli Awam:</span>
+            <ul class="fg-list" id="fgShowroomList">
+              <li>Pintu dan kap mesin menutup rapat dengan celah simetris tampak mata.</li>
+              <li>Ruang mesin bersih disemprot cairan pembersih dan pengkilap plastik.</li>
+              <li>Penjual meyakinkan unit bebas benturan dengan jaminan lisan showroom.</li>
+            </ul>
+          </div>
+          <div class="fg-risk-alert">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span id="fgShowroomAlert"><strong>Faktor Bahaya:</strong> Kerusakan struktur internal yang ditutup dempul dan cat ulang berisiko fatal jika terjadi tabrakan berikutnya.</span>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Temuan Forensik zalInspection -->
+        <div class="fg-card fg-zal">
+          <div class="fg-head">
+            <span class="fg-tag tag-zal">TEMUAN FORENSIK ZALINSPECTION</span>
+            <span class="fg-badge-status status-danger" id="fgZalBadge">Cacat Kritis Terdeteksi</span>
+          </div>
+          <h3 class="fg-title" id="fgZalTitle">Bekas Las Ketok &amp; Penarikan Apron Sasis Terbongkar</h3>
+          <p class="fg-desc" id="fgZalDesc">Pemeriksaan fisik sasis menemukan bekas tarikan hidrolik pada apron kanan depan dan las titik robotik pabrikan yang hilang digantikan las karbit manual.</p>
+          <div class="fg-points-box zal-box">
+            <span class="fg-box-label">Bukti Fisik &amp; Hasil Uji Instrumen:</span>
+            <ul class="fg-list" id="fgZalList">
+              <li>Apron depan kanan: Silang las titik robot pabrik hilang, diganti dempul setebal 380 µm.</li>
+              <li>Pilar A kanan: Ketebalan cat melonjak hingga 440 µm akibat dempul pasca benturan lateral.</li>
+              <li>Baut engsel kap mesin lecet &amp; sealant siler pabrikan diganti lem kaca aftermarket.</li>
+            </ul>
+          </div>
+          <div class="fg-financial-impact">
+            <div class="ffi-label">Estimasi Beban Kerugian &amp; Nilai Tawar:</div>
+            <div class="ffi-val" id="fgZalCost">Rp 35.000.000 - Rp 50.000.000</div>
+            <div class="ffi-advice" id="fgZalAdvice">Rekomendasi: Tolak unit ini atau minta potongan harga drastis karena kekuatan struktural crumple zone kabin telah melemah.</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1414,6 +1590,127 @@ if(reducedMotion){
     }
   }
   setTimeout(runTerminal, 500);
+}
+
+/* ---------- FORENSIC INVESTIGATION COMPARISON TABS ---------- */
+const FORENSIC_DATA = {
+  sasis: {
+    showroomTitle: 'Tampak Mulus & Garis Sela Bodi Rapi',
+    showroomDesc: 'Di showroom, mobil tampak sempurna dari luar. Bodi lurus, celah bumper tertutup rapi, dan polesan eksterior mengilap memberi ilusi bahwa mobil bebas insiden.',
+    showroomItems: [
+      'Pintu dan kap mesin menutup rapat dengan celah simetris tampak mata.',
+      'Ruang mesin bersih disemprot cairan pembersih dan pengkilap plastik.',
+      'Penjual meyakinkan unit bebas benturan dengan jaminan lisan showroom.'
+    ],
+    showroomAlert: 'Kerusakan struktur internal yang ditutup dempul dan cat ulang berisiko fatal jika terjadi tabrakan berikutnya.',
+    zalBadge: 'Cacat Kritis Terdeteksi',
+    zalTitle: 'Bekas Las Ketok & Penarikan Apron Sasis Terbongkar',
+    zalDesc: 'Pemeriksaan fisik sasis menemukan bekas tarikan hidrolik pada apron kanan depan dan las titik robotik pabrikan yang hilang digantikan las karbit manual.',
+    zalItems: [
+      'Apron depan kanan: Silang las titik robot pabrik hilang, diganti dempul setebal 380 µm.',
+      'Pilar A kanan: Ketebalan cat melonjak hingga 440 µm akibat dempul pasca benturan lateral.',
+      'Baut engsel kap mesin lecet & sealant siler pabrikan diganti lem kaca aftermarket.'
+    ],
+    zalCost: 'Rp 35.000.000 - Rp 50.000.000',
+    zalAdvice: 'Rekomendasi: Tolak unit ini atau minta potongan harga drastis karena kekuatan struktural crumple zone kabin telah melemah.'
+  },
+  cat: {
+    showroomTitle: 'Cat Mengkilap Sempurna Hasil Wax 3 Tahap',
+    showroomDesc: 'Kilau pantulan cahaya di bawah lampu showroom menutupi ketebalan cat yang tidak merata dan bekas pengecatan ulang kosmetik.',
+    showroomItems: [
+      'Permukaan bodi terasa halus licin bebas jamur kaca dan baret halus.',
+      'Warna bodi tampak senada dari kejauhan tanpa belang kasat mata.',
+      'Penjual mengklaim cat 100% orisinil pabrik tanpa pernah disiram ulang.'
+    ],
+    showroomAlert: 'Cat ulang murah tanpa oven akan retak seribu (crazing) dan mengelupas dalam 6 hingga 12 bulan ke depan.',
+    zalBadge: 'Ketebalan Cat Anomali',
+    zalTitle: 'Sensor Ultrasonik Menemukan Dempul 440 µm di 5 Titik',
+    zalDesc: 'Alat ukur ketebalan mikron membuktikan kap mesin dan pintu belakang telah dicat ulang tebal dengan lapisan dempul melebihi toleransi wajar pabrikan (80 - 130 µm).',
+    zalItems: [
+      'Fender kiri depan: 320 µm (re-spray kosmetik untuk menutup goresan dalam).',
+      'Pintu depan kanan: 440 µm (lapisan dempul tebal pasca senggolan tiang/motor).',
+      'Sisa overspray cat ditemukan pada karet lis kaca dan spakbor dalam.'
+    ],
+    zalCost: 'Rp 8.000.000 - Rp 15.000.000',
+    zalAdvice: 'Rekomendasi: Jadikan data ketebalan mikron ini sebagai senjata negosiasi untuk memotong harga jual showroom.'
+  },
+  banjir: {
+    showroomTitle: 'Kabin Wangi Semprotan Kopi & Karpet Bersih',
+    showroomDesc: 'Salon mobil interior telah membersihkan lumpur di area luar karpet dan menyemprotkan aroma kopi untuk menyamarkan bau apek khas rendaman banjir.',
+    showroomItems: [
+      'Karpet dasar dibersihkan dengan wet vacuum dan tampak rapi bersih.',
+      'Udara kabin segar tanpa bau apek saat pertama kali pintu dibuka.',
+      'Lampu indikator speedometer menyala normal saat kontak ON.'
+    ],
+    showroomAlert: 'Karat air kotor yang menempel di modul elektronik akan memicu korsleting kelistrikan dan error ECU mendadak saat berkendara.',
+    zalBadge: 'Residu Rendaman Banjir',
+    zalTitle: 'Endoskop Menemukan Karat Aktif di Balik BCM & ECU',
+    zalDesc: 'Pemeriksaan mikro membongkar klip soket modul Body Control Module (BCM) di bawah dashboard dan pelat besi dudukan jok yang berkarat akibat genangan air.',
+    zalItems: [
+      'Soket harness di bawah karpet pengemudi berkerak karat garam kekuningan.',
+      'Motor elektrik power seat dan rel jok terdapat sisa endapan lumpur kering.',
+      'Pemeriksaan kamera endoskop di balik celah dashboard menemukan bau apak terpendam.'
+    ],
+    zalCost: 'Rp 25.000.000 - Rp 60.000.000',
+    zalAdvice: 'Rekomendasi: Mutlak hindari unit ini. Mobil bekas banjir menyimpan bom waktu kerusakan modul elektrik yang sulit diperbaiki tuntas.'
+  },
+  odometer: {
+    showroomTitle: 'Spidometer Dashboard Menunjukkan 54.000 km',
+    showroomDesc: 'Penjual memamerkan angka jarak tempuh rendah sebagai alasan utama menaikkan harga jual di atas rata-rata pasaran.',
+    showroomItems: [
+      'Angka spidometer digital menunjukkan 54.120 km (rendah untuk usia 5 tahun).',
+      'Stiker oli baru ditempel di pilar pintu menandakan perawatan baru saja dilakukan.',
+      'Klaim pemilik sebelumnya adalah wanita yang hanya menggunakan mobil untuk antar anak sekolah.'
+    ],
+    showroomAlert: 'Komponen vital (timing belt, transmisi, shock absorber) yang sudah mencapai masa lelah 100.000+ km bisa jebol mendadak.',
+    zalBadge: 'Manipulasi Jarak Tempuh Terbukti',
+    zalTitle: 'Log Komputer Transmisi (TCU) Mencatat 138.400 km',
+    zalDesc: 'Bi-directional OBD-II scanner kami menembus chip modul transmisi dan ABS, membongkar selisih jarak tempuh riil 84.000 km yang sengaja diputar mundur.',
+    zalItems: [
+      'Data freeze-frame TCU transmisi: 138.420 km tercatat pada riwayat pergantian gigi.',
+      'Keausan fisik karet pedal gas dan permukaan setir setara pemakaian di atas 120.000 km.',
+      'Riwayat database servis resmi mencatat servis terakhir di km 110.000 pada tahun 2023.'
+    ],
+    zalCost: 'Rp 20.000.000 - Rp 35.000.000',
+    zalAdvice: 'Rekomendasi: Tuntut koreksi harga sebesar selisih nilai pasar mobil 138.000 km atau batalkan transaksi karena adanya indikasi manipulasi odometrik.'
+  }
+};
+
+const forensicTabs = document.getElementById('forensicTabs');
+const fgShowroomTitle = document.getElementById('fgShowroomTitle');
+const fgShowroomDesc = document.getElementById('fgShowroomDesc');
+const fgShowroomList = document.getElementById('fgShowroomList');
+const fgShowroomAlert = document.getElementById('fgShowroomAlert');
+const fgZalBadge = document.getElementById('fgZalBadge');
+const fgZalTitle = document.getElementById('fgZalTitle');
+const fgZalDesc = document.getElementById('fgZalDesc');
+const fgZalList = document.getElementById('fgZalList');
+const fgZalCost = document.getElementById('fgZalCost');
+const fgZalAdvice = document.getElementById('fgZalAdvice');
+
+function updateForensicTab(key) {
+  const d = FORENSIC_DATA[key];
+  if (!d) return;
+  if (fgShowroomTitle) fgShowroomTitle.textContent = d.showroomTitle;
+  if (fgShowroomDesc) fgShowroomDesc.textContent = d.showroomDesc;
+  if (fgShowroomList) fgShowroomList.innerHTML = d.showroomItems.map(item => '<li>' + item + '</li>').join('');
+  if (fgShowroomAlert) fgShowroomAlert.innerHTML = '<strong>Faktor Bahaya:</strong> ' + d.showroomAlert;
+  if (fgZalBadge) fgZalBadge.textContent = d.zalBadge;
+  if (fgZalTitle) fgZalTitle.textContent = d.zalTitle;
+  if (fgZalDesc) fgZalDesc.textContent = d.zalDesc;
+  if (fgZalList) fgZalList.innerHTML = d.zalItems.map(item => '<li>' + item + '</li>').join('');
+  if (fgZalCost) fgZalCost.textContent = d.zalCost;
+  if (fgZalAdvice) fgZalAdvice.textContent = d.zalAdvice;
+}
+
+if (forensicTabs) {
+  forensicTabs.addEventListener('click', e => {
+    const btn = e.target.closest('.ft-btn');
+    if (!btn) return;
+    forensicTabs.querySelectorAll('.ft-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    updateForensicTab(btn.dataset.tab);
+  });
 }
 
 /* ---------- VULNERABILITY RADAR DATA ---------- */
