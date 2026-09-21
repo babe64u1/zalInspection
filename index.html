@@ -41,16 +41,16 @@ button{font:inherit; cursor:pointer}
 .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--amber-deep); font-weight:700; margin:0 0 12px}
 .dark .eyebrow{color:var(--amber)}
 h1,h2,h3,h4{font-family:var(--display); line-height:1.15; letter-spacing:-.015em; margin:0}
-h1{font-size:clamp(36px,5.2vw,58px); font-weight:800}
-h2{font-size:clamp(28px,3.8vw,42px); font-weight:800}
-.sub{color:#4A5C68; max-width:58ch; margin:16px 0 0; font-size:16.5px}
+h1{font-size:clamp(34px,5vw,56px); font-weight:800}
+h2{font-size:clamp(26px,3.6vw,40px); font-weight:800}
+.sub{color:#4A5C68; max-width:60ch; margin:16px 0 0; font-size:16px}
 .dark .sub{color:var(--mist)}
 section{padding:84px 0}
-@media (max-width:720px){section{padding:54px 0}}
+@media (max-width:720px){section{padding:52px 0}}
 
 /* Buttons */
 .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; font-weight:700;
-  font-size:15px; min-height:48px; padding:0 24px; border-radius:10px; border:1.5px solid transparent;
+  font-size:14.5px; min-height:48px; padding:0 24px; border-radius:10px; border:1.5px solid transparent;
   text-decoration:none; transition:transform .12s, background .15s, border-color .15s, box-shadow .15s}
 .btn:active{transform:translateY(1px)}
 .btn-amber{background:var(--amber); color:var(--ink)}
@@ -65,85 +65,117 @@ section{padding:84px 0}
 /* Header */
 header.top{position:sticky; top:0; z-index:60; background:rgba(13,27,36,.94); backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line-dark)}
-.nav{display:flex; align-items:center; gap:24px; height:68px}
+.nav{display:flex; align-items:center; gap:20px; height:68px}
 .logo{display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; font-family:var(--display); font-weight:800; font-size:19px}
 .logo .mark{width:34px; height:34px; border-radius:8px; background:var(--amber); display:grid; place-items:center; color:var(--ink)}
 .nav-links{display:flex; gap:2px; margin-left:auto}
-.nav-links a{color:#C9D4DB; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; border-radius:8px}
+.nav-links a{color:#C9D4DB; text-decoration:none; font-size:13.5px; font-weight:500; padding:8px 11px; border-radius:8px}
 .nav-links a:hover{color:#fff; background:rgba(255,255,255,.08)}
-.nav-links a.active{color:#fff; background:rgba(255,255,255,.12)}
-.nav .btn{min-height:40px; padding:0 18px; font-size:13.5px}
+.nav .btn{min-height:38px; padding:0 16px; font-size:13px}
 .burger{display:none; margin-left:auto; background:none; border:1.5px solid var(--line-dark); border-radius:8px; padding:8px 10px; color:#fff}
-@media (max-width:980px){
+@media (max-width:1024px){
   .nav-links,.nav > .btn{display:none}
   .burger{display:block}
   .nav.open .nav-links{display:flex; position:absolute; top:68px; left:0; right:0; flex-direction:column;
     background:var(--ink); padding:16px 20px 24px; border-bottom:1px solid var(--line-dark); gap:4px}
-  .nav.open .nav-links a{padding:12px 14px; font-size:15.5px}
+  .nav.open .nav-links a{padding:12px 14px; font-size:15px}
 }
 
-/* Hero */
+/* Hero Section */
 .hero{background:
   radial-gradient(900px 480px at 85% -10%, rgba(245,166,35,.14), transparent 60%),
   linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
-  color:#fff; padding:76px 0 60px; overflow:hidden}
-.hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:center}
-@media (max-width:960px){.hero-grid{grid-template-columns:1fr; gap:40px}}
+  color:#fff; padding:64px 0 60px; overflow:hidden}
+.hero-grid{display:grid; grid-template-columns:1.02fr .98fr; gap:48px; align-items:center}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr; gap:40px}}
 .hero h1 em{font-style:normal; color:var(--amber)}
-.hero p.lede{font-size:17.5px; color:#CBD5E1; max-width:50ch; margin:20px 0 28px; line-height:1.6}
-.hero-cta{display:flex; flex-wrap:wrap; gap:14px}
-.trust-badges{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:36px; padding-top:24px; border-top:1px solid var(--line-dark)}
+.hero p.lede{font-size:17px; color:#CBD5E1; max-width:50ch; margin:18px 0 26px; line-height:1.6}
+.hero-cta{display:flex; flex-wrap:wrap; gap:12px}
+.trust-badges{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:32px; padding-top:22px; border-top:1px solid var(--line-dark)}
 @media (max-width:560px){.trust-badges{grid-template-columns:1fr}}
-.trust-item{display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:#94A3B8}
-.trust-item b{display:block; color:#fff; font-size:14px; margin-bottom:2px}
+.trust-item{display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#94A3B8}
+.trust-item b{display:block; color:#fff; font-size:13.5px; margin-bottom:2px}
 .trust-item svg{flex-shrink:0; margin-top:2px; color:var(--amber)}
 
-/* Terminal Card */
-.terminal-card{background:var(--ink-3); border:1px solid var(--line-dark); border-radius:18px; padding:22px;
-  box-shadow:0 24px 48px rgba(0,0,0,.35); max-width:480px; margin-left:auto; width:100%}
-@media (max-width:960px){.terminal-card{margin:0 auto}}
-.terminal-head{display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:11.5px;
-  letter-spacing:.08em; text-transform:uppercase; color:var(--mist); margin-bottom:16px}
-.terminal-head .live{display:inline-flex; align-items:center; gap:7px; color:var(--amber)}
-.terminal-head .live::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--amber); animation:pulse 1.6s infinite}
+/* Hero Visual Card */
+.hero-visual{position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--line-dark);
+  box-shadow:0 24px 50px rgba(0,0,0,.45); background:var(--ink-3)}
+.hero-scan-img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover}
+.hero-hud-overlay{position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(13,27,36,.2) 0%, rgba(13,27,36,.85) 100%)}
+.hud-pill{position:absolute; font-family:var(--mono); font-size:11px; font-weight:700; padding:5px 11px; border-radius:6px;
+  background:rgba(13,27,36,.85); backdrop-filter:blur(8px); display:flex; align-items:center; gap:6px}
+.hud-p1{top:16px; left:16px; border:1px solid rgba(74,222,128,.4); color:#4ADE80}
+.hud-p2{top:16px; right:16px; border:1px solid rgba(56,189,248,.4); color:#38BDF8}
+
+/* Terminal Inside Visual */
+.terminal-compact{padding:18px 20px; background:rgba(22,41,55,.95); border-top:1px solid var(--line-dark)}
+.terminal-head{display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:11px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--mist); margin-bottom:12px}
+.terminal-head .live{display:inline-flex; align-items:center; gap:6px; color:var(--amber)}
+.terminal-head .live::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--amber); animation:pulse 1.6s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.terminal-logs{list-style:none; margin:0; padding:0; display:grid; gap:8px}
-.terminal-logs li{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:12.5px; color:#E2E8F0;
-  background:rgba(255,255,255,.04); border:1px solid var(--line-dark); border-radius:8px; padding:9px 12px;
-  opacity:0; transform:translateY(6px); transition:opacity .4s, transform .4s}
+.terminal-logs{list-style:none; margin:0; padding:0; display:grid; gap:7px}
+.terminal-logs li{display:flex; align-items:center; gap:9px; font-family:var(--mono); font-size:12px; color:#E2E8F0;
+  background:rgba(255,255,255,.04); border:1px solid var(--line-dark); border-radius:6px; padding:7px 11px;
+  opacity:0; transform:translateY(4px); transition:opacity .35s, transform .35s}
 .terminal-logs li.show{opacity:1; transform:none}
-.terminal-logs li .st{margin-left:auto; font-weight:700; font-size:11.5px; padding:2px 8px; border-radius:4px}
+.terminal-logs li .st{margin-left:auto; font-weight:700; font-size:11px; padding:2px 7px; border-radius:4px}
 .terminal-logs li .st.ok{background:rgba(30,158,90,.15); color:var(--green); border:1px solid rgba(30,158,90,.3)}
 .terminal-logs li .st.warn{background:rgba(245,166,35,.15); color:var(--amber); border:1px solid rgba(245,166,35,.3)}
-.terminal-bar{height:5px; background:rgba(255,255,255,.08); border-radius:99px; margin-top:16px; overflow:hidden}
-.terminal-bar i{display:block; height:100%; width:0%; background:var(--amber); border-radius:99px; transition:width .5s}
-.terminal-foot{display:flex; justify-content:space-between; font-family:var(--mono); font-size:11.5px; color:var(--mist); margin-top:10px}
+.terminal-bar{height:4px; background:rgba(255,255,255,.08); border-radius:99px; margin-top:14px; overflow:hidden}
+.terminal-bar i{display:block; height:100%; width:0%; background:var(--amber); border-radius:99px; transition:width .4s}
+.terminal-foot{display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--mist); margin-top:8px}
 
-/* Verified Standards Band */
-.standards-band{background:var(--ink); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); color:#fff; padding:28px 0}
-.standards-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px}
+/* Standards Band */
+.standards-band{background:var(--ink); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); color:#fff; padding:26px 0}
+.standards-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px}
 @media (max-width:880px){.standards-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.standards-grid{grid-template-columns:1fr}}
-.standard-box{display:flex; align-items:center; gap:14px}
-.standard-icon{width:44px; height:44px; border-radius:10px; background:rgba(245,166,35,.12); color:var(--amber);
+.standard-box{display:flex; align-items:center; gap:12px}
+.standard-icon{width:42px; height:42px; border-radius:10px; background:rgba(245,166,35,.12); color:var(--amber);
   display:grid; place-items:center; flex-shrink:0; border:1px solid rgba(245,166,35,.2)}
-.standard-text b{display:block; font-size:14.5px; color:#fff}
-.standard-text span{font-size:12.5px; color:var(--mist)}
+.standard-text b{display:block; font-size:14px; color:#fff}
+.standard-text span{font-size:12px; color:var(--mist)}
+
+/* Interactive Vulnerability Radar */
+.radar-section{background:var(--white); border-bottom:1px solid var(--line)}
+.radar-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; margin-top:36px; align-items:start}
+@media (max-width:960px){.radar-grid{grid-template-columns:1fr}}
+.model-picker{display:grid; gap:8px}
+.model-btn{display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-radius:10px;
+  background:var(--paper); border:1.5px solid var(--line); text-align:left; transition:all .15s}
+.model-btn:hover{border-color:#94A3B8; background:#fff}
+.model-btn.active{background:var(--ink); color:#fff; border-color:var(--ink)}
+.model-btn b{font-size:15px; display:block}
+.model-btn span{font-family:var(--mono); font-size:11px; opacity:.75}
+.model-btn.active span{color:var(--amber)}
+.radar-card{background:var(--ink); color:#fff; border-radius:16px; padding:28px 26px; border:1px solid var(--line-dark); box-shadow:0 16px 36px rgba(0,0,0,.2)}
+.radar-header{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px}
+.radar-header h3{font-size:22px; color:#fff}
+.radar-header .tag{font-family:var(--mono); font-size:11px; font-weight:700; color:var(--amber); background:rgba(245,166,35,.15); padding:4px 10px; border-radius:6px}
+.radar-checklist{list-style:none; margin:0 0 20px; padding:0; display:grid; gap:10px}
+.radar-checklist li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:#CBD5E1; border-bottom:1px solid rgba(255,255,255,.07); padding-bottom:10px}
+.radar-checklist li:last-child{border-bottom:none}
+.radar-checklist li svg{color:var(--amber); flex-shrink:0; margin-top:2px}
+.radar-action{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:16px; border-top:1px solid var(--line-dark)}
+.radar-action span{font-size:12.5px; color:var(--mist)}
 
 /* Hardware Tools Section */
-.hardware-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:40px}
-@media (max-width:960px){.hardware-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.hardware-grid{grid-template-columns:1fr}}
-.tool-card{background:var(--white); border:1px solid var(--line); border-radius:var(--r); padding:24px 20px;
-  display:flex; flex-direction:column; transition:transform .15s, border-color .15s}
-.tool-card:hover{transform:translateY(-3px); border-color:#CBD4D9}
-.tool-badge{font-family:var(--mono); font-size:11px; font-weight:700; color:var(--amber-deep); text-transform:uppercase; margin-bottom:8px}
-.tool-name{font-size:17px; font-weight:800; margin-bottom:6px}
-.tool-spec{font-family:var(--mono); font-size:12px; color:#64748B; background:#F1F5F9; padding:4px 8px; border-radius:6px; width:fit-content; margin-bottom:12px}
-.tool-desc{font-size:13.5px; color:#475569; line-height:1.5; margin:0}
+.hardware-showcase{display:grid; grid-template-columns:1.05fr .95fr; gap:40px; margin-top:40px; align-items:center}
+@media (max-width:960px){.hardware-showcase{grid-template-columns:1fr}}
+.hardware-photo{border-radius:16px; overflow:hidden; border:1px solid var(--line); position:relative; box-shadow:0 16px 36px rgba(0,0,0,.08)}
+.hardware-photo img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover}
+.hardware-photo-caption{position:absolute; bottom:0; left:0; right:0; background:linear-gradient(0deg, rgba(13,27,36,.9) 0%, transparent 100%);
+  padding:20px 20px 14px; color:#fff; font-size:12.5px; line-height:1.4}
+.hardware-photo-caption b{display:block; font-size:14px; color:var(--amber); margin-bottom:2px}
+.hardware-list{display:grid; gap:14px}
+.hw-item{background:var(--white); border:1px solid var(--line); border-radius:12px; padding:18px 20px}
+.hw-item b{font-size:16px; display:block; margin-bottom:4px}
+.hw-item p{margin:0; font-size:13px; color:#475569; line-height:1.5}
+.hw-item .spec{font-family:var(--mono); font-size:11px; font-weight:700; color:var(--amber-deep); margin-top:8px; display:block}
 
 /* Interactive Simulator */
-.sim-container{background:var(--ink); color:#fff; border-radius:20px; padding:36px 32px; border:1px solid var(--line-dark);
+.sim-container{background:var(--ink); color:#fff; border-radius:20px; padding:34px 30px; border:1px solid var(--line-dark);
   margin-top:36px; box-shadow:0 20px 50px rgba(0,0,0,.25)}
 .sim-layout{display:grid; grid-template-columns:1fr 1.1fr; gap:40px; align-items:center}
 @media (max-width:960px){.sim-layout{grid-template-columns:1fr}}
@@ -158,17 +190,17 @@ header.top{position:sticky; top:0; z-index:60; background:rgba(13,27,36,.94); ba
   box-shadow:inset 0 2px 10px rgba(0,0,0,.5)}
 .gauge-reading{font-family:var(--mono); font-size:52px; font-weight:800; color:#38BDF8; letter-spacing:-.03em; line-height:1}
 .gauge-unit{font-size:16px; color:#94A3B8; margin-left:4px; font-weight:500}
-.gauge-status{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12.5px; font-weight:700;
+.gauge-status{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:700;
   padding:5px 14px; border-radius:99px; margin-top:12px}
 .status-green{background:rgba(30,158,90,.2); color:#4ADE80; border:1px solid rgba(30,158,90,.4)}
 .status-amber{background:rgba(245,166,35,.2); color:#FCD34D; border:1px solid rgba(245,166,35,.4)}
 .status-red{background:rgba(214,69,51,.25); color:#F87171; border:1px solid rgba(214,69,51,.4)}
 .layer-visual{margin-top:16px; border-top:1px solid var(--line-dark); padding-top:16px; text-align:left}
-.layer-row{display:flex; justify-content:space-between; align-items:center; font-size:12.5px; margin-bottom:6px; color:#CBD5E1}
+.layer-row{display:flex; justify-content:space-between; align-items:center; font-size:12px; margin-bottom:6px; color:#CBD5E1}
 .layer-bar{height:6px; border-radius:3px; background:#334155; overflow:hidden; margin-top:3px}
 .layer-fill{height:100%; border-radius:3px; transition:width .3s}
 
-/* 152 Points Map */
+/* 152 Inspection Points Map */
 .map-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:start; margin-top:36px}
 @media (max-width:960px){.map-grid{grid-template-columns:1fr}}
 .carbox{background:var(--white); border:1px solid var(--line); border-radius:var(--r); padding:28px 24px 20px}
@@ -206,6 +238,23 @@ header.top{position:sticky; top:0; z-index:60; background:rgba(13,27,36,.94); ba
 .method-box h4{font-size:16px; font-weight:800; margin-bottom:8px}
 .method-box p{font-size:13px; color:#475569; line-height:1.5; margin:0; flex-grow:1}
 .method-tag{margin-top:14px; padding-top:10px; border-top:1px dashed var(--line); font-family:var(--mono); font-size:11px; color:#64748B}
+
+/* Interactive Fair Price & Negotiation Calculator */
+.nego-calculator{background:linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%); color:#fff; border-radius:20px;
+  padding:36px 32px; border:1px solid var(--line-dark); margin-top:40px; box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.nego-layout{display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center}
+@media (max-width:960px){.nego-layout{grid-template-columns:1fr}}
+.nego-defects-list{display:grid; gap:10px; margin-top:18px}
+.defect-label{display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.05);
+  border:1px solid var(--line-dark); border-radius:10px; padding:12px 14px; font-size:13.5px; color:#E2E8F0; cursor:pointer; transition:all .15s}
+.defect-label:hover{background:rgba(255,255,255,.08); border-color:#94A3B8}
+.defect-label input{margin-right:10px; accent-color:var(--amber); width:16px; height:16px}
+.defect-cost{font-family:var(--mono); font-size:12.5px; color:var(--amber); font-weight:700}
+.nego-result-card{background:var(--ink-3); border:1.5px solid var(--line-dark); border-radius:16px; padding:26px; text-align:center}
+.nego-val{font-family:var(--mono); font-size:36px; font-weight:800; color:var(--amber); line-height:1.1; margin:8px 0}
+.nego-recom{font-family:var(--mono); font-size:28px; font-weight:800; color:#4ADE80; line-height:1.1; margin:8px 0}
+.nego-saving-badge{background:rgba(30,158,90,.2); border:1px solid rgba(30,158,90,.4); color:#4ADE80;
+  padding:6px 14px; border-radius:99px; font-size:12.5px; font-weight:700; display:inline-block; margin-top:14px}
 
 /* Case Studies Section */
 .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px}
@@ -324,12 +373,14 @@ footer.site a:hover{color:#fff}
       zal<span style="color:var(--amber)">Inspection</span>
     </a>
     <nav class="nav-links" aria-label="Menu Navigasi Utama">
-      <a href="#inspeksi">Titik Inspeksi</a>
-      <a href="#alat">Simulator Alat</a>
+      <a href="#radar">Radar Mobil</a>
+      <a href="#inspeksi">152 Titik Uji</a>
+      <a href="#alat">Alat &amp; Simulator</a>
       <a href="#metode">Metodologi</a>
+      <a href="#nego">Kalkulator Nego</a>
       <a href="#kasus">Studi Kasus</a>
       <a href="#harga">Harga</a>
-      <a href="laporan.html">Contoh Laporan</a>
+      <a href="laporan.html">Sampel Laporan</a>
       <a href="admin.html">Portal Inspektor</a>
     </nav>
     <a class="btn btn-amber" href="#booking">Jadwalkan Inspeksi</a>
@@ -367,21 +418,34 @@ footer.site a:hover{color:#fff}
         </div>
       </div>
 
-      <!-- Live Terminal Readout Card -->
-      <div class="terminal-card" aria-label="Simulasi pembacaan data inspeksi langsung">
-        <div class="terminal-head">
-          <span>Diagnostik Lapangan: Honda CR-V 1.5 Turbo 2019</span>
-          <span class="live">Live Uji</span>
+      <!-- Hero Cinematic Holographic Scanner Card -->
+      <div class="hero-visual" aria-label="Visualisasi Pemindaian Holografik Digital zalInspection">
+        <div style="position:relative">
+          <img src="hero-inspection-scan.jpg" alt="Visualisasi Pemindaian Holografik Digital zalInspection" class="hero-scan-img" width="1280" height="720">
+          <div class="hud-pill hud-p1">
+            <span style="color:#4ADE80">●</span> CHASSIS INTEGRITY: PASS
+          </div>
+          <div class="hud-pill hud-p2">
+            <span style="color:#38BDF8">▲</span> PAINT: 92-120 µm
+          </div>
         </div>
-        <ul class="terminal-logs" id="terminalLogs">
-          <li data-st="ok"><span style="color:var(--green)">✓</span> Struktur Apron &amp; Tiang Pilar A/B <span class="st ok">LULUS</span></li>
-          <li data-st="ok"><span style="color:var(--green)">✓</span> Soket Harness ECU &amp; Bawah Karpet <span class="st ok">BEBAS BANJIR</span></li>
-          <li data-st="ok"><span style="color:var(--green)">✓</span> Freeze-Frame DTC Scanner OBD-II <span class="st ok">0 FAULT CODE</span></li>
-          <li data-st="warn"><span style="color:var(--amber)">!</span> Ketebalan Cat Fender Kanan Depan (240 µm) <span class="st warn">RE-SPRAY</span></li>
-          <li data-st="ok"><span style="color:var(--green)">✓</span> Fisik No. Rangka (VIN) vs STNK &amp; BPKB <span class="st ok">VALID IDENTIK</span></li>
-        </ul>
-        <div class="terminal-bar"><i id="terminalBar"></i></div>
-        <div class="terminal-foot"><span id="terminalCount">0 / 152 titik selesai</span><span>Estimasi: 90 menit</span></div>
+        
+        <!-- Live Diagnostic Terminal Readout -->
+        <div class="terminal-compact">
+          <div class="terminal-head">
+            <span>Diagnostik Komputer: Honda CR-V 1.5 Turbo 2019</span>
+            <span class="live">Live Uji</span>
+          </div>
+          <ul class="terminal-logs" id="terminalLogs">
+            <li data-st="ok"><span style="color:var(--green)">✓</span> Struktur Apron &amp; Tiang Pilar A/B <span class="st ok">LULUS</span></li>
+            <li data-st="ok"><span style="color:var(--green)">✓</span> Soket Harness ECU &amp; Bawah Karpet <span class="st ok">BEBAS BANJIR</span></li>
+            <li data-st="ok"><span style="color:var(--green)">✓</span> Freeze-Frame DTC Scanner OBD-II <span class="st ok">0 FAULT CODE</span></li>
+            <li data-st="warn"><span style="color:var(--amber)">!</span> Ketebalan Cat Fender Depan Kanan (240 µm) <span class="st warn">RE-SPRAY</span></li>
+            <li data-st="ok"><span style="color:var(--green)">✓</span> Fisik No. Rangka (VIN) vs STNK &amp; BPKB <span class="st ok">VALID IDENTIK</span></li>
+          </ul>
+          <div class="terminal-bar"><i id="terminalBar"></i></div>
+          <div class="terminal-foot"><span id="terminalCount">0 / 152 titik selesai</span><span>Durasi: 90 menit</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -431,37 +495,109 @@ footer.site a:hover{color:#fff}
   </div>
 </div>
 
-<!-- HARDWARE TOOLS & DETECTOR SIMULATOR -->
+<!-- INTERACTIVE MODEL-SPECIFIC VULNERABILITY RADAR -->
+<section id="radar" class="radar-section">
+  <div class="wrap">
+    <p class="eyebrow">Database Pengetahuan Cacat Kronis</p>
+    <h2>Cek Titik Lemah Spesifik Mobil Incaran Anda</h2>
+    <p class="sub">Tiap model mobil memiliki kelemahan unik pabrikan yang sering disembunyikan penjual. Pilih mobil incaran Anda untuk melihat fokus diagnosa inspektor kami.</p>
+
+    <div class="radar-grid">
+      <div class="model-picker" id="modelPicker">
+        <button type="button" class="model-btn active" data-model="crv">
+          <div>
+            <b>Honda CR-V 1.5 Turbo (2017 - 2022)</b>
+            <span>SUV Populer Keluarga · Mesin Turbo VTEC</span>
+          </div>
+          <span style="font-size:18px">›</span>
+        </button>
+        <button type="button" class="model-btn" data-model="fortuner">
+          <div>
+            <b>Toyota Fortuner 2.4 VRZ (2016 - 2023)</b>
+            <span>Ladder Frame Diesel · Mesin 2GD-FTV</span>
+          </div>
+          <span style="font-size:18px">›</span>
+        </button>
+        <button type="button" class="model-btn" data-model="pajero">
+          <div>
+            <b>Mitsubishi Pajero Sport Dakar (2016 - 2022)</b>
+            <span>Ladder Frame Diesel · Mesin 4N15 MIVEC</span>
+          </div>
+          <span style="font-size:18px">›</span>
+        </button>
+        <button type="button" class="model-btn" data-model="bmw">
+          <div>
+            <b>BMW Seri 3 320i F30 / G20 (2015 - 2021)</b>
+            <span>Sedan Eksekutif · Mesin B48 Turbo</span>
+          </div>
+          <span style="font-size:18px">›</span>
+        </button>
+        <button type="button" class="model-btn" data-model="ev">
+          <div>
+            <b>Hyundai Ioniq 5 / Mobil Listrik EV (2022 - 2024)</b>
+            <span>Electric Vehicle Platform E-GMP</span>
+          </div>
+          <span style="font-size:18px">›</span>
+        </button>
+      </div>
+
+      <div class="radar-card" id="radarCard">
+        <div class="radar-header">
+          <div>
+            <span style="font-family:var(--mono); font-size:11.5px; color:var(--mist); text-transform:uppercase" id="radarSub">FOKUS DIAGNOSTIK SPESIFIK</span>
+            <h3 id="radarTitle">Honda CR-V 1.5 Turbo</h3>
+          </div>
+          <span class="tag" id="radarTag">Fokus: 4 Titik Kritis</span>
+        </div>
+        <ul class="radar-checklist" id="radarList">
+          <!-- Filled by JavaScript -->
+        </ul>
+        <div class="radar-action">
+          <span id="radarNote">Inspektor zalInspection membawa scanner pendeteksi DTC khusus untuk model ini.</span>
+          <a class="btn btn-amber" href="#booking" style="min-height:38px; padding:0 16px; font-size:13px">Jadwalkan Unit Ini</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE TOOLS & REAL PHOTOGRAPHY SHOWCASE -->
 <section id="alat">
   <div class="wrap">
     <p class="eyebrow">Instrumen Pengujian Lapangan</p>
     <h2>Bukan sekadar cek visual dengan mata telanjang.</h2>
     <p class="sub">Inspektor zalInspection dibekali instrumen diagnostik digital berkalibrasi laboratorium untuk membongkar cacat tersembunyi yang ditutup polesan bodi.</p>
 
-    <div class="hardware-grid">
-      <div class="tool-card reveal">
-        <span class="tool-badge">Ketebalan Panel</span>
-        <h3 class="tool-name">Ultrasonic Paint Depth Gauge</h3>
-        <span class="tool-spec">Akurasi ±1 µm</span>
-        <p class="tool-desc">Mendeteksi dempul pasca tabrakan keras di balik cat mulus. Mengukur ketebalan mikron seluruh 36 panel bodi.</p>
+    <div class="hardware-showcase">
+      <div class="hardware-photo reveal">
+        <img src="paint-inspection-gauge.jpg" alt="Foto Inspeksi Nyata Menggunakan Alat Ukur Cat Ultrasonik Digital zalInspection" width="1280" height="720">
+        <div class="hardware-photo-caption">
+          <b>Dokumentasi Lapangan: Pengukuran Ketebalan Panel Kap Mesin</b>
+          <span>Pembacaan digital LCD menampilkan 92.4 µm pada substrat aluminium, mengonfirmasi cat orisinil pabrik tanpa bekas dempul benturan.</span>
+        </div>
       </div>
-      <div class="tool-card reveal">
-        <span class="tool-badge">Elektronikal &amp; ECU</span>
-        <h3 class="tool-name">Bi-Directional OBD-II Scanner</h3>
-        <span class="tool-spec">Live Data Stream &amp; DTC</span>
-        <p class="tool-desc">Membaca freeze-frame error yang sengaja dihapus sesaat, verifikasi log jarak tempuh transmisi, dan status modul airbag.</p>
-      </div>
-      <div class="tool-card reveal">
-        <span class="tool-badge">Rongga Tersembunyi</span>
-        <h3 class="tool-name">HD Articulating Endoscope</h3>
-        <span class="tool-spec">Probe Kamera 5.5mm</span>
-        <p class="tool-desc">Memeriksa kerak ruang bakar busi, sela rongga sasis tertutup, dan endapan lumpur banjir di balik konsol dashboard.</p>
-      </div>
-      <div class="tool-card reveal">
-        <span class="tool-badge">Fluida &amp; Pengereman</span>
-        <h3 class="tool-name">Digital Fluid Refractometer</h3>
-        <span class="tool-spec">Boiling Point &amp; Moisture %</span>
-        <p class="tool-desc">Menguji kadar air minyak rem dan konsentrasi etilen glikol radiator pendingin untuk menghindari mesin overheat.</p>
+
+      <div class="hardware-list">
+        <div class="hw-item reveal">
+          <b>Ultrasonic Paint Depth Gauge</b>
+          <p>Mendeteksi dempul pasca tabrakan keras di balik cat mulus. Mengukur ketebalan mikron seluruh 36 panel bodi.</p>
+          <span class="spec">Akurasi Sensor ±1 µm</span>
+        </div>
+        <div class="hw-item reveal">
+          <b>Bi-Directional OBD-II Scanner</b>
+          <p>Membaca freeze-frame error yang sengaja dihapus sesaat, verifikasi log jarak tempuh transmisi, dan modul airbag.</p>
+          <span class="spec">Live ECU Data Stream Query</span>
+        </div>
+        <div class="hw-item reveal">
+          <b>HD Articulating Endoscope 5.5mm</b>
+          <p>Memeriksa kerak ruang bakar busi, sela rongga sasis tertutup, dan residu lumpur banjir di balik konsol dashboard.</p>
+          <span class="spec">Probe Fleksibel Kamera Mikro HD</span>
+        </div>
+        <div class="hw-item reveal">
+          <b>Digital Fluid Refractometer</b>
+          <p>Menguji kadar air minyak rem dan konsentrasi etilen glikol radiator pendingin untuk menghindari mesin overheat.</p>
+          <span class="spec">Boiling Point &amp; Moisture %</span>
+        </div>
       </div>
     </div>
 
@@ -627,8 +763,70 @@ footer.site a:hover{color:#fff}
   </div>
 </section>
 
+<!-- INTERACTIVE FAIR PRICE & NEGOTIATION CALCULATOR -->
+<section id="nego" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow">Alat Bantu Pembeli Mobil Bekas</p>
+    <h2>Kalkulator Nego Cacat: Berapa Nilai Hemat Anda?</h2>
+    <p class="sub">Simulasikan harga penawaran mobil incaran Anda. Centang temuan cacat yang terdeteksi inspektor untuk menghitung estimasi biaya perbaikan dan rekomendasi harga tawar yang realistis.</p>
+
+    <div class="nego-calculator reveal">
+      <div class="nego-layout">
+        <div>
+          <label for="carPriceInput" style="font-size:13.5px; font-weight:700; color:#CBD5E1; display:block; margin-bottom:8px">Harga Iklan / Penawaran Penjual (Rp):</label>
+          <div style="display:flex; align-items:center; background:rgba(255,255,255,.07); border:1.5px solid var(--line-dark); border-radius:10px; padding:0 16px">
+            <span style="font-family:var(--mono); color:var(--amber); font-weight:700; font-size:16px">Rp</span>
+            <input type="number" id="carPriceInput" value="285000000" step="5000000" style="background:transparent; border:none; color:#fff; font-family:var(--mono); font-size:22px; font-weight:700; padding:12px; width:100%; outline:none">
+          </div>
+
+          <p style="font-size:13px; color:var(--mist); margin:18px 0 8px">Pilih Temuan Cacat Umum Hasil Inspeksi:</p>
+          <div class="nego-defects-list" id="defectsList">
+            <label class="defect-label">
+              <span><input type="checkbox" data-cost="3500000" checked> Dempul &amp; Cat Ulang 2 Panel Bodi</span>
+              <span class="defect-cost">+Rp 3.500.000</span>
+            </label>
+            <label class="defect-label">
+              <span><input type="checkbox" data-cost="2800000" checked> Kampas Rem &amp; Piringan Cakram Depan Tipis</span>
+              <span class="defect-cost">+Rp 2.800.000</span>
+            </label>
+            <label class="defect-label">
+              <span><input type="checkbox" data-cost="4500000" checked> Shockbreaker Depan Bocor &amp; Bushing Pecah</span>
+              <span class="defect-cost">+Rp 4.500.000</span>
+            </label>
+            <label class="defect-label">
+              <span><input type="checkbox" data-cost="1800000"> Rembesan Oli Seal Cover Klep Mesin</span>
+              <span class="defect-cost">+Rp 1.800.000</span>
+            </label>
+            <label class="defect-label">
+              <span><input type="checkbox" data-cost="3200000"> Ban 2 Pcs Aus / Usia Lebih Dari 4 Tahun</span>
+              <span class="defect-cost">+Rp 3.200.000</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="nego-result-card">
+          <span style="font-family:var(--mono); font-size:11.5px; color:var(--mist); text-transform:uppercase">ESTIMASI TOTAL BIAYA PERBAIKAN</span>
+          <div class="nego-val" id="totalDefectCost">Rp 10.800.000</div>
+          
+          <div style="border-top:1px solid var(--line-dark); margin:16px 0; padding-top:16px">
+            <span style="font-family:var(--mono); font-size:11.5px; color:var(--mist); text-transform:uppercase">REKOMENDASI HARGA TAWAR MAKSIMAL</span>
+            <div class="nego-recom" id="fairOfferPrice">Rp 274.200.000</div>
+          </div>
+
+          <div class="nego-saving-badge" id="savingBadge">
+            Potensi Penghematan Dana: Rp 10.800.000
+          </div>
+          <p style="font-size:12px; color:var(--mist); margin:14px 0 0; line-height:1.4">
+            Dengan biaya inspeksi hanya Rp 750.000, Anda memiliki bukti foto dan laporan fisik otentik untuk menawar harga mobil secara rasional.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- REAL FIELD CASE STUDIES -->
-<section id="kasus" style="background:var(--paper); border-top:1px solid var(--line)">
+<section id="kasus" style="background:var(--paper)">
   <div class="wrap">
     <p class="eyebrow">Studi Kasus Investigasi Lapangan</p>
     <h2>Bukti nyata inspeksi menyelamatkan pembeli.</h2>
@@ -925,10 +1123,11 @@ footer.site a:hover{color:#fff}
       <div>
         <h4>Layanan</h4>
         <ul>
+          <li><a href="#radar">Radar Cacat Kronis</a></li>
           <li><a href="#inspeksi">Inspeksi 152 Titik</a></li>
           <li><a href="#alat">Pengujian Instrumen</a></li>
+          <li><a href="#nego">Kalkulator Nego</a></li>
           <li><a href="#harga">Paket &amp; Tarif</a></li>
-          <li><a href="#garansi">Garansi Mesin 1 Tahun</a></li>
           <li><a href="laporan.html">Sampel Laporan Digital</a></li>
         </ul>
       </div>
@@ -1055,6 +1254,101 @@ if(reducedMotion){
   setTimeout(runTerminal, 500);
 }
 
+/* ---------- VULNERABILITY RADAR DATA ---------- */
+const RADAR_MODELS = {
+  crv: {
+    title: 'Honda CR-V 1.5 Turbo (2017 - 2022)',
+    sub: 'SUV POPULER KELUARGA · MESIN TURBO VTEC',
+    tag: 'Fokus: 4 Titik Kritis',
+    note: 'Inspektor zalInspection membawa scanner pendeteksi DTC khusus untuk modul AC dan kompresi Turbo CR-V.',
+    items: [
+      'Pengecekan recall kompresor AC & magnet clutch (gejala AC mendadak tidak dingin saat macet).',
+      'Analisis potensi pengenceran oli mesin (oil dilution) akibat pembakaran turbo pada jarak pendek.',
+      'Inspeksi kerapatan siler karet pilar D belakang dari risiko rembesan air cucian atau hujan deras.',
+      'Pengukuran ketebalan kampas rem elektronik EPB dan modul aktuator rem parkir belakang.'
+    ]
+  },
+  fortuner: {
+    title: 'Toyota Fortuner 2.4 VRZ (2016 - 2023)',
+    sub: 'LADDER FRAME DIESEL · MESIN 2GD-FTV',
+    tag: 'Fokus: 4 Titik Kritis',
+    note: 'Inspektor zalInspection memeriksa kolong sasis secara mendalam untuk riwayat pemakaian off-road atau tambang.',
+    items: [
+      'Inspeksi residu kerak jelaga pada katup EGR (Exhaust Gas Recirculation) dan intercooler turbo.',
+      'Pemeriksaan rembesan oli pada seal rack steer bawah dan karet boot as roda depan.',
+      'Deteksi riwayat remap ECU ekstrem yang berpotensi merusak nozzle injector common-rail.',
+      'Pemeriksaan las titik sasis ladder frame bagian tengah dari bekas benturan gundukan keras.'
+    ]
+  },
+  pajero: {
+    title: 'Mitsubishi Pajero Sport Dakar (2016 - 2022)',
+    sub: 'LADDER FRAME DIESEL · MESIN 4N15 MIVEC',
+    tag: 'Fokus: 4 Titik Kritis',
+    note: 'Inspektor zalInspection melakukan uji jalan khusus untuk mendeteksi bunyi gludug pada steering column.',
+    items: [
+      'Uji getaran & bunyi ketukan abnormal pada intermediate steering shaft (penyakit khas steering Pajero).',
+      'Pemeriksaan aktuator boost turbo VGT dari potensi macet yang menyebabkan tarikan lemot (*limp mode*).',
+      'Verifikasi audit odometer via data putaran roda transmisi di freeze-frame ECU ABS.',
+      'Cek keausan piringan cakram rem depan dan karat pada engsel pintu bagasi belakang.'
+    ]
+  },
+  bmw: {
+    title: 'BMW Seri 3 320i F30 / G20 (2015 - 2021)',
+    sub: 'SEDAN EKSEKUTIF · MESIN B48 TURBO',
+    tag: 'Fokus: 4 Titik Kritis',
+    note: 'Inspektor zalInspection menggunakan scanner OBD-II berkemampuan baca modul BMW FEM & EGS.',
+    items: [
+      'Pemeriksaan rembesan oli mesin pada gasket cover klep, housing filter oli, dan selang turbocharger.',
+      'Uji kerapatan sistem pendingin: selang radiator plastik getas dan tabung reservoir coolant.',
+      'Scanning modul mekatronik transmisi ZF 8-speed dan catatan adaptasi kopling matik.',
+      'Pemeriksaan bushing arm suspensi depan dari keretakan karet yang memicu setir bergetar.'
+    ]
+  },
+  ev: {
+    title: 'Hyundai Ioniq 5 / Kendaraan Listrik (2022 - 2024)',
+    sub: 'ELECTRIC VEHICLE PLATFORM E-GMP',
+    tag: 'Fokus: 4 Titik Kritis',
+    note: 'Inspektor zalInspection tersertifikasi keselamatan tegangan tinggi untuk memeriksa baterai traksi EV.',
+    items: [
+      'Pembacaan State of Health (SOH) baterai traksi tegangan tinggi dan deviasi tegangan antar cell.',
+      'Pemeriksaan riwayat recall modul ICCU (Integrated Charging Control Unit) dan fuse sekring 12V.',
+      'Inspeksi visual pelat pelindung bawah baterai (battery pack skid plate) dari benturan polisi tidur.',
+      'Uji fungsi pendingin baterai (battery thermal management system) dan port charging DC/AC.'
+    ]
+  }
+};
+
+const modelPicker=document.getElementById('modelPicker');
+const radarTitle=document.getElementById('radarTitle');
+const radarSub=document.getElementById('radarSub');
+const radarTag=document.getElementById('radarTag');
+const radarNote=document.getElementById('radarNote');
+const radarList=document.getElementById('radarList');
+
+function updateRadar(key){
+  const m=RADAR_MODELS[key];
+  if(!m) return;
+  radarTitle.textContent=m.title;
+  radarSub.textContent=m.sub;
+  radarTag.textContent=m.tag;
+  radarNote.textContent=m.note;
+  radarList.innerHTML=m.items.map(item=>`
+    <li>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      <span>${item}</span>
+    </li>
+  `).join('');
+}
+
+modelPicker.addEventListener('click', e=>{
+  const btn=e.target.closest('.model-btn');
+  if(!btn) return;
+  modelPicker.querySelectorAll('.model-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateRadar(btn.dataset.model);
+});
+updateRadar('crv');
+
 /* ---------- INTERACTIVE PAINT GAUGE SIMULATOR ---------- */
 const simPicker=document.getElementById('simPicker');
 const gaugePanelName=document.getElementById('gaugePanelName');
@@ -1125,6 +1419,34 @@ simPicker.addEventListener('click', e=>{
   gaugeNotes.textContent=d.notes;
 });
 
+/* ---------- FAIR PRICE & NEGOTIATION CALCULATOR ---------- */
+const carPriceInput=document.getElementById('carPriceInput');
+const defectsList=document.getElementById('defectsList');
+const totalDefectCostEl=document.getElementById('totalDefectCost');
+const fairOfferPriceEl=document.getElementById('fairOfferPrice');
+const savingBadgeEl=document.getElementById('savingBadge');
+
+function fmtRupiah(num){
+  return 'Rp ' + Math.max(0, num).toLocaleString('id-ID');
+}
+
+function calculateNego(){
+  const basePrice = parseInt(carPriceInput.value, 10) || 0;
+  let defectTotal = 0;
+  defectsList.querySelectorAll('input[type="checkbox"]:checked').forEach(cb=>{
+    defectTotal += parseInt(cb.dataset.cost, 10) || 0;
+  });
+
+  const fairPrice = Math.max(0, basePrice - defectTotal);
+  totalDefectCostEl.textContent = fmtRupiah(defectTotal);
+  fairOfferPriceEl.textContent = fmtRupiah(fairPrice);
+  savingBadgeEl.textContent = 'Potensi Penghematan Dana: ' + fmtRupiah(defectTotal);
+}
+
+carPriceInput.addEventListener('input', calculateNego);
+defectsList.addEventListener('change', calculateNego);
+calculateNego();
+
 /* ---------- REVEAL ON SCROLL ---------- */
 const rObs=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){ e.target.classList.add('in'); rObs.unobserve(e.target); }
@@ -1156,7 +1478,6 @@ form.addEventListener('submit',e=>{
     return;
   }
 
-  // Simpan ke antrean Portal Admin Inspektor via localStorage
   try {
     const booking = {
       id: "INSP-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000),
