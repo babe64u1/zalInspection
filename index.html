@@ -156,6 +156,26 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .standard-text b{display:block; font-size:14px; color:#FFFFFF}
 .standard-text span{font-size:12px; color:#94A3B8}
 
+/* SPLIT REVEAL FLAGSHIP SECTION */
+.split-section{background:var(--bg-dark); color:#FFFFFF; border-bottom:1px solid var(--border-dark); padding:96px 0}
+.split-header{text-align:center; max-width:760px; margin:0 auto 48px}
+.split-header h2{font-size:clamp(30px,4.2vw,46px); color:#FFFFFF}
+.split-box{border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--border-dark); box-shadow:var(--shadow-dark); position:relative; background:var(--surface-dark)}
+.split-img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover}
+.split-badge-left{position:absolute; top:24px; left:24px; background:rgba(9,13,18,0.85); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:8px 16px; font-family:var(--font-mono); font-size:12px; color:#CBD5E1}
+.split-badge-right{position:absolute; top:24px; right:24px; background:rgba(9,13,18,0.85); backdrop-filter:blur(8px);
+  border:1px solid rgba(6,182,212,0.4); border-radius:8px; padding:8px 16px; font-family:var(--font-mono); font-size:12px; color:#38BDF8}
+
+.split-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:28px}
+@media (max-width:960px){.split-cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.split-cards{grid-template-columns:1fr}}
+.sc-card{background:var(--surface-dark-2); border:1px solid var(--border-dark); border-radius:var(--r-md); padding:20px; transition:transform .15s}
+.sc-card:hover{transform:translateY(-2px); border-color:#CBD5E1}
+.sc-num{font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--amber-light); margin-bottom:6px; display:block}
+.sc-card h4{font-size:15px; color:#FFFFFF; margin-bottom:6px}
+.sc-card p{margin:0; font-size:12.5px; color:#94A3B8; line-height:1.5}
+
 /* Radar Section */
 .radar-section{background:var(--surface-light); border-bottom:1px solid var(--border-light)}
 .radar-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:40px; margin-top:36px; align-items:start}
@@ -327,6 +347,20 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .war h3{font-size:16.5px; font-weight:800; margin-bottom:6px}
 .war p{margin:0; font-size:13.5px; color:#94A3B8; line-height:1.55}
 
+/* Live Territory Dispatch Ticker */
+.dispatch-ticker{background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); border-radius:12px; padding:14px 18px; margin-top:22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px}
+.dispatch-pills{display:flex; flex-wrap:wrap; gap:8px}
+.d-pill{font-family:var(--font-mono); font-size:11px; background:#FFFFFF; border:1px solid var(--border-light); padding:4px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:6px}
+.d-pill b{color:#10B981}
+
+/* Interactive Preview Modal */
+.modal-backdrop{display:none; position:fixed; inset:0; z-index:100; background:rgba(9,13,18,0.85); backdrop-filter:blur(8px); place-items:center; padding:20px}
+.modal-backdrop.open{display:grid}
+.modal-box{background:var(--surface-light); border-radius:var(--r-lg); max-width:680px; width:100%; border:1px solid var(--border-light); box-shadow:var(--shadow-dark); overflow:hidden; animation:modalPop .2s ease-out}
+@keyframes modalPop{from{opacity:0; transform:scale(.95)}to{opacity:1; transform:none}}
+.modal-head{background:var(--surface-dark); color:#FFFFFF; padding:20px 24px; display:flex; justify-content:space-between; align-items:center}
+.modal-body{padding:24px; max-height:75vh; overflow-y:auto}
+
 /* FAQ */
 .faq{max-width:780px; margin:36px auto 0}
 .faq details{background:var(--surface-light); border:1px solid var(--border-light); border-radius:12px; margin-bottom:10px; overflow:hidden; box-shadow:var(--shadow-sm)}
@@ -397,14 +431,14 @@ footer.site a:hover{color:#FFFFFF}
       zal<span style="color:var(--amber-light)">Inspection</span>
     </a>
     <nav class="nav-links" aria-label="Menu Navigasi Utama">
+      <a href="#reveal">X-Ray vs Awam</a>
       <a href="#radar">Radar Mobil</a>
       <a href="#inspeksi">152 Titik Uji</a>
-      <a href="#alat">Alat &amp; Simulator</a>
+      <a href="#alat">Simulator Alat</a>
       <a href="#metode">Metodologi</a>
       <a href="#nego">Kalkulator Nego</a>
-      <a href="#kasus">Studi Kasus</a>
       <a href="#harga">Harga</a>
-      <a href="laporan.html">Sampel Laporan</a>
+      <a href="laporan.html">Laporan Digital</a>
       <a href="admin.html">Portal Inspektor</a>
     </nav>
     <a class="btn btn-amber" href="#booking">Jadwalkan Inspeksi</a>
@@ -422,7 +456,7 @@ footer.site a:hover{color:#FFFFFF}
         <p class="lede">Inspektor tersertifikasi memeriksa 152 titik fisik dan digital: mulai dari kelurusan sasis utama, ketebalan cat per panel, riwayat rendaman banjir, hingga diagnosa komputer OBD-II. Laporan digital interaktif terbit maksimal 24 jam.</p>
         <div class="hero-cta">
           <a class="btn btn-amber" href="#booking">Jadwalkan Inspeksi Lapangan</a>
-          <a class="btn btn-ghost" href="laporan.html">Lihat Contoh Laporan Digital ↗</a>
+          <button type="button" class="btn btn-ghost" id="openSampleModalBtn">Intip Laporan Digital ↗</button>
         </div>
         <div class="trust-badges">
           <div class="trust-item">
@@ -518,6 +552,50 @@ footer.site a:hover{color:#FFFFFF}
     </div>
   </div>
 </div>
+
+<!-- FLAGSHIP SPLIT REVEAL SECTION -->
+<section id="reveal" class="split-section">
+  <div class="wrap">
+    <div class="split-header reveal">
+      <p class="eyebrow">Mengapa Bodi Berkilau Bisa Menipu?</p>
+      <h2>Mata Awam vs Scanner Diagnostik zalInspection</h2>
+      <p class="sub" style="color:#94A3B8; margin:14px auto 0">Showroom dapat memoles cat hingga berkilau dan menyemprotkan pewangi kabin. Namun instrumen kami melihat tembus sampai ke sasis tersembunyi, jeroan mesin, dan sistem komputer internal.</p>
+    </div>
+
+    <div class="split-box reveal">
+      <img src="car-split-reveal.jpg" alt="Perbandingan Visual Showroom vs Pemindaian Sinar X zalInspection" class="split-img" width="1280" height="720">
+      <div class="split-badge-left">
+        SISI KIRI: TAMPILAN SHOWROOM
+      </div>
+      <div class="split-badge-right">
+        SISI KANAN: RADIUS SCANNER ZALINSPECTION
+      </div>
+    </div>
+
+    <div class="split-cards">
+      <div class="sc-card reveal">
+        <span class="sc-num">FOKUS 01</span>
+        <h4>Las Titik Rangka Sasis</h4>
+        <p>Memverifikasi apakah tiang pilar kabin masih memiliki las titik robot pabrikan asli atau sudah dipotong dan disambung las ketok lokal pasca tabrakan keras.</p>
+      </div>
+      <div class="sc-card reveal">
+        <span class="sc-num">FOKUS 02</span>
+        <h4>Ketebalan Cat Panel (145 µm)</h4>
+        <p>Sensor ultrasonik kami mengidentifikasi batas antara cat asli pabrik (80 - 130 µm) dan dempul tebal (> 250 µm) yang dicat ulang secara kosmetik.</p>
+      </div>
+      <div class="sc-card reveal">
+        <span class="sc-num">FOKUS 03</span>
+        <h4>Kompresi Mesin &amp; Crankshaft</h4>
+        <p>Membaca getaran cold start, kestabilan tekanan oli, dan mendengarkan ketukan abnormal timing chain atau ring piston yang aus.</p>
+      </div>
+      <div class="sc-card reveal">
+        <span class="sc-num">FOKUS 04</span>
+        <h4>Log ECU &amp; Battery Management</h4>
+        <p>Membongkar riwayat jarak tempuh riil yang tercatat di transmisi dan memeriksa status error tersembunyi modul airbag serta ABS.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- INTERACTIVE MODEL-SPECIFIC VULNERABILITY RADAR -->
 <section id="radar" class="radar-section">
@@ -1073,12 +1151,24 @@ footer.site a:hover{color:#FFFFFF}
         <p class="eyebrow">Reservasi Jadwal Lapangan</p>
         <h2>Amankan mobil impian Anda dengan verifikasi data.</h2>
         <p class="sub">Lengkapi formulir di samping. Tim penugasan inspektor kami akan mengirimkan konfirmasi via WhatsApp dalam waktu kurang dari 30 menit pada jam operasional.</p>
-        <div style="margin-top:28px; display:grid; gap:12px">
-          <a class="btn btn-wa" href="https://wa.me/62895634361840?text=Halo%20zalInspection,%20saya%20ingin%20konsultasi%20dan%20jadwalkan%20inspeksi%20mobil" target="_blank" rel="noopener" style="width:fit-content">
+        
+        <!-- Live Dispatch Availability Ticker -->
+        <div class="dispatch-ticker">
+          <div style="font-size:12.5px; font-weight:700; color:var(--text-dark)">Status Armada Siaga Hari Ini:</div>
+          <div class="dispatch-pills">
+            <span class="d-pill">Jakut &amp; Barat: <b>2 Siaga</b></span>
+            <span class="d-pill">Jaksel &amp; Depok: <b>2 Siaga</b></span>
+            <span class="d-pill">Tangerang &amp; BSD: <b>3 Siaga</b></span>
+            <span class="d-pill">Bekasi: <b>1 Siaga</b></span>
+          </div>
+        </div>
+
+        <div style="margin-top:24px; display:grid; gap:12px">
+          <a class="btn btn-wa" id="dynamicWaBtn" href="https://wa.me/62895634361840?text=Halo%20zalInspection,%20saya%20ingin%20konsultasi%20dan%20jadwalkan%20inspeksi%20mobil" target="_blank" rel="noopener" style="width:fit-content">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
             Konsultasi WhatsApp Langsung
           </a>
-          <span style="font-size:13.5px; color:var(--text-muted)">Penjadwalan dapat dilakukan via formulir web atau tautan chat WhatsApp resmi kami.</span>
+          <span style="font-size:13px; color:var(--text-muted)">Penjadwalan dapat dilakukan via formulir web atau tautan chat WhatsApp resmi kami.</span>
         </div>
       </div>
 
@@ -1147,11 +1237,11 @@ footer.site a:hover{color:#FFFFFF}
       <div>
         <h4>Layanan</h4>
         <ul>
+          <li><a href="#reveal">X-Ray vs Tampilan Awam</a></li>
           <li><a href="#radar">Radar Cacat Kronis</a></li>
           <li><a href="#inspeksi">Inspeksi 152 Titik</a></li>
           <li><a href="#alat">Pengujian Instrumen</a></li>
           <li><a href="#nego">Kalkulator Nego</a></li>
-          <li><a href="#harga">Paket &amp; Tarif</a></li>
           <li><a href="laporan.html">Sampel Laporan Digital</a></li>
         </ul>
       </div>
@@ -1179,6 +1269,54 @@ footer.site a:hover{color:#FFFFFF}
     </div>
   </div>
 </footer>
+
+<!-- SAMPLE REPORT PREVIEW MODAL -->
+<div class="modal-backdrop" id="sampleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <span style="font-family:var(--font-mono); font-size:11px; color:var(--amber-light); letter-spacing:.08em; text-transform:uppercase">CONTOH SERTIFIKAT DIGITAL RESMI</span>
+        <h3 id="modalTitle" style="font-size:18px; color:#FFFFFF; margin-top:2px">Laporan Inspeksi: Honda CR-V 1.5 Turbo 2019</h3>
+      </div>
+      <button type="button" id="closeSampleModalBtn" style="background:none; border:none; color:#FFFFFF; font-size:24px; line-height:1; cursor:pointer" aria-label="Tutup Modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex; justify-content:space-between; align-items:center; background:#F1F5F9; border-radius:12px; padding:16px 20px; margin-bottom:18px">
+        <div>
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted)">SKOR KELAYAKAN KENDARAAN</span>
+          <div style="font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--text-dark)">GRADE B+ (88/100)</div>
+          <span style="font-size:12px; color:#10B981; font-weight:600">● Rekomendasi: Layak Beli dengan Catatan</span>
+        </div>
+        <div style="text-align:right">
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted)">ESTIMASI PERBAIKAN</span>
+          <div style="font-family:var(--font-mono); font-size:20px; font-weight:800; color:var(--amber-deep)">Rp 3.800.000</div>
+          <span style="font-size:11.5px; color:var(--text-muted)">Kampas rem + seal klep</span>
+        </div>
+      </div>
+
+      <p style="font-size:13.5px; color:var(--text-dark); margin:0 0 14px"><b>Ringkasan 5 Sektor Fisik &amp; Komputer:</b></p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:13px; margin-bottom:20px">
+        <div style="background:#F8FAFC; border:1px solid var(--border-light); padding:10px 14px; border-radius:8px">
+          <span style="color:var(--text-muted)">Struktur Rangka &amp; Sasis:</span> <b style="color:#10B981">Lulus (Bebas Tabrak)</b>
+        </div>
+        <div style="background:#F8FAFC; border:1px solid var(--border-light); padding:10px 14px; border-radius:8px">
+          <span style="color:var(--text-muted)">Kelistrikan &amp; Banjir:</span> <b style="color:#10B981">Bebas Rendaman</b>
+        </div>
+        <div style="background:#F8FAFC; border:1px solid var(--border-light); padding:10px 14px; border-radius:8px">
+          <span style="color:var(--text-muted)">Kompresor AC &amp; Mesin:</span> <b style="color:#F59E0B">Catatan Ringan</b>
+        </div>
+        <div style="background:#F8FAFC; border:1px solid var(--border-light); padding:10px 14px; border-radius:8px">
+          <span style="color:var(--text-muted)">Legalitas BPKB &amp; STNK:</span> <b style="color:#10B981">Valid &amp; Bebas Blokir</b>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px">
+        <a href="laporan.html" class="btn btn-amber" style="flex:1">Buka Lembar Laporan Lengkap ↗</a>
+        <button type="button" class="btn btn-ghost-dark" id="closeModalActionBtn">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <a class="wa-float" href="https://wa.me/62895634361840?text=Halo%20zalInspection,%20saya%20ingin%20tanya%20seputar%20inspeksi%20mobil" target="_blank" rel="noopener" aria-label="Konsultasi via WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
@@ -1470,6 +1608,41 @@ function calculateNego(){
 carPriceInput.addEventListener('input', calculateNego);
 defectsList.addEventListener('change', calculateNego);
 calculateNego();
+
+/* ---------- SAMPLE REPORT MODAL CONTROLLER ---------- */
+const sampleModal=document.getElementById('sampleModal');
+const openModalBtn=document.getElementById('openSampleModalBtn');
+const closeModalBtn=document.getElementById('closeSampleModalBtn');
+const closeModalAction=document.getElementById('closeModalActionBtn');
+
+function openModal(){ sampleModal.classList.add('open'); }
+function closeModal(){ sampleModal.classList.remove('open'); }
+
+if(openModalBtn) openModalBtn.addEventListener('click', openModal);
+if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if(closeModalAction) closeModalAction.addEventListener('click', closeModal);
+sampleModal.addEventListener('click', e=>{ if(e.target===sampleModal) closeModal(); });
+
+/* ---------- DYNAMIC WHATSAPP LINK SYNC ---------- */
+const nameInput=document.getElementById('nama');
+const carInput=document.getElementById('mobil');
+const locInput=document.getElementById('lokasi');
+const dynamicWaBtn=document.getElementById('dynamicWaBtn');
+
+function updateWaLink(){
+  const name=nameInput.value.trim();
+  const car=carInput.value.trim();
+  const loc=locInput.value.trim();
+  let msg = "Halo zalInspection, saya ingin konsultasi dan jadwalkan inspeksi mobil";
+  if(car) msg += " untuk " + car;
+  if(loc) msg += " di " + loc;
+  if(name) msg += ". Nama saya " + name;
+  dynamicWaBtn.href = "https://wa.me/62895634361840?text=" + encodeURIComponent(msg);
+}
+
+[nameInput, carInput, locInput].forEach(inp=>{
+  if(inp) inp.addEventListener('input', updateWaLink);
+});
 
 /* ---------- REVEAL ON SCROLL ---------- */
 const rObs=new IntersectionObserver(es=>es.forEach(e=>{
