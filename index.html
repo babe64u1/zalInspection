@@ -447,11 +447,31 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(11,15,23,0.92); b
 .war h3{font-size:16.5px; font-weight:800; margin-bottom:6px}
 .war p{margin:0; font-size:13.5px; color:#94A3B8; line-height:1.55}
 
-/* Live Territory Dispatch Ticker */
-.dispatch-ticker{background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); border-radius:12px; padding:14px 18px; margin-top:22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px}
-.dispatch-pills{display:flex; flex-wrap:wrap; gap:8px}
-.d-pill{font-family:var(--font-mono); font-size:11px; background:#FFFFFF; border:1px solid var(--border-light); padding:4px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:6px}
-.d-pill b{color:#10B981}
+/* Live Territory Dispatch Monitor */
+.dispatch-monitor{background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 8px 24px -6px rgba(15,23,42,0.05); margin-top:24px}
+.dispatch-monitor-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #F1F5F9}
+.dispatch-live-tag{display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px; font-weight:700; color:#10B981; background:rgba(16,185,129,0.1); padding:4px 10px; border-radius:99px}
+.dispatch-live-dot{width:7px; height:7px; border-radius:50%; background:#10B981}
+.dispatch-fleet-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:540px){.dispatch-fleet-grid{grid-template-columns:1fr}}
+.fleet-card{background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:10px 12px; display:flex; flex-direction:column; gap:3px}
+.fleet-region{font-size:12px; font-weight:700; color:var(--text-dark)}
+.fleet-status{font-family:var(--font-mono); font-size:11px; color:#059669; font-weight:700; display:flex; align-items:center; gap:5px}
+.fleet-hubs{font-size:10.5px; color:var(--text-muted)}
+
+.dispatch-guarantees{display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-top:14px; padding-top:14px; border-top:1px dashed #E2E8F0}
+@media (max-width:540px){.dispatch-guarantees{grid-template-columns:1fr}}
+.dg-item{display:flex; align-items:center; gap:8px; font-size:11.5px; color:#475569; font-weight:600}
+.dg-icon{width:24px; height:24px; border-radius:6px; background:rgba(245,158,11,0.12); color:var(--amber-deep); display:grid; place-items:center; flex-shrink:0}
+
+/* VIP WhatsApp Card */
+.wa-vip-box{background:linear-gradient(135deg, #064E3B 0%, #065F46 100%); border-radius:16px; padding:22px 24px; color:#FFFFFF; margin-top:20px; box-shadow:0 12px 28px -6px rgba(6,78,59,0.25); display:flex; flex-direction:column; gap:12px}
+.wa-vip-head{display:flex; justify-content:space-between; align-items:center}
+.wa-vip-title{font-size:14.5px; font-weight:800; font-family:var(--font-display); letter-spacing:-0.01em}
+.wa-vip-badge{font-family:var(--font-mono); font-size:10.5px; background:rgba(255,255,255,0.15); padding:3px 8px; border-radius:4px; font-weight:600}
+.wa-vip-p{font-size:13px; color:#A7F3D0; margin:0; line-height:1.45}
+.btn-wa-lead{background:#10B981; color:#FFFFFF; font-family:var(--font-display); font-weight:700; font-size:13.5px; padding:12px 18px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; transition:all .15s ease}
+.btn-wa-lead:hover{background:#059669; transform:translateY(-1px); box-shadow:0 6px 20px rgba(16,185,129,0.35)}
 
 /* Interactive Preview Modal */
 .modal-backdrop{display:none; position:fixed; inset:0; z-index:100; background:rgba(9,13,18,0.85); backdrop-filter:blur(8px); place-items:center; padding:20px}
@@ -471,29 +491,64 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(11,15,23,0.92); b
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq .a{padding:0 20px 18px; color:var(--text-muted); font-size:14.5px; line-height:1.6}
 
-/* Booking */
-.book{background:var(--surface-light); border-top:1px solid var(--border-light)}
-.book-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; margin-top:8px}
-@media (max-width:960px){.book-grid{grid-template-columns:1fr}}
-.form{background:var(--bg-light); border:1px solid var(--border-light); border-radius:var(--r-lg); padding:28px 26px; box-shadow:var(--shadow-sm)}
-.form .fs{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin:0 0 16px}
+/* Booking - Executive Dispatch Terminal */
+.book{background:linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%); border-top:1px solid #E2E8F0; padding:80px 0}
+.book-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:44px; margin-top:12px; align-items:start}
+@media (max-width:960px){.book-grid{grid-template-columns:1fr; gap:36px}}
+
+/* Right Column: Premium Booking Form */
+.form{background:#FFFFFF; border:1px solid #E2E8F0; border-radius:20px; padding:32px; box-shadow:0 20px 40px -15px rgba(15,23,42,0.07); position:relative; overflow:hidden}
+.form::before{content:""; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #F59E0B, #D97706)}
+.form-header-bar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px; padding-bottom:16px; border-bottom:1px solid #F1F5F9; flex-wrap:wrap; gap:10px}
+.form-header-bar .fs{margin:0; font-family:var(--font-display); font-size:18px; font-weight:800; color:var(--text-dark); letter-spacing:-0.02em}
+.form-header-bar .fs-sub{font-size:12.5px; color:var(--text-muted); margin:3px 0 0}
+.form-secure-badge{font-family:var(--font-mono); font-size:10.5px; font-weight:700; color:#475569; background:#F8FAFC; border:1px solid #E2E8F0; padding:4px 9px; border-radius:6px; display:inline-flex; align-items:center; gap:5px}
+
+.form-step-divider{font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--amber-deep); margin:18px 0 12px; display:flex; align-items:center; gap:8px}
+.form-step-divider::after{content:""; flex:1; height:1px; background:#F1F5F9}
+
 .f-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 @media (max-width:560px){.f-row{grid-template-columns:1fr}}
-.field{margin-bottom:16px}
-.field label{display:block; font-size:13.5px; font-weight:700; margin-bottom:7px; font-family:var(--font-display)}
-.field input,.field select,.field textarea{width:100%; min-height:48px; border:1.5px solid #E2E8F0; border-radius:12px;
-  padding:11px 16px; font:inherit; font-size:14.5px; background:var(--surface-light); color:var(--text-dark);
-  transition:border-color .15s ease, box-shadow .15s ease}
-.field textarea{min-height:90px; resize:vertical}
-.field input:hover,.field select:hover,.field textarea:hover{border-color:#94A3B8}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--amber);
+.field{margin-bottom:14px}
+.field label{display:block; font-size:13px; font-weight:700; margin-bottom:6px; font-family:var(--font-display); color:var(--text-dark)}
+.field input,.field select,.field textarea{width:100%; min-height:46px; border:1.5px solid #E2E8F0; border-radius:10px;
+  padding:10px 14px; font:inherit; font-size:14px; background:#F8FAFC; color:var(--text-dark);
+  transition:border-color .15s ease, box-shadow .15s ease, background-color .15s ease}
+.field select{cursor:pointer; font-weight:600}
+.field textarea{min-height:80px; resize:vertical}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:#CBD5E1; background:#FFFFFF}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--amber); background:#FFFFFF;
   box-shadow:0 0 0 4px rgba(245,158,11,0.12); outline:none}
-.field .hint{font-size:12px; color:var(--text-muted); margin-top:4px}
-.field.bad input{border-color:var(--rose); background:#FFFBFB}
-.field .err{display:none; font-size:12px; color:var(--rose); margin-top:5px; font-weight:600}
+.field .hint{font-size:11.5px; color:var(--text-muted); margin-top:4px}
+.field.bad input,.field.bad select{border-color:var(--rose); background:#FFFBFB}
+.field .err{display:none; font-size:11.5px; color:var(--rose); margin-top:4px; font-weight:600}
 .field.bad .err{display:block}
-.form .ok-msg{display:none; background:#EBF7F0; border:1px solid #BFE3CE; color:#14713F; border-radius:10px;
-  padding:14px 16px; font-size:14px; font-weight:600; margin-top:14px}
+
+/* Quick Model Chips */
+.car-presets{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px}
+.preset-chip{font-family:var(--font-mono); font-size:11px; background:#F1F5F9; border:1px solid #E2E8F0; padding:4px 9px; border-radius:6px; color:#475569; cursor:pointer; transition:all .15s ease}
+.preset-chip:hover{background:#FFFFFF; border-color:var(--amber); color:var(--amber-deep)}
+
+/* Phone input container */
+.phone-input-wrap{display:flex; align-items:center; border:1.5px solid #E2E8F0; border-radius:10px; background:#F8FAFC; overflow:hidden; transition:border-color .15s ease, box-shadow .15s ease}
+.phone-prefix{padding:0 12px; font-family:var(--font-mono); font-size:13px; font-weight:700; color:#64748B; background:#EDF2F7; border-right:1px solid #E2E8F0; height:46px; display:flex; align-items:center}
+.phone-input-wrap input{border:none; min-height:46px; border-radius:0; background:transparent; padding:10px 14px}
+.phone-input-wrap:focus-within{border-color:var(--amber); background:#FFFFFF; box-shadow:0 0 0 4px rgba(245,158,11,0.12)}
+.field.bad .phone-input-wrap{border-color:var(--rose); background:#FFFBFB}
+
+/* Submit Button & Trust Note */
+.btn-submit-order{width:100%; min-height:50px; border:none; border-radius:12px; background:linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color:#0F172A; font-family:var(--font-display); font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; box-shadow:0 6px 18px rgba(245,158,11,0.28); transition:all .15s ease; margin-top:6px}
+.btn-submit-order:hover{background:linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,158,11,0.36)}
+.btn-submit-order:disabled{background:#94A3B8; color:#FFFFFF; cursor:not-allowed; transform:none; box-shadow:none}
+.form-privacy-note{font-size:11.5px; color:#64748B; text-align:center; margin-top:10px; display:flex; align-items:center; justify-content:center; gap:6px}
+
+/* Enhanced Success Card */
+.form .ok-msg{display:none; background:#FFFFFF; border:2px solid #10B981; border-radius:14px; padding:24px; margin-top:16px; box-shadow:0 12px 30px -10px rgba(16,185,129,0.25)}
+.ok-card-head{display:flex; align-items:center; gap:12px; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #E2E8F0}
+.ok-icon-badge{width:36px; height:36px; border-radius:50%; background:#10B981; color:#FFFFFF; display:grid; place-items:center; font-size:18px; font-weight:800; flex-shrink:0}
+.ok-title{font-family:var(--font-display); font-size:16px; font-weight:800; color:#064E3B; margin:0}
+.ok-ticket-id{font-family:var(--font-mono); font-size:12px; color:var(--amber-deep); font-weight:700}
+.ok-meta-list{display:grid; gap:6px; font-size:12.5px; color:#334155; margin-bottom:16px}
 
 /* Footer */
 footer.site{background:var(--bg-dark); color:var(--text-dim); padding:56px 0 32px; font-size:13.5px}
@@ -1491,76 +1546,175 @@ footer.site a:hover{color:#FFFFFF}
   <div class="wrap">
     <div class="book-grid">
       <div>
-        <p class="eyebrow">Reservasi Jadwal Lapangan</p>
-        <h2>Amankan mobil impian Anda dengan verifikasi data.</h2>
-        <p class="sub">Lengkapi formulir di samping. Tim penugasan inspektor kami akan mengirimkan konfirmasi via WhatsApp dalam waktu kurang dari 30 menit pada jam operasional.</p>
+        <p class="eyebrow" style="color:var(--amber-deep)">● DISPATCH RESMI JABODETABEK</p>
+        <h2 style="font-size:clamp(28px, 3.2vw, 38px); letter-spacing:-0.03em; margin-bottom:12px">Amankan Mobil Impian dengan Verifikasi Forensik.</h2>
+        <p class="sub" style="font-size:15px; line-height:1.6; color:#475569">Lengkapi formulir permohonan inspeksi. Tim inspektor bersertifikasi BNSP akan diterjunkan langsung ke lokasi unit (showroom, bursa, atau garasi privat). Surat tugas terbit maksimal 30 menit.</p>
         
-        <!-- Live Dispatch Availability Ticker -->
-        <div class="dispatch-ticker">
-          <div style="font-size:12.5px; font-weight:700; color:var(--text-dark)">Status Armada Siaga Hari Ini:</div>
-          <div class="dispatch-pills">
-            <span class="d-pill">Jakut &amp; Barat: <b>2 Siaga</b></span>
-            <span class="d-pill">Jaksel &amp; Depok: <b>2 Siaga</b></span>
-            <span class="d-pill">Tangerang &amp; BSD: <b>3 Siaga</b></span>
-            <span class="d-pill">Bekasi: <b>1 Siaga</b></span>
+        <!-- Executive Territory Dispatch Monitor -->
+        <div class="dispatch-monitor">
+          <div class="dispatch-monitor-head">
+            <div>
+              <div style="font-size:11px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em">Monitoring Lapangan</div>
+              <div style="font-size:14px; font-weight:800; color:var(--text-dark); font-family:var(--font-display)">Kesiapan Armada Hari Ini</div>
+            </div>
+            <div class="dispatch-live-tag">
+              <span class="dispatch-live-dot"></span>
+              STATUS SIAGA LIVE
+            </div>
+          </div>
+          
+          <div class="dispatch-fleet-grid">
+            <div class="fleet-card">
+              <span class="fleet-region">Jakarta Utara &amp; Barat</span>
+              <span class="fleet-status">● 2 Inspektor Siaga</span>
+              <span class="fleet-hubs">Bursa Kelapa Gading · WTC Mangga Dua · Puri</span>
+            </div>
+            <div class="fleet-card">
+              <span class="fleet-region">Jakarta Selatan &amp; Depok</span>
+              <span class="fleet-status">● 2 Inspektor Siaga</span>
+              <span class="fleet-hubs">Blok M · Fatmawati · Cinere · Margonda</span>
+            </div>
+            <div class="fleet-card">
+              <span class="fleet-region">Tangerang &amp; BSD City</span>
+              <span class="fleet-status">● 3 Inspektor Siaga</span>
+              <span class="fleet-hubs">Bez Auto Center · Paramount · Gading Serpong</span>
+            </div>
+            <div class="fleet-card">
+              <span class="fleet-region">Bekasi &amp; Cikarang</span>
+              <span class="fleet-status">● 1 Inspektor Siaga</span>
+              <span class="fleet-hubs">Summarecon · Harapan Indah · Grand Wisata</span>
+            </div>
+          </div>
+
+          <div class="dispatch-guarantees">
+            <div class="dg-item">
+              <span class="dg-icon">⚡</span>
+              <span>Respon Surat Tugas &lt; 30 Mnt</span>
+            </div>
+            <div class="dg-item">
+              <span class="dg-icon">🛡️</span>
+              <span>100% Independen Tanpa Komisi</span>
+            </div>
+            <div class="dg-item">
+              <span class="dg-icon">📄</span>
+              <span>Laporan PDF Terbit 2 Jam</span>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top:24px; display:grid; gap:12px">
-          <a class="btn btn-wa" id="dynamicWaBtn" href="https://wa.me/62895634361840?text=Halo%20zalInspection,%20saya%20ingin%20konsultasi%20dan%20jadwalkan%20inspeksi%20mobil" target="_blank" rel="noopener" style="width:fit-content">
+        <!-- Fast-Track Urgent Card -->
+        <div class="wa-vip-box">
+          <div class="wa-vip-head">
+            <span class="wa-vip-title">Butuh Jadwal Inspeksi Hari Ini (Same-Day)?</span>
+            <span class="wa-vip-badge">PRIORITAS</span>
+          </div>
+          <p class="wa-vip-p">Jika unit mobil berisiko diperebutkan pembeli lain hari ini, hubungi langsung Chief Dispatch kami melalui jalur prioritas WhatsApp resmi.</p>
+          <a class="btn-wa-lead" id="dynamicWaBtn" href="https://wa.me/62895634361840?text=Halo%20zalInspection,%20saya%20butuh%20jadwal%20inspeksi%20mobil%20segera" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
-            Konsultasi WhatsApp Langsung
+            Jalur Cepat WhatsApp Resmi (Respon ~3 Mnt)
           </a>
-          <span style="font-size:13px; color:var(--text-muted)">Penjadwalan dapat dilakukan via formulir web atau tautan chat WhatsApp resmi kami.</span>
         </div>
       </div>
 
+      <!-- Executive Booking Form -->
       <form class="form" id="bookForm" novalidate>
-        <p class="fs">Formulir Pemesanan Inspeksi</p>
+        <div class="form-header-bar">
+          <div>
+            <h3 class="fs">Permohonan Penugasan Inspeksi</h3>
+            <p class="fs-sub">SOP Audit Forensik 152 Titik Berlisensi BNSP</p>
+          </div>
+          <div class="form-secure-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            SSL 256-BIT ENCRYPTED
+          </div>
+        </div>
+
+        <div class="form-step-divider">1. IDENTITAS PEMOHON</div>
         <div class="f-row">
           <div class="field" data-req>
-            <label for="nama">Nama Lengkap</label>
+            <label for="nama">Nama Lengkap Pemohon</label>
             <input id="nama" type="text" autocomplete="name" placeholder="cth. Hendra Wijaya">
             <p class="err">Nama lengkap wajib diisi.</p>
           </div>
           <div class="field" data-req data-type="phone">
-            <label for="hp">Nomor WhatsApp</label>
-            <input id="hp" type="tel" inputmode="tel" placeholder="08xx xxxx xxxx" autocomplete="tel">
-            <p class="err">Masukkan nomor WhatsApp aktif, contoh: 0812 3456 7890.</p>
+            <label for="hp">Nomor WhatsApp Aktif</label>
+            <input id="hp" type="tel" inputmode="tel" placeholder="0812-3456-7890" autocomplete="tel">
+            <p class="err">Masukkan nomor WhatsApp valid (cth: 081234567890).</p>
           </div>
         </div>
+
+        <div class="form-step-divider">2. DETAIL UNIT &amp; LOKASI FISIK</div>
         <div class="field" data-req>
           <label for="mobil">Unit Kendaraan Yang Diinspeksi</label>
           <input id="mobil" type="text" placeholder="cth. Honda CR-V 1.5 Turbo 2019 Prestige">
-          <p class="hint">Sebutkan merek, tipe model, dan tahun perakitan kendaraan.</p>
-          <p class="err">Identitas mobil wajib dicantumkan untuk penyesuaian checklist inspektor.</p>
+          <div class="car-presets">
+            <span style="font-size:11px; color:var(--text-muted); align-self:center">Preset Cepat:</span>
+            <button type="button" class="preset-chip" onclick="setCarModel('Toyota Innova Zenix 2.0 Q Hybrid 2023')">Innova Zenix</button>
+            <button type="button" class="preset-chip" onclick="setCarModel('Honda CR-V 1.5 Turbo Prestige 2019')">Honda CR-V</button>
+            <button type="button" class="preset-chip" onclick="setCarModel('Mitsubishi Pajero Sport Dakar 4x2 2021')">Pajero Sport</button>
+            <button type="button" class="preset-chip" onclick="setCarModel('BMW 320i Sport / 330i M-Sport 2020')">BMW 3-Series</button>
+          </div>
+          <p class="err">Spesifikasi unit wajib dicantumkan untuk penyesuaian profil instrumen inspektor.</p>
         </div>
+
         <div class="field" data-req>
-          <label for="lokasi">Alamat / Titik Lokasi Kendaraan</label>
-          <input id="lokasi" type="text" placeholder="cth. Bursa Otomotif Kelapa Gading, Jakarta Utara">
-          <p class="err">Alamat lokasi wajib diisi untuk penentuan rute penugasan inspektor.</p>
+          <label for="lokasi">Alamat Lengkap / Titik Lokasi Unit</label>
+          <input id="lokasi" type="text" placeholder="cth. Bursa Otomotif Kelapa Gading / Bez Auto Center BSD / Rumah Penjual">
+          <p class="err">Alamat titik kumpul wajib diisi untuk penentuan zonasi inspektor.</p>
         </div>
+
+        <div class="form-step-divider">3. PAKET &amp; JADWAL PENUGASAN</div>
         <div class="f-row">
           <div class="field">
-            <label for="paket">Paket Inspeksi</label>
+            <label for="paket">Pilihan Paket Inspeksi</label>
             <select id="paket">
-              <option value="Paket Menyeluruh (Rp 750.000)">Paket Menyeluruh: Rp 750.000</option>
-              <option value="Paket Standar (Rp 550.000)">Paket Standar: Rp 550.000</option>
-              <option value="Menyeluruh + Garansi 1 Tahun (Rp 1.900.000)">Menyeluruh + Garansi: Rp 1.900.000</option>
+              <option value="Paket Menyeluruh (Rp 750.000)">★ Paket Menyeluruh — Rp 750.000 (Paling Diminati)</option>
+              <option value="Paket Standar (Rp 550.000)">Paket Standar — Rp 550.000</option>
+              <option value="Menyeluruh + Garansi 1 Tahun (Rp 1.900.000)">Paket Menyeluruh + Garansi 1 Thn — Rp 1.900.000</option>
             </select>
           </div>
           <div class="field" data-req>
-            <label for="tgl">Tanggal Diinginkan</label>
+            <label for="tgl">Tanggal Rencana Inspeksi</label>
             <input id="tgl" type="date">
             <p class="err">Tentukan tanggal rencana inspeksi.</p>
           </div>
         </div>
+
         <div class="field">
-          <label for="note">Catatan Tambahan (Opsional)</label>
-          <textarea id="note" placeholder="cth. Penjual hanya dapat ditemui pukul 14.00 WIB, mohon inspektor datang tepat waktu."></textarea>
+          <label for="note">Catatan Khusus untuk Tim Lapangan (Opsional)</label>
+          <textarea id="note" placeholder="cth. Penjual minta inspeksi jam 14.00 WIB. Mohon cek khusus kondisi transmisi matic &amp; rekam jejak servis berkala..."></textarea>
         </div>
-        <button class="btn btn-amber" type="submit" style="width:100%">Kirim Permintaan Jadwal</button>
-        <p class="ok-msg" id="okMsg">Permintaan berhasil terkirim. Data tersimpan ke portal inspektor dan admin kami segera menghubungi Anda.</p>
+
+        <button class="btn-submit-order" type="submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          Terbitkan Surat Tugas &amp; Jadwalkan
+        </button>
+
+        <div class="form-privacy-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Privasi Terjamin 100%. Data Anda tidak pernah dibagikan ke penjual atau pihak showroom.
+        </div>
+
+        <!-- Dynamic Success Confirmation Ticket -->
+        <div class="ok-msg" id="okMsg">
+          <div class="ok-card-head">
+            <div class="ok-icon-badge">✓</div>
+            <div>
+              <div class="ok-title">Permohonan Jadwal Diterima</div>
+              <div class="ok-ticket-id" id="okTicketId">NO. TIKET: INSP-2026-XXXX</div>
+            </div>
+          </div>
+          <div class="ok-meta-list" id="okMetaList">
+            <!-- Populated via JS -->
+          </div>
+          <div style="background:#F8FAFC; border-radius:10px; padding:12px; font-size:12.5px; color:#475569; margin-bottom:14px; line-height:1.5">
+            <b>Langkah Selanjutnya:</b> Dispatch Head kami sedang mengalokasikan inspektor terdekat. Konfirmasi resmi penugasan akan dikirimkan ke nomor WhatsApp Anda dalam waktu kurang dari 30 menit.
+          </div>
+          <a class="btn-wa-lead" id="okWaSyncBtn" href="#" target="_blank" rel="noopener" style="width:100%">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
+            Sinkronkan Jadwal via WhatsApp Sekarang
+          </a>
+        </div>
       </form>
     </div>
   </div>
@@ -1572,7 +1726,7 @@ footer.site a:hover{color:#FFFFFF}
     <div class="foot-grid">
       <div>
         <a class="logo" href="#" style="margin-bottom:14px">
-          <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="10" r="3"/></svg></span>
           zal<span style="color:var(--amber-light)">Inspection</span>
         </a>
         <p style="margin:0; max-width:34ch; line-height:1.6">Layanan inspeksi mobil bekas profesional dan independen. Kami menguji kondisi teknis secara objektif demi keamanan investasi otomotif Anda.</p>
@@ -2099,17 +2253,36 @@ const rObs=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
 
+/* ---------- QUICK CAR PRESET CHIPS ---------- */
+window.setCarModel = function(model){
+  const el = document.getElementById('mobil');
+  if(el){
+    el.value = model;
+    const parentField = el.closest('.field');
+    if(parentField && parentField.classList.contains('bad')){
+      parentField.classList.remove('bad');
+    }
+    el.dispatchEvent(new Event('input', {bubbles:true}));
+    el.focus();
+  }
+};
+
 /* ---------- BOOKING FORM DISPATCH ---------- */
 const form=document.getElementById('bookForm');
 function validate(f){
   const input=f.querySelector('input,select,textarea');
+  if(!input) return true;
   let ok=input.value.trim().length>0;
-  if(ok && f.dataset.type==='phone') ok=/^0\d{8,13}$/.test(input.value.replace(/[\s-]/g,''));
+  if(ok && f.dataset.type==='phone'){
+    const cleanPhone = input.value.replace(/[\s-]/g,'');
+    ok = /^(\+?62|0)?8[0-9]{8,11}$/.test(cleanPhone);
+  }
   f.classList.toggle('bad',!ok);
   return ok;
 }
 form.querySelectorAll('.field[data-req]').forEach(f=>{
   const input=f.querySelector('input,select,textarea');
+  if(!input) return;
   input.addEventListener('blur',()=>{ if(input.value.trim()) validate(f); });
   input.addEventListener('input',()=>{ if(f.classList.contains('bad')) validate(f); });
 });
@@ -2124,20 +2297,29 @@ form.addEventListener('submit',e=>{
     return;
   }
 
+  const ticketId = "INSP-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
+  const custName = document.getElementById('nama').value.trim();
+  const custPhone = document.getElementById('hp').value.trim();
+  const custCar = document.getElementById('mobil').value.trim();
+  const custLoc = document.getElementById('lokasi').value.trim();
+  const custPkg = document.getElementById('paket').value;
+  const custDate = document.getElementById('tgl').value;
+  const custNote = document.getElementById('note').value.trim();
+
   try {
     const booking = {
-      id: "INSP-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000),
-      customer: document.getElementById('nama').value.trim(),
-      phone: document.getElementById('hp').value.trim(),
-      car: document.getElementById('mobil').value.trim(),
+      id: ticketId,
+      customer: custName,
+      phone: custPhone,
+      car: custCar,
       plate: "B " + Math.floor(1000 + Math.random() * 8999) + " PRO",
-      location: document.getElementById('lokasi').value.trim(),
-      package: document.getElementById('paket').value,
-      date: document.getElementById('tgl').value,
+      location: custLoc,
+      package: custPkg,
+      date: custDate,
       time: "10:00 WIB",
       inspector: "Belum Ditugaskan",
       status: "Pending",
-      note: document.getElementById('note').value.trim(),
+      note: custNote,
       createdAt: new Date().toISOString()
     };
     const stored = JSON.parse(localStorage.getItem('inspeksi_pro_bookings') || '[]');
@@ -2147,14 +2329,49 @@ form.addEventListener('submit',e=>{
     console.error("Gagal simpan ke antrean lokal:", err);
   }
 
-  document.getElementById('okMsg').style.display='block';
+  // Populate visual confirmation ticket
+  const ticketIdEl = document.getElementById('okTicketId');
+  if(ticketIdEl) ticketIdEl.textContent = 'NO. TIKET RESMI: ' + ticketId;
+
+  const metaListEl = document.getElementById('okMetaList');
+  if(metaListEl){
+    metaListEl.innerHTML = `
+      <div><b>Pemohon:</b> ${custName} (${custPhone})</div>
+      <div><b>Unit Kendaraan:</b> ${custCar}</div>
+      <div><b>Lokasi Unit:</b> ${custLoc}</div>
+      <div><b>Paket Layanan:</b> ${custPkg}</div>
+      <div><b>Tanggal Rencana:</b> ${custDate}</div>
+    `;
+  }
+
+  const waSyncBtn = document.getElementById('okWaSyncBtn');
+  if(waSyncBtn){
+    const waMsg = `Halo Chief Dispatch zalInspection, saya telah mengajukan permohonan inspeksi:\n` +
+      `• No. Tiket: ${ticketId}\n` +
+      `• Pemohon: ${custName}\n` +
+      `• Unit: ${custCar}\n` +
+      `• Lokasi: ${custLoc}\n` +
+      `• Paket: ${custPkg}\n` +
+      `• Tanggal: ${custDate}\n` +
+      `Mohon alokasi dan konfirmasi penugasan inspektor lapangan. Terima kasih.`;
+    waSyncBtn.href = 'https://wa.me/62895634361840?text=' + encodeURIComponent(waMsg);
+  }
+
+  const okMsg = document.getElementById('okMsg');
+  if(okMsg){
+    okMsg.style.display='block';
+    okMsg.scrollIntoView({behavior:'smooth', block:'center'});
+  }
   const submitBtn=form.querySelector('button[type=submit]');
-  submitBtn.disabled=true;
-  submitBtn.textContent='Permintaan Berhasil Terkirim ✓';
+  if(submitBtn){
+    submitBtn.disabled=true;
+    submitBtn.innerHTML='Surat Tugas Diterbitkan ✓';
+  }
 });
 
 // Set minimum booking date = hari ini
-document.getElementById('tgl').min=new Date().toISOString().split('T')[0];
+const tglInput = document.getElementById('tgl');
+if(tglInput) tglInput.min=new Date().toISOString().split('T')[0];
 
 /* ---------- MOBILE NAVIGATION ---------- */
 const nav=document.getElementById('nav'), burger=document.getElementById('burger');
