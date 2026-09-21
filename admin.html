@@ -256,22 +256,22 @@ table.data-table tr:hover td{background:#F8FAFC}
         </div>
       </div>
 
-      <!-- JABODETABEK TERRITORY DISPATCH & ROUTING ENGINE -->
+      <!-- BALI TERRITORY DISPATCH & ROUTING ENGINE -->
       <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 20px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px">
         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap">
           <div style="display:flex; align-items:center; gap:8px">
             <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(30,158,90,.2)"></span>
-            <strong style="font-size:13px; color:var(--ink)">Dispatch Wilayah Jabodetabek:</strong>
+            <strong style="font-size:13px; color:var(--ink)">Dispatch Wilayah Bali:</strong>
           </div>
           <div style="display:flex; gap:10px; font-size:12px; color:#50626E; flex-wrap:wrap">
-            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Jakut &amp; Jakpus: <strong>Rian P. (Aktif)</strong></span>
-            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Tangerang &amp; BSD: <strong>Bambang S. (Aktif)</strong></span>
-            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Bekasi: <strong>Agus H. (Aktif)</strong></span>
-            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Jaksel &amp; Depok: <strong>Budi S. (Standby)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Kota Denpasar &amp; Sanur: <strong>Rian P. (Aktif)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Badung &amp; Kuta: <strong>Bambang S. (Aktif)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Tabanan (Kantor Pusat): <strong>Hendra W. (Aktif)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Gianyar &amp; Ubud: <strong>Agus H. (Standby)</strong></span>
           </div>
         </div>
         <button type="button" class="btn btn-outline" onclick="autoAssignTerritory()" style="height:32px; font-size:12px; padding:0 12px">
-          ⚡ Auto-Assign Wilayah Terdekat
+          ⚡ Auto-Assign Wilayah Bali Terdekat
         </button>
       </div>
 
@@ -1031,12 +1031,12 @@ const INITIAL_APPOINTMENTS = [
     customer: "Bpk. Hendra Wijaya",
     phone: "62895634361840",
     car: "Honda CR-V 1.5 Turbo Prestige 2021",
-    plate: "B 1842 UYJ",
-    location: "Kelapa Gading, Jakarta Utara",
+    plate: "DK 1842 FZ",
+    location: "Sunset Road Kuta, Badung - Bali",
     package: "Menyeluruh — Rp750rb",
     date: "2026-09-21",
-    time: "10:00 WIB",
-    inspector: "Rian Pratama",
+    time: "10:00 WITA",
+    inspector: "Bambang Suherman",
     status: "Completed"
   },
   {
@@ -1044,25 +1044,25 @@ const INITIAL_APPOINTMENTS = [
     customer: "Ibu Maya Santoso",
     phone: "6281298765432",
     car: "Toyota Kijang Innova Zenix 2.0 Q Hybrid 2023",
-    plate: "B 2031 TZL",
-    location: "Kuningan, Jakarta Selatan",
+    plate: "DK 2031 ZAL",
+    location: "Teuku Umar Barat, Denpasar, Bali",
     package: "Menyeluruh + Garansi — Rp1,9jt",
     date: "2026-09-22",
-    time: "13:30 WIB",
+    time: "13:30 WITA",
     inspector: "Rian Pratama",
     status: "In Progress"
   },
   {
     id: "INSP-2026-0844",
-    customer: "Bpk. Donny Setiawan",
+    customer: "Bpk. Wayan Sukarma",
     phone: "6281356789012",
     car: "Mitsubishi Pajero Sport Dakar 4x2 2020",
-    plate: "B 1198 KJH",
-    location: "Serpong, Tangerang Selatan",
+    plate: "DK 1198 BB",
+    location: "Griya Manik Asri, Tabanan, Bali",
     package: "Menyeluruh — Rp750rb",
     date: "2026-09-22",
-    time: "15:30 WIB",
-    inspector: "Bambang Suherman",
+    time: "15:30 WITA",
+    inspector: "Hendra Wahyudi",
     status: "Assigned"
   },
   {
@@ -1070,11 +1070,11 @@ const INITIAL_APPOINTMENTS = [
     customer: "dr. Kevin Pratomo",
     phone: "6281876543210",
     car: "Mazda CX-5 2.5 GT 2019",
-    plate: "B 777 KVN",
-    location: "Puri Indah, Jakarta Barat",
+    plate: "DK 777 QA",
+    location: "Batu Bulan, Sukawati, Gianyar - Bali",
     package: "Standar — Rp550rb",
     date: "2026-09-23",
-    time: "11:00 WIB",
+    time: "11:00 WITA",
     inspector: "Belum Ditugaskan",
     status: "Pending"
   }
@@ -2256,14 +2256,16 @@ function autoAssignTerritory() {
   appointments.forEach(a => {
     if (a.inspector === 'Belum Ditugaskan' || a.status === 'Pending') {
       const loc = (a.location || '').toLowerCase();
-      if (loc.includes('kelapa gading') || loc.includes('utara') || loc.includes('pusat')) {
+      if (loc.includes('denpasar') || loc.includes('sanur') || loc.includes('renon') || loc.includes('teuku umar')) {
         a.inspector = 'Rian Pratama';
-      } else if (loc.includes('tangerang') || loc.includes('serpong') || loc.includes('bintaro') || loc.includes('bsd')) {
+      } else if (loc.includes('kuta') || loc.includes('badung') || loc.includes('sunset') || loc.includes('canggu') || loc.includes('seminyak') || loc.includes('nusa dua') || loc.includes('jimbaran')) {
         a.inspector = 'Bambang Suherman';
-      } else if (loc.includes('bekasi') || loc.includes('cikarang')) {
+      } else if (loc.includes('tabanan') || loc.includes('senapahan') || loc.includes('kediri') || loc.includes('mengwi')) {
+        a.inspector = 'Hendra Wahyudi';
+      } else if (loc.includes('ubud') || loc.includes('gianyar') || loc.includes('sukawati') || loc.includes('batu bulan')) {
         a.inspector = 'Agus Hartono';
       } else {
-        a.inspector = 'Rian Pratama';
+        a.inspector = 'Hendra Wahyudi';
       }
       a.status = 'Assigned';
       count++;
@@ -2272,7 +2274,7 @@ function autoAssignTerritory() {
 
   if (count > 0) {
     saveAppointments();
-    alert(`⚡ ${count} jadwal booking berhasil dialokasikan secara otomatis berdasarkan zona wilayah Jabodetabek!`);
+    alert(`⚡ ${count} jadwal booking berhasil dialokasikan secara otomatis berdasarkan zona wilayah Bali (Tabanan, Denpasar, Badung, Gianyar)!`);
   } else {
     alert("Semua jadwal saat ini sudah memiliki inspektor yang bertugas.");
   }
