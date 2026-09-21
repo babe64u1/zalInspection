@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan Hasil Inspeksi Digital — InspeksiPro</title>
+<meta name="description" content="Laporan hasil inspeksi mobil bekas 152 titik profesional dan independen oleh InspeksiPro. Cek grade kendaraan, indikasi banjir, tabrakan, dan estimasi perbaikan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D1B24;
+  --ink-2:#162937;
+  --ink-3:#213A4C;
+  --paper:#F4F6F8;
+  --card-bg:#FFFFFF;
+  --amber:#F5A623;
+  --amber-deep:#D98E0B;
+  --green:#1E9E5A;
+  --green-bg:#EAF7F0;
+  --red:#D64533;
+  --red-bg:#FDF0ED;
+  --blue:#2B70C9;
+  --blue-bg:#EEF5FC;
+  --mist:#7A8D99;
+  --line:#DDE3E6;
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; font-family:var(--body); font-size:15px; line-height:1.6; color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased}
+img,svg{display:block; max-width:100%}
+a{color:inherit; text-decoration:none}
+button{font:inherit; cursor:pointer}
+
+.wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+
+/* TOP NAVBAR (SCREEN ONLY) */
+header.rep-nav{position:sticky; top:0; z-index:50; background:rgba(13,27,36,.96); backdrop-filter:blur(10px); color:#fff; border-bottom:1px solid rgba(255,255,255,.1)}
+.rep-nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+.rep-logo{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:800; font-size:18px}
+.rep-logo .mark{width:32px; height:32px; border-radius:7px; background:var(--amber); display:grid; place-items:center; color:var(--ink)}
+.nav-actions{display:flex; align-items:center; gap:10px}
+.btn-sm{display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:700; height:38px; padding:0 15px; border-radius:8px; border:1px solid transparent; transition:.15s}
+.btn-outline{border-color:rgba(255,255,255,.2); color:#fff; background:rgba(255,255,255,.05)}
+.btn-outline:hover{background:rgba(255,255,255,.12); border-color:#fff}
+.btn-wa-sm{background:#1FAF5F; color:#fff}
+.btn-wa-sm:hover{background:#26C46C}
+.btn-primary-sm{background:var(--amber); color:var(--ink)}
+.btn-primary-sm:hover{background:#FFB63B}
+
+/* MAIN REPORT CARD CONTAINER */
+.report-body{padding:30px 0 60px}
+.report-paper{background:var(--card-bg); border:1px solid var(--line); border-radius:18px; box-shadow:0 12px 36px rgba(13,27,36,.06); overflow:hidden}
+
+/* HEADER OF REPORT */
+.rep-header{background:linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%); color:#fff; padding:32px 36px; border-bottom:3px solid var(--amber)}
+.rep-header-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:24px}
+.rep-id-badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; color:var(--amber); background:rgba(245,166,35,.14); border:1px solid rgba(245,166,35,.3); padding:5px 12px; border-radius:6px; font-weight:700}
+.rep-status-tag{display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:12px; text-transform:uppercase; background:rgba(30,158,90,.2); color:#4CE091; border:1px solid rgba(30,158,90,.4); padding:4px 10px; border-radius:99px; font-weight:700}
+.rep-title h1{font-family:var(--display); font-size:clamp(24px, 3.2vw, 36px); font-weight:800; margin:0 0 8px; color:#fff}
+.rep-title p{color:#A2B3BF; margin:0; font-size:15px}
+
+.rep-meta-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; padding-top:20px; border-top:1px solid rgba(255,255,255,.1); font-size:13.5px}
+.rep-meta-item{display:flex; flex-direction:column; gap:3px}
+.rep-meta-item .lbl{color:#7E93A2; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; font-family:var(--mono)}
+.rep-meta-item .val{color:#fff; font-weight:600}
+
+/* SECTION 1: OVERVIEW & 3 CORE PILLARS */
+.rep-section{padding:34px 36px; border-bottom:1px solid var(--line)}
+.rep-section:last-child{border-bottom:none}
+.section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:10px}
+.section-title h2{font-family:var(--display); font-size:21px; font-weight:800; margin:0; display:flex; align-items:center; gap:10px}
+.section-title .badge-sec{font-family:var(--mono); font-size:12px; color:var(--mist); background:var(--paper); padding:4px 10px; border-radius:6px}
+
+/* 3 CRITICAL TRUST PILLARS */
+.pillars-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:28px}
+@media (max-width:800px){.pillars-grid{grid-template-columns:1fr}}
+.pillar-card{border-radius:14px; padding:20px 22px; display:flex; align-items:flex-start; gap:16px; border:1.5px solid transparent; transition:transform .15s}
+.pillar-card.ok{background:var(--green-bg); border-color:rgba(30,158,90,.3); color:#0B5830}
+.pillar-card.warn{background:var(--red-bg); border-color:rgba(214,69,51,.3); color:#8B2014}
+.pillar-icon{width:40px; height:40px; border-radius:10px; display:grid; place-items:center; flex-shrink:0; font-size:20px}
+.pillar-card.ok .pillar-icon{background:var(--green); color:#fff}
+.pillar-card.warn .pillar-icon{background:var(--red); color:#fff}
+.pillar-info h3{font-family:var(--display); font-size:16px; font-weight:800; margin:0 0 4px}
+.pillar-info p{margin:0; font-size:13px; line-height:1.45; opacity:.9}
+
+/* CAR HERO & GRADE CARD */
+.hero-inspect-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center}
+@media (max-width:850px){.hero-inspect-grid{grid-template-columns:1fr}}
+.car-photo-box{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:#162937}
+.car-photo-box img{width:100%; height:290px; object-fit:cover; display:block}
+.car-photo-badge{position:absolute; bottom:12px; left:12px; background:rgba(13,27,36,.85); backdrop-filter:blur(6px); color:#fff; padding:6px 12px; border-radius:8px; font-family:var(--mono); font-size:12px; font-weight:700}
+
+.grade-card{background:linear-gradient(145deg, #FAFBFB 0%, #EFF3F5 100%); border:1px solid var(--line); border-radius:16px; padding:24px 26px; text-align:center}
+.grade-badge-circle{width:92px; height:92px; border-radius:50%; background:var(--ink); color:var(--amber); display:inline-grid; place-items:center; font-family:var(--display); font-weight:800; font-size:38px; border:4px solid #fff; box-shadow:0 8px 24px rgba(13,27,36,.18); margin-bottom:12px}
+.grade-card h4{font-family:var(--display); font-size:19px; font-weight:800; margin:0 0 6px}
+.grade-card p.verdict{font-size:13.5px; color:#4E616E; margin:0 0 18px; line-height:1.45}
+.scores-bars{display:grid; gap:10px; text-align:left; font-size:13px}
+.score-row{display:flex; flex-direction:column; gap:3px}
+.score-row-head{display:flex; justify-content:space-between; font-weight:600}
+.score-track{height:7px; background:#DDE4E8; border-radius:99px; overflow:hidden}
+.score-fill{height:100%; border-radius:99px; transition:width 1s ease-in-out}
+.score-fill.high{background:var(--green)}
+.score-fill.med{background:var(--amber)}
+.score-fill.low{background:var(--red)}
+
+/* VEHICLE DETAILS TABLE */
+.spec-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-top:24px}
+@media (max-width:768px){.spec-grid{grid-template-columns:repeat(2, 1fr)}}
+.spec-box{background:#F7F9FA; border:1px solid var(--line); border-radius:10px; padding:12px 14px}
+.spec-box .lbl{font-size:11.5px; color:#788A96; text-transform:uppercase; font-family:var(--mono)}
+.spec-box .val{font-weight:700; font-size:14.5px; color:var(--ink); margin-top:2px}
+
+/* STENCIL & DAMAGE SECTION */
+.stencil-wrap{display:grid; grid-template-columns:1.2fr .8fr; gap:26px; align-items:start}
+@media (max-width:900px){.stencil-wrap{grid-template-columns:1fr}}
+.stencil-canvas-card{background:#F8FAFC; border:1px solid var(--line); border-radius:14px; padding:24px 20px; text-align:center}
+.stencil-legend{display:flex; justify-content:center; gap:16px; margin-top:16px; font-size:12px; font-weight:600; flex-wrap:wrap}
+.legend-dot{display:inline-flex; align-items:center; gap:6px}
+.legend-dot span{width:12px; height:12px; border-radius:50%; display:inline-block}
+.dot-baret{background:#F5A623}
+.dot-penyok{background:#D64533}
+.dot-dempul{background:#8B5CF6}
+.dot-rusak{background:#111827}
+
+.damage-list{display:grid; gap:10px}
+.damage-item{background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px; display:flex; align-items:flex-start; gap:12px; font-size:13.5px}
+.damage-badge{padding:3px 8px; border-radius:6px; font-family:var(--mono); font-size:11px; font-weight:700; flex-shrink:0}
+.damage-badge.baret{background:#FEF4E6; color:#B45309; border:1px solid #FDE68A}
+.damage-badge.penyok{background:#FDF2F2; color:#B91C1C; border:1px solid #FECACA}
+.damage-badge.dempul{background:#F5F3FF; color:#6D28D9; border:1px solid #DDD6FE}
+.damage-badge.rusak{background:#F3F4F6; color:#1F2937; border:1px solid #D1D5DB}
+
+/* 152 POINT CHECKLIST ACCORDION */
+.filter-tabs{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap}
+.f-tab{border:1px solid var(--line); background:#fff; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; color:#50626E; transition:.15s}
+.f-tab:hover{background:#F2F5F7}
+.f-tab.active{background:var(--ink); color:#fff; border-color:var(--ink)}
+
+.checklist-group{border:1px solid var(--line); border-radius:12px; margin-bottom:14px; overflow:hidden; background:#fff}
+.checklist-group-head{background:#F8FAFB; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:700; border-bottom:1px solid transparent}
+.checklist-group.open .checklist-group-head{border-bottom-color:var(--line)}
+.checklist-group-head .grp-title{display:flex; align-items:center; gap:10px; font-family:var(--display); font-size:16px}
+.checklist-items-table{width:100%; border-collapse:collapse; font-size:13.5px}
+.checklist-items-table tr{border-bottom:1px solid #EDF1F3}
+.checklist-items-table tr:last-child{border-bottom:none}
+.checklist-items-table td{padding:10px 18px; vertical-align:middle}
+.status-pill{display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11.5px; font-weight:700; padding:3px 8px; border-radius:6px}
+.status-pill.pass{background:var(--green-bg); color:var(--green)}
+.status-pill.warn{background:#FEF7E8; color:#B45309}
+.status-pill.fail{background:var(--red-bg); color:var(--red)}
+
+/* PHOTO GALLERY */
+.gallery-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px}
+@media (max-width:768px){.gallery-grid{grid-template-columns:repeat(2, 1fr)}}
+.gallery-item{border-radius:10px; overflow:hidden; border:1px solid var(--line); position:relative; cursor:pointer}
+.gallery-item img{width:100%; height:140px; object-fit:cover; transition:transform .2s}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-caption{padding:6px 8px; background:#fff; font-size:11.5px; font-weight:600; color:#334155; text-align:center; border-top:1px solid #EDF1F3}
+
+/* REFURB ESTIMATE */
+.refurb-table{width:100%; border-collapse:collapse; margin-top:12px; font-size:13.5px}
+.refurb-table th{background:#F7F9FA; text-align:left; padding:11px 16px; font-weight:700; border-bottom:2px solid var(--line); font-family:var(--mono); font-size:12px; color:#50626E}
+.refurb-table td{padding:12px 16px; border-bottom:1px solid #EDF1F3}
+.refurb-total{background:#FAFBFB; font-weight:800; font-size:15px}
+
+/* INSPECTOR SIGN-OFF FOOTER */
+.inspector-sign{display:grid; grid-template-columns:1fr 1fr; gap:24px; padding:28px 36px; background:#F8FAFB; border-top:1px solid var(--line); align-items:center}
+@media (max-width:700px){.inspector-sign{grid-template-columns:1fr}}
+.insp-badge-box{display:flex; align-items:center; gap:14px}
+.insp-avatar{width:56px; height:56px; border-radius:50%; background:var(--ink-2); display:grid; place-items:center; color:#fff; font-weight:800; font-family:var(--display); font-size:20px}
+.insp-seal{text-align:right}
+@media (max-width:700px){.insp-seal{text-align:left}}
+.seal-tag{font-family:var(--mono); font-size:11.5px; color:#0B5830; background:var(--green-bg); border:1px solid rgba(30,158,90,.3); display:inline-block; padding:5px 12px; border-radius:6px; font-weight:700}
+
+/* PRINT MEDIA QUERIES */
+@media print{
+  header.rep-nav, .filter-tabs, .btn-sm{display:none !important}
+  body{background:#fff; font-size:12px}
+  .report-body{padding:0}
+  .report-paper{border:none; box-shadow:none}
+  .rep-header{padding:20px 24px; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .rep-section{padding:18px 24px; page-break-inside:avoid}
+  .pillar-card{page-break-inside:avoid}
+  .checklist-group{page-break-inside:avoid}
+  .gallery-grid{grid-template-columns:repeat(4, 1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION BAR -->
+<header class="rep-nav">
+  <div class="wrap rep-nav-inner">
+    <a href="index.html" class="rep-logo">
+      <span class="mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span>
+      Inspeksi<span style="color:var(--amber)">Pro</span>
+    </a>
+    <div class="nav-actions">
+      <a href="admin.html" class="btn-sm btn-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Portal Admin
+      </a>
+      <button onclick="window.print()" class="btn-sm btn-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Cetak / PDF
+      </button>
+      <a id="btnShareWA" href="#" target="_blank" rel="noopener" class="btn-sm btn-wa-sm">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
+        Bagikan WA
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN REPORT CONTAINER -->
+<main class="report-body">
+  <div class="wrap">
+    <article class="report-paper" id="reportContent">
+      <!-- HEADER -->
+      <div class="rep-header">
+        <div class="rep-header-top">
+          <span class="rep-id-badge" id="reportIdBadge">LAPORAN #INSP-2026-0842</span>
+          <span class="rep-status-tag">✓ Hasil Inspeksi Terverifikasi</span>
+        </div>
+        <div class="rep-title">
+          <h1 id="carTitle">Honda CR-V 1.5 Turbo Prestige</h1>
+          <p id="carSubtitle">Tahun 2021 · Transmisi Matic (CVT) · Plat B 1842 UYJ</p>
+        </div>
+        <div class="rep-meta-grid">
+          <div class="rep-meta-item">
+            <span class="lbl">Tanggal Inspeksi</span>
+            <span class="val" id="repDate">21 September 2026</span>
+          </div>
+          <div class="rep-meta-item">
+            <span class="lbl">Lokasi Inspeksi</span>
+            <span class="val" id="repLocation">Kelapa Gading, Jakarta Utara</span>
+          </div>
+          <div class="rep-meta-item">
+            <span class="lbl">Inspektor Penanggung Jawab</span>
+            <span class="val" id="repInspector">Rian Pratama (BNSP-8821)</span>
+          </div>
+          <div class="rep-meta-item">
+            <span class="lbl">Klien Pemesan</span>
+            <span class="val" id="repClient">Bpk. Hendra Wijaya</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: 3 CORE CRITICAL PILLARS (BELIMOBILGUE CORE STANDARD) -->
+      <section class="rep-section">
+        <div class="section-title">
+          <h2>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            3 Cek Jaminan Kritis
+          </h2>
+          <span class="badge-sec">Standard Keselamatan InspeksiPro</span>
+        </div>
+
+        <div class="pillars-grid" id="pillarsContainer">
+          <!-- Pillar 1: Banjir -->
+          <div class="pillar-card ok" id="pillarFlood">
+            <div class="pillar-icon">✓</div>
+            <div class="pillar-info">
+              <h3>Bebas Indikasi Banjir</h3>
+              <p>Karpet dasar kering, modul ECU bersih, tidak ada aroma apak dan bebas karat di rangka kursi & kolong dasbor.</p>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Tabrakan Besar -->
+          <div class="pillar-card ok" id="pillarCrash">
+            <div class="pillar-icon">✓</div>
+            <div class="pillar-info">
+              <h3>Bebas Tabrakan Besar</h3>
+              <p>Apron depan, pilar A/B/C, sasis samping dan dek bagasi belakang utuh dengan titik las pabrik orisinil.</p>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Odometer Asli -->
+          <div class="pillar-card ok" id="pillarOdo">
+            <div class="pillar-icon">✓</div>
+            <div class="pillar-info">
+              <h3>Odometer Asli Terverifikasi</h3>
+              <p>Jarak tempuh 42.850 km sinkron dengan histori servis berkala bengkel resmi & keausan pedal/setir wajar.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO INSPECTION & GRADE OVERVIEW -->
+        <div class="hero-inspect-grid">
+          <div class="car-photo-box">
+            <img id="mainCarPhoto" src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80" alt="Foto Mobil Diinspeksi">
+            <div class="car-photo-badge" id="carOdoBadge">Odometer: 42.850 km</div>
+          </div>
+
+          <div class="grade-card">
+            <div class="grade-badge-circle" id="carGradeBadge">A-</div>
+            <h4>Kondisi Sangat Baik</h4>
+            <p class="verdict" id="gradeVerdict">"Mobil terawat prima, mesin & transmisi sangat halus. Minus hanya kosmetik eksterior ringan (baret pemakaian) tanpa indikasi kerusakan struktural."</p>
+
+            <div class="scores-bars" id="categoryScores">
+              <div class="score-row">
+                <div class="score-row-head"><span>Rangka & Struktur</span><span id="scStruktur">96%</span></div>
+                <div class="score-track"><div class="score-fill high" style="width:96%"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-head"><span>Mesin & Transmisi</span><span id="scMesin">92%</span></div>
+                <div class="score-track"><div class="score-fill high" style="width:92%"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-head"><span>Interior & Kelistrikan</span><span id="scInterior">90%</span></div>
+                <div class="score-track"><div class="score-fill high" style="width:90%"></div></div>
+              </div>
+              <div class="score-row">
+                <div class="score-row-head"><span>Kaki-Kaki & Suspensi</span><span id="scKaki">85%</span></div>
+                <div class="score-track"><div class="score-fill med" style="width:85%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPEC & DOCUMENTS GRID -->
+        <div class="spec-grid" id="specGrid">
+          <div class="spec-box"><div class="lbl">No. Polisi</div><div class="val" id="specPlate">B 1842 UYJ</div></div>
+          <div class="spec-box"><div class="lbl">Tahun & Transmisi</div><div class="val" id="specYearTrans">2021 · Matic CVT</div></div>
+          <div class="spec-box"><div class="lbl">Warna Bodi</div><div class="val" id="specColor">Modern Steel Metalik</div></div>
+          <div class="spec-box"><div class="lbl">Masa Pajak STNK</div><div class="val" id="specTax">Nov 2026 (Aktif)</div></div>
+          <div class="spec-box"><div class="lbl">Status BPKB & Faktur</div><div class="val" id="specBpkb">Asli, Tangan Pertama</div></div>
+          <div class="spec-box"><div class="lbl">Nomor Rangka (VIN)</div><div class="val" id="specVin" style="font-family:var(--mono); font-size:12.5px">MHRRW1880MJ102***</div></div>
+          <div class="spec-box"><div class="lbl">Buku Servis & Manual</div><div class="val" id="specBook">Lengkap Ready</div></div>
+          <div class="spec-box"><div class="lbl">Kunci Serep</div><div class="val" id="specKey">Tersedia (2 Pcs)</div></div>
+        </div>
+      </section>
+
+      <!-- SECTION: VISUAL DAMAGE STENCIL (BELIMOBILGUE SPECIAL FEATURE) -->
+      <section class="rep-section">
+        <div class="section-title">
+          <h2>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Peta Kerusakan Visual (Visual Damage Stencil)
+          </h2>
+          <span class="badge-sec" id="damageCountBadge">3 Titik Minus Tercatat</span>
+        </div>
+
+        <div class="stencil-wrap">
+          <!-- 2D STENCIL BLUEPRINT -->
+          <div class="stencil-canvas-card">
+            <svg viewBox="0 0 680 280" style="width:100%; max-height:260px; margin:0 auto">
+              <!-- Top-down car stencil outline -->
+              <rect x="40" y="40" width="600" height="200" fill="transparent"/>
+              <!-- Car body top contour -->
+              <path d="M120 70 C160 55 240 50 340 50 C440 50 520 55 560 70 C590 85 600 120 600 140 C600 160 590 195 560 210 C520 225 440 230 340 230 C240 230 160 225 120 210 C90 195 80 160 80 140 C80 120 90 85 120 70 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="3"/>
+              <!-- Windshield front & rear -->
+              <path d="M210 70 L250 85 C300 80 380 80 430 85 L470 70" fill="none" stroke="#607D8B" stroke-width="2"/>
+              <path d="M230 85 L260 115 C300 110 380 110 420 115 L450 85" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
+              <!-- Roof -->
+              <rect x="250" y="115" width="180" height="50" fill="#E2EBF0" stroke="#9AB1BF" stroke-width="1.5" rx="6"/>
+              <!-- Rear windshield -->
+              <path d="M230 195 L260 165 C300 170 380 170 420 165 L450 195" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
+              <!-- Side mirrors -->
+              <rect x="235" y="40" width="16" height="12" rx="3" fill="#607D8B"/>
+              <rect x="235" y="228" width="16" height="12" rx="3" fill="#607D8B"/>
+              <!-- Wheels -->
+              <rect x="150" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
+              <rect x="480" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
+              <rect x="150" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+              <rect x="480" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+              <!-- Panel division lines -->
+              <line x1="200" y1="58" x2="200" y2="222" stroke="#B8CCD8" stroke-dasharray="3,3"/>
+              <line x1="340" y1="50" x2="340" y2="230" stroke="#B8CCD8" stroke-dasharray="3,3"/>
+              <line x1="480" y1="58" x2="480" y2="222" stroke="#B8CCD8" stroke-dasharray="3,3"/>
+
+              <!-- Dynamic pins will render here -->
+              <g id="stencilPinsGroup">
+                <!-- Sample Pin 1: Bumper Kiri -->
+                <circle cx="110" cy="85" r="11" fill="#F5A623" stroke="#fff" stroke-width="2"/>
+                <text x="110" y="89" font-family="Archivo" font-size="10" font-weight="800" fill="#000" text-anchor="middle">1</text>
+                
+                <!-- Sample Pin 2: Pintu Kanan Belakang -->
+                <circle cx="430" cy="225" r="11" fill="#D64533" stroke="#fff" stroke-width="2"/>
+                <text x="430" y="229" font-family="Archivo" font-size="10" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+
+                <!-- Sample Pin 3: Fender Kiri Belakang -->
+                <circle cx="510" cy="65" r="11" fill="#8B5CF6" stroke="#fff" stroke-width="2"/>
+                <text x="510" y="69" font-family="Archivo" font-size="10" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+              </g>
+            </svg>
+
+            <div class="stencil-legend">
+              <span class="legend-dot"><span class="dot-baret"></span> Baret / Gores</span>
+              <span class="legend-dot"><span class="dot-penyok"></span> Penyok (Dent)</span>
+              <span class="legend-dot"><span class="dot-dempul"></span> Dempul / Cat Ulang</span>
+              <span class="legend-dot"><span class="dot-rusak"></span> Retak / Rusak</span>
+            </div>
+          </div>
+
+          <!-- LIST OF DAMAGE ITEMS -->
+          <div class="damage-list" id="damageListContainer">
+            <div class="damage-item">
+              <span class="damage-badge baret">1 · Baret</span>
+              <div>
+                <strong>Bumper Depan Kiri Bawah</strong>
+                <p style="margin:2px 0 0; color:#556672; font-size:12.5px">Goresan pemakaian saat parkir / serempet trotoar ringan, tidak pecah atau robek.</p>
+              </div>
+            </div>
+            <div class="damage-item">
+              <span class="damage-badge penyok">2 · Penyok</span>
+              <div>
+                <strong>Pintu Kanan Belakang</strong>
+                <p style="margin:2px 0 0; color:#556672; font-size:12.5px">Lesung pipit kecil (diameter ~2cm) tanpa cat terkelupas, bisa perbaikan PDR.</p>
+              </div>
+            </div>
+            <div class="damage-item">
+              <span class="damage-badge dempul">3 · Dempul</span>
+              <div>
+                <strong>Fender Kiri Belakang</strong>
+                <p style="margin:2px 0 0; color:#556672; font-size:12.5px">Ketebalan cat 180 micron (indikasi touch up/pengecatan ulang rapi).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: 152 POINT CHECKLIST BREAKDOWN -->
+      <section class="rep-section">
+        <div class="section-title">
+          <h2>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            Detail Checklist 152 Titik Pemeriksaan
+          </h2>
+          <span class="badge-sec">Klik grup untuk membuka</span>
+        </div>
+
+        <div class="filter-tabs">
+          <button class="f-tab active" onclick="filterChecklist('all', this)">Semua Titik</button>
+          <button class="f-tab" onclick="filterChecklist('issues', this)">Hanya Temuan Minus / Catatan</button>
+          <button class="f-tab" onclick="filterChecklist('ZONA 1', this)">Eksterior & Rangka</button>
+          <button class="f-tab" onclick="filterChecklist('ZONA 2', this)">Mesin</button>
+          <button class="f-tab" onclick="filterChecklist('ZONA 3', this)">Interior</button>
+          <button class="f-tab" onclick="filterChecklist('ZONA 4', this)">Kaki-kaki</button>
+        </div>
+
+        <div id="checklistGroupsContainer">
+          <!-- Groups will be rendered by JS -->
+        </div>
+      </section>
+
+      <!-- SECTION: PHOTO DOCUMENTATION GALLERY -->
+      <section class="rep-section">
+        <div class="section-title">
+          <h2>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            Dokumentasi Foto Lapangan
+          </h2>
+          <span class="badge-sec">Foto Asli Saat Inspeksi</span>
+        </div>
+
+        <div class="gallery-grid" id="photoGallery">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500&q=80" alt="Tampak Depan Mobil">
+            <div class="gallery-caption">Tampak Depan 45°</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&q=80" alt="Ruang Mesin">
+            <div class="gallery-caption">Ruang Mesin & Apron</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&q=80" alt="Interior & Dasbor">
+            <div class="gallery-caption">Kabin & Dasbor Depan</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&q=80" alt="Speedometer & Odo">
+            <div class="gallery-caption">Speedometer 42.850 km</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: REFURBISHMENT / REPAIR COST ESTIMATE -->
+      <section class="rep-section">
+        <div class="section-title">
+          <h2>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            Estimasi Biaya Perbaikan (Bahan Negosiasi Harga)
+          </h2>
+          <span class="badge-sec">Acuan Biaya Servis Pasar</span>
+        </div>
+
+        <p style="margin:0 0 16px; color:#50626E; font-size:13.5px">Gunakan rincian estimasi di bawah ini untuk bahan negosiasi potongan harga langsung ke pihak penjual mobil:</p>
+
+        <table class="refurb-table">
+          <thead>
+            <tr>
+              <th>Item / Komponen</th>
+              <th>Status Temuan</th>
+              <th>Rekomendasi Penanganan</th>
+              <th style="text-align:right">Estimasi Biaya</th>
+            </tr>
+          </thead>
+          <tbody id="refurbTableBody">
+            <tr>
+              <td><strong>Kampas Rem Depan (Brake Pad)</strong></td>
+              <td>Tersisa ~30%</td>
+              <td>Ganti kampas rem OEM dalam 3-5 ribu km</td>
+              <td style="text-align:right; font-family:var(--mono)">Rp 450.000</td>
+            </tr>
+            <tr>
+              <td><strong>Poles Bumper Depan Kiri</strong></td>
+              <td>Baret ringan</td>
+              <td>Poles & cat touch-up minor</td>
+              <td style="text-align:right; font-family:var(--mono)">Rp 350.000</td>
+            </tr>
+            <tr>
+              <td><strong>Spooring & Balancing 4 Roda</strong></td>
+              <td>Setir sedikit condong ke kiri</td>
+              <td>Penyetelan sudut roda berkala</td>
+              <td style="text-align:right; font-family:var(--mono)">Rp 250.000</td>
+            </tr>
+            <tr class="refurb-total">
+              <td colspan="3" style="text-align:right">Total Estimasi Nilai Perbaikan:</td>
+              <td style="text-align:right; color:var(--amber-deep); font-family:var(--mono); font-size:16px">Rp 1.050.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- FOOTER & OFFICIAL SEAL -->
+      <div class="inspector-sign">
+        <div class="insp-badge-box">
+          <div class="insp-avatar" id="inspInitial">RP</div>
+          <div>
+            <strong id="signInspName">Rian Pratama</strong>
+            <p style="margin:2px 0 0; font-size:12.5px; color:#607380" id="signInspLic">Inspektor Otomotif Tersertifikasi BNSP No. 2024-8821-IP</p>
+          </div>
+        </div>
+        <div class="insp-seal">
+          <div class="seal-tag">✓ INSPEKSIPRO INDEPENDENT VERIFIED</div>
+          <p style="margin:4px 0 0; font-size:11.5px; color:#7B8E9B">Laporan ini dibuat independen, tanpa afiliasi dealer atau makelar.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<script>
+/* DEFAULT MASTER DATA (Fallback jika dibuka langsung tanpa query param) */
+const DEFAULT_REPORT = {
+  id: "INSP-2026-0842",
+  date: "21 September 2026",
+  location: "Kelapa Gading, Jakarta Utara",
+  inspector: "Rian Pratama (BNSP-8821)",
+  client: "Bpk. Hendra Wijaya",
+  clientPhone: "62895634361840",
+  vehicle: {
+    title: "Honda CR-V 1.5 Turbo Prestige",
+    yearTrans: "2021 · Matic (CVT)",
+    plate: "B 1842 UYJ",
+    odometer: "42.850 km",
+    color: "Modern Steel Metalik",
+    tax: "Nov 2026 (Aktif)",
+    bpkb: "Asli, Tangan Pertama",
+    vin: "MHRRW1880MJ102941",
+    engineNo: "L15BG-1092812",
+    photo: "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80"
+  },
+  critical: {
+    flood: true,
+    crash: true,
+    odometer: true
+  },
+  grade: "A-",
+  verdict: '"Mobil terawat prima, mesin & transmisi sangat halus. Minus hanya kosmetik eksterior ringan (baret pemakaian) tanpa indikasi kerusakan struktural."',
+  scores: {
+    struktur: 96,
+    mesin: 92,
+    interior: 90,
+    kaki: 85
+  },
+  damages: [
+    { num: 1, type: "baret", label: "Bumper Depan Kiri Bawah", note: "Goresan pemakaian saat parkir / serempet trotoar ringan, tidak pecah atau robek.", cx: 110, cy: 85 },
+    { num: 2, type: "penyok", label: "Pintu Kanan Belakang", note: "Lesung pipit kecil (diameter ~2cm) tanpa cat terkelupas, bisa perbaikan PDR.", cx: 430, cy: 225 },
+    { num: 3, type: "dempul", label: "Fender Kiri Belakang", note: "Ketebalan cat 180 micron (indikasi touch up/pengecatan ulang rapi).", cx: 510, cy: 65 }
+  ],
+  checklists: [
+    {
+      group: "ZONA 1 · Eksterior & Rangka (34 Titik)",
+      items: [
+        { name: "Apron & Tulang Depan (Radiator Support)", status: "pass", note: "Las titik pabrik orisinil, lurus tanpa tarikan" },
+        { name: "Pilar A, B, dan C (Kiri & Kanan)", status: "pass", note: "Sealer pabrik utuh, tidak pernah dipotong" },
+        { name: "Lantai Bagasi Belakang (Rear Floor Panel)", status: "pass", note: "Bebas bekas benturan belakang" },
+        { name: "Bumper Depan", status: "warn", note: "Baret goresan trotoar pada sudut kiri bawah" },
+        { name: "Fender Belakang Kiri", status: "warn", note: "Cat ulang touch-up (180 micron)" },
+        { name: "Kaca Depan & Samping", status: "pass", note: "Kaca orisinil Honda, bebas retak bintang" }
+      ]
+    },
+    {
+      group: "ZONA 2 · Ruang Mesin & Transmisi (41 Titik)",
+      items: [
+        { name: "Kebocoran Oli Mesin (Cylinder Head & Carter)", status: "pass", note: "Kering bersih, tidak ada rembesan oli" },
+        { name: "Getaran & Suara Abnormal Mesin (Cold & Warm)", status: "pass", note: "Stasioner halus di 750 RPM" },
+        { name: "Sistem Turbo & Intercooler", status: "pass", note: "Boost responsif, pipa intercooler bebas oli" },
+        { name: "Respon Transmisi CVT (Maju & Mundur)", status: "pass", note: "Transmisi halus tanpa jeduk atau delay" },
+        { name: "Kondisi Radiator & Air Coolant", status: "pass", note: "Air radiator biru orisinil, bebas karat" },
+        { name: "Kondisi Tegangan Aki (Battery Health)", status: "pass", note: "Tegangan 12.6V saat off, 14.1V saat mesin hidup" }
+      ]
+    },
+    {
+      group: "ZONA 3 · Interior & Kelistrikan (31 Titik)",
+      items: [
+        { name: "Kesejukan AC & Blower", status: "pass", note: "Suhu hembusan 6.8°C pada setting max cool" },
+        { name: "Indikator Lampu Malfungsi (MIL / Check Engine)", status: "pass", note: "Mati normal setelah mesin dinyalakan" },
+        { name: "Sistem Airbag (Pengemudi & Penumpang)", status: "pass", note: "Cover utuh, sensor normal" },
+        { name: "Karpet Dasar & Busa Bawah Kursi", status: "pass", note: "Bebas endapan lumpur atau bau apek (bebas banjir)" },
+        { name: "Electric Seat & Sunroof Panoramic", status: "pass", note: "Mekanisme sliding halus tanpa macet" },
+        { name: "Tombol Power Window & Spion Lipat Otomatis", status: "pass", note: "Seluruh tombol berfungsi normal" }
+      ]
+    },
+    {
+      group: "ZONA 4 · Kaki-kaki & Bawah Mobil (26 Titik)",
+      items: [
+        { name: "Ketebalan Kampas Rem Depan", status: "warn", note: "Tersisa sekitar 30% — rekomendasi ganti berkala" },
+        { name: "Ketebalan Kampas Rem Belakang", status: "pass", note: "Tersisa sekitar 65%" },
+        { name: "Shockbreaker Depan & Belakang", status: "pass", note: "Bebas rembes oli shock, rebound stabil" },
+        { name: "Kondisi Ban (Tahun Produksi & Alur)", status: "pass", note: "Tahun ban 2022, alur 70% rata" },
+        { name: "Karat Sasis Kolong & Knalpot", status: "pass", note: "Permukaan kolong mulus, bebas keropos" }
+      ]
+    }
+  ],
+  refurb: [
+    { item: "Kampas Rem Depan (Brake Pad)", status: "Tersisa ~30%", rec: "Ganti kampas rem OEM dalam 3-5 ribu km", cost: 450000 },
+    { item: "Poles Bumper Depan Kiri", status: "Baret ringan", rec: "Poles & cat touch-up minor", cost: 350000 },
+    { item: "Spooring & Balancing 4 Roda", status: "Setir sedikit condong ke kiri", rec: "Penyetelan sudut roda berkala", cost: 250000 }
+  ]
+};
+
+/* LOAD REPORT DATA FROM LOCALSTORAGE OR FALLBACK */
+function getReportData() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const repId = urlParams.get('id');
+  
+  if (repId) {
+    const savedReports = JSON.parse(localStorage.getItem('inspeksi_pro_reports') || '[]');
+    const found = savedReports.find(r => r.id === repId);
+    if (found) return found;
+  }
+  return DEFAULT_REPORT;
+}
+
+const currentReport = getReportData();
+
+/* RENDER REPORT INTO DOM */
+function renderReport(data) {
+  document.getElementById('reportIdBadge').textContent = 'LAPORAN #' + data.id;
+  document.getElementById('carTitle').textContent = data.vehicle.title;
+  document.getElementById('carSubtitle').textContent = `${data.vehicle.yearTrans} · Plat ${data.vehicle.plate}`;
+  document.getElementById('repDate').textContent = data.date;
+  document.getElementById('repLocation').textContent = data.location;
+  document.getElementById('repInspector').textContent = data.inspector;
+  document.getElementById('repClient').textContent = data.client;
+
+  if (data.vehicle.photo) {
+    document.getElementById('mainCarPhoto').src = data.vehicle.photo;
+  }
+  document.getElementById('carOdoBadge').textContent = 'Odometer: ' + data.vehicle.odometer;
+
+  // Grade & Scores
+  document.getElementById('carGradeBadge').textContent = data.grade;
+  document.getElementById('gradeVerdict').textContent = data.verdict;
+  if (data.scores) {
+    document.getElementById('scStruktur').textContent = data.scores.struktur + '%';
+    document.getElementById('scMesin').textContent = data.scores.mesin + '%';
+    document.getElementById('scInterior').textContent = data.scores.interior + '%';
+    document.getElementById('scKaki').textContent = data.scores.kaki + '%';
+  }
+
+  // Specs
+  document.getElementById('specPlate').textContent = data.vehicle.plate;
+  document.getElementById('specYearTrans').textContent = data.vehicle.yearTrans;
+  document.getElementById('specColor').textContent = data.vehicle.color;
+  document.getElementById('specTax').textContent = data.vehicle.tax;
+  document.getElementById('specBpkb').textContent = data.vehicle.bpkb;
+  document.getElementById('specVin').textContent = data.vehicle.vin;
+
+  // Stencil pins & damage list
+  renderDamages(data.damages || []);
+
+  // Checklists
+  renderChecklists(data.checklists || []);
+
+  // WhatsApp Share Button link
+  const waPhone = '62895634361840';
+  const shareText = encodeURIComponent(`Halo, berikut Laporan Hasil Inspeksi Mobil ${data.vehicle.title} (${data.vehicle.plate}): ${window.location.href}`);
+  document.getElementById('btnShareWA').href = `https://wa.me/${waPhone}?text=${shareText}`;
+}
+
+function renderDamages(damages) {
+  const pinsGroup = document.getElementById('stencilPinsGroup');
+  const listContainer = document.getElementById('damageListContainer');
+  document.getElementById('damageCountBadge').textContent = `${damages.length} Titik Minus Tercatat`;
+
+  pinsGroup.innerHTML = '';
+  listContainer.innerHTML = '';
+
+  if (damages.length === 0) {
+    listContainer.innerHTML = '<div style="padding:15px; color:#1E9E5A; font-weight:600">✓ Bodi eksterior mulus sempurna tanpa titik minus.</div>';
+    return;
+  }
+
+  damages.forEach((d, idx) => {
+    const num = d.num || (idx + 1);
+    const colorMap = {
+      baret: '#F5A623',
+      penyok: '#D64533',
+      dempul: '#8B5CF6',
+      rusak: '#111827'
+    };
+    const fill = colorMap[d.type] || '#F5A623';
+
+    // SVG Pin
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", d.cx || 120 + (idx*90));
+    circle.setAttribute("cy", d.cy || 80 + (idx*40));
+    circle.setAttribute("r", "11");
+    circle.setAttribute("fill", fill);
+    circle.setAttribute("stroke", "#fff");
+    circle.setAttribute("stroke-width", "2");
+
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", d.cx || 120 + (idx*90));
+    text.setAttribute("y", (d.cy || 80 + (idx*40)) + 4);
+    text.setAttribute("font-family", "Archivo");
+    text.setAttribute("font-size", "10");
+    text.setAttribute("font-weight", "800");
+    text.setAttribute("fill", d.type === 'baret' ? '#000' : '#fff');
+    text.setAttribute("text-anchor", "middle");
+    text.textContent = num;
+
+    pinsGroup.appendChild(circle);
+    pinsGroup.appendChild(text);
+
+    // List item
+    const item = document.createElement('div');
+    item.className = 'damage-item';
+    item.innerHTML = `
+      <span class="damage-badge ${d.type}">${num} · ${capitalize(d.type)}</span>
+      <div>
+        <strong>${d.label}</strong>
+        <p style="margin:2px 0 0; color:#556672; font-size:12.5px">${d.note}</p>
+      </div>
+    `;
+    listContainer.appendChild(item);
+  });
+}
+
+function renderChecklists(groups) {
+  const container = document.getElementById('checklistGroupsContainer');
+  container.innerHTML = '';
+
+  groups.forEach((g, idx) => {
+    const groupCard = document.createElement('div');
+    groupCard.className = 'checklist-group' + (idx === 0 ? ' open' : '');
+    groupCard.setAttribute('data-group', g.group);
+
+    let rowsHtml = '';
+    g.items.forEach(it => {
+      const statusIcon = it.status === 'pass' ? '✓ Lulus' : it.status === 'warn' ? '▲ Perhatian' : '✕ Minus';
+      rowsHtml += `
+        <tr data-status="${it.status}">
+          <td style="font-weight:600; width:45%">${it.name}</td>
+          <td style="width:20%">
+            <span class="status-pill ${it.status}">${statusIcon}</span>
+          </td>
+          <td style="color:#50626E; font-size:12.5px">${it.note}</td>
+        </tr>
+      `;
+    });
+
+    groupCard.innerHTML = `
+      <div class="checklist-group-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="grp-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          ${g.group}
+        </div>
+        <span style="font-size:12px; color:#8898A4">(${g.items.length} Titik) ▾</span>
+      </div>
+      <table class="checklist-items-table">
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+    `;
+
+    container.appendChild(groupCard);
+  });
+}
+
+function filterChecklist(type, btn) {
+  document.querySelectorAll('.f-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const groups = document.querySelectorAll('.checklist-group');
+  groups.forEach(grp => {
+    const grpName = grp.getAttribute('data-group') || '';
+    const rows = grp.querySelectorAll('tr');
+
+    if (type === 'all') {
+      grp.style.display = 'block';
+      rows.forEach(r => r.style.display = '');
+    } else if (type === 'issues') {
+      let hasIssue = false;
+      rows.forEach(r => {
+        const st = r.getAttribute('data-status');
+        if (st === 'warn' || st === 'fail') {
+          r.style.display = '';
+          hasIssue = true;
+        } else {
+          r.style.display = 'none';
+        }
+      });
+      grp.style.display = hasIssue ? 'block' : 'none';
+      if (hasIssue) grp.classList.add('open');
+    } else {
+      // Filter by Zone keyword
+      if (grpName.toUpperCase().includes(type.toUpperCase())) {
+        grp.style.display = 'block';
+        grp.classList.add('open');
+        rows.forEach(r => r.style.display = '');
+      } else {
+        grp.style.display = 'none';
+      }
+    }
+  });
+}
+
+function capitalize(s) {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+}
+
+// Initialize Render
+renderReport(currentReport);
+</script>
+</body>
+</html>

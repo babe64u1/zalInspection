@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal Admin & Inspektor Lapangan — InspeksiPro</title>
+<meta name="description" content="Portal administrasi dan inspeksi mobil bekas BeliMobilGue-style untuk penjadwalan antrean, checklist 152 titik digital, visual damage stencil, dan penerbitan laporan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D1B24;
+  --ink-2:#162937;
+  --ink-3:#213A4C;
+  --paper:#F3F5F7;
+  --card:#FFFFFF;
+  --amber:#F5A623;
+  --amber-deep:#D98E0B;
+  --green:#1E9E5A;
+  --green-bg:#EAF7F0;
+  --red:#D64533;
+  --red-bg:#FDF0ED;
+  --blue:#2563EB;
+  --blue-bg:#EFF6FF;
+  --purple:#7C3AED;
+  --purple-bg:#F5F3FF;
+  --mist:#738694;
+  --line:#DCE2E6;
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --r:12px;
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:var(--body); font-size:14.5px; line-height:1.55; color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased}
+img,svg{display:block; max-width:100%}
+a{color:inherit; text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+/* LAYOUT CONTAINER */
+.admin-shell{display:grid; grid-template-rows:60px 1fr; min-height:100vh}
+
+/* TOPBAR */
+.topbar{background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:space-between; padding:0 24px; border-bottom:1px solid rgba(255,255,255,.1); position:sticky; top:0; z-index:100}
+.brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:800; font-size:18px}
+.brand .mark{width:30px; height:30px; border-radius:6px; background:var(--amber); display:grid; place-items:center; color:var(--ink)}
+.top-nav{display:flex; align-items:center; gap:6px}
+.nav-tab-btn{background:transparent; border:none; color:#C2D0D9; font-weight:600; font-size:14px; padding:8px 14px; border-radius:8px; display:inline-flex; align-items:center; gap:8px; transition:.15s}
+.nav-tab-btn:hover{color:#fff; background:rgba(255,255,255,.08)}
+.nav-tab-btn.active{color:#fff; background:rgba(255,255,255,.16); font-weight:700}
+.user-profile{display:flex; align-items:center; gap:12px}
+.avatar{width:34px; height:34px; border-radius:50%; background:var(--amber); color:var(--ink); display:grid; place-items:center; font-weight:800; font-size:13px; font-family:var(--display)}
+.user-info{display:flex; flex-direction:column; line-height:1.2}
+.user-name{font-weight:700; font-size:13px; color:#fff}
+.user-role{font-size:11px; color:#95A8B5; display:flex; align-items:center; gap:4px}
+.online-dot{width:7px; height:7px; border-radius:50%; background:#22C55E}
+
+/* MAIN CONTENT AREA */
+.main-wrap{max-width:1380px; margin:0 auto; padding:24px 20px; width:100%}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* KPI CARDS */
+.kpi-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:24px}
+@media (max-width:900px){.kpi-grid{grid-template-columns:repeat(2, 1fr)}}
+.kpi-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.kpi-title{font-size:12px; color:var(--mist); text-transform:uppercase; font-family:var(--mono); font-weight:600}
+.kpi-num{font-family:var(--display); font-size:28px; font-weight:800; margin:6px 0 2px; color:var(--ink)}
+.kpi-sub{font-size:12px; color:#4B5563}
+
+/* ACTION TOOLBAR & SEARCH */
+.toolbar{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; flex-wrap:wrap}
+.search-box{display:flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:0 12px; height:40px; flex:1; max-width:380px}
+.search-box input{border:none; outline:none; background:transparent; width:100%; font-size:13.5px}
+.filter-group{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.f-select{height:40px; border:1px solid var(--line); border-radius:8px; background:var(--card); padding:0 12px; font-size:13.5px; font-weight:500; outline:none}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:7px; font-weight:700; font-size:13.5px; height:40px; padding:0 16px; border-radius:8px; border:1.5px solid transparent; transition:.15s}
+.btn-primary{background:var(--amber); color:var(--ink)}
+.btn-primary:hover{background:#FFAE2B}
+.btn-dark{background:var(--ink); color:#fff}
+.btn-dark:hover{background:var(--ink-2)}
+.btn-success{background:var(--green); color:#fff}
+.btn-success:hover{background:#23B266}
+.btn-outline{border-color:var(--line); background:#fff; color:var(--ink)}
+.btn-outline:hover{background:#F9FAFB; border-color:#9CA3AF}
+
+/* TABLE STYLING */
+.table-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); box-shadow:0 2px 10px rgba(0,0,0,.03); overflow:hidden}
+.table-responsive{overflow-x:auto}
+table.data-table{width:100%; border-collapse:collapse; text-align:left; font-size:13.5px}
+table.data-table th{background:#F8FAFC; padding:12px 16px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:11.5px; text-transform:uppercase; color:#64748B; font-weight:700}
+table.data-table td{padding:14px 16px; border-bottom:1px solid #EEF2F6; vertical-align:middle}
+table.data-table tr:hover td{background:#F8FAFC}
+
+.status-badge{display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; font-weight:700; padding:4px 9px; border-radius:6px}
+.status-badge.pending{background:#FEF3C7; color:#92400E}
+.status-badge.assigned{background:var(--blue-bg); color:var(--blue)}
+.status-badge.inprogress{background:var(--purple-bg); color:var(--purple)}
+.status-badge.completed{background:var(--green-bg); color:var(--green)}
+
+/* INSPECTION FORM (TAB 2) */
+.form-container{display:grid; grid-template-columns:1fr; gap:24px}
+.panel-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:24px; box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.panel-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--line)}
+.panel-head h3{font-family:var(--display); font-size:18px; font-weight:800; margin:0; display:flex; align-items:center; gap:8px}
+
+.form-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+@media (max-width:850px){.form-grid{grid-template-columns:1fr}}
+.input-group{display:flex; flex-direction:column; gap:6px}
+.input-group label{font-size:12.5px; font-weight:700; color:#475569; text-transform:uppercase; font-family:var(--mono)}
+.input-group input, .input-group select, .input-group textarea{border:1px solid var(--line); border-radius:8px; padding:9px 12px; font-size:14px; outline:none; background:#fff}
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus{border-color:var(--amber); box-shadow:0 0 0 2px rgba(245,166,35,.2)}
+
+/* 3 CRITICAL PILLARS TOGGLES */
+.pillars-toggle-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+@media (max-width:800px){.pillars-toggle-grid{grid-template-columns:1fr}}
+.pillar-switch{border:1.5px solid var(--line); border-radius:10px; padding:16px; background:#F8FAFC; display:flex; align-items:center; justify-content:space-between}
+.pillar-switch.safe{border-color:rgba(30,158,90,.4); background:var(--green-bg)}
+.pillar-switch.danger{border-color:rgba(214,69,51,.4); background:var(--red-bg)}
+
+/* VISUAL DAMAGE STENCIL SECTION */
+.stencil-board{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:start}
+@media (max-width:960px){.stencil-board{grid-template-columns:1fr}}
+.blueprint-area{background:#F8FAFC; border:1px solid var(--line); border-radius:12px; padding:20px; position:relative; text-align:center; cursor:crosshair}
+.blueprint-tip{font-size:12px; color:var(--mist); margin-top:8px; font-family:var(--mono)}
+
+.damage-type-picker{display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap}
+.type-btn{border:1px solid var(--line); border-radius:6px; background:#fff; padding:6px 12px; font-size:12.5px; font-weight:700; display:flex; align-items:center; gap:6px}
+.type-btn.active{border-color:var(--ink); background:var(--ink); color:#fff}
+
+.marked-damages-table{width:100%; border-collapse:collapse; font-size:13px}
+.marked-damages-table th{background:#F1F5F9; padding:8px 12px; text-align:left; font-size:11.5px}
+.marked-damages-table td{padding:8px 12px; border-bottom:1px solid #E2E8F0}
+
+/* CHECKLIST ZONES ACCORDION */
+.zone-accordion-item{border:1px solid var(--line); border-radius:10px; margin-bottom:12px; overflow:hidden}
+.zone-acc-head{background:#F8FAFC; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-weight:700}
+.zone-acc-body{padding:16px 18px; background:#fff; display:grid; gap:10px}
+.item-row{display:grid; grid-template-columns:1.8fr 1fr 1.2fr; gap:12px; align-items:center; padding:8px 0; border-bottom:1px solid #F1F5F9}
+@media (max-width:768px){.item-row{grid-template-columns:1fr; gap:6px}}
+.item-status-radios{display:flex; gap:6px}
+.status-btn{flex:1; border:1px solid var(--line); background:#F8FAFC; border-radius:6px; padding:5px 8px; font-size:11.5px; font-weight:700; text-align:center; cursor:pointer}
+.status-btn.pass.active{background:var(--green); color:#fff; border-color:var(--green)}
+.status-btn.warn.active{background:var(--amber); color:var(--ink); border-color:var(--amber)}
+.status-btn.fail.active{background:var(--red); color:#fff; border-color:var(--red)}
+
+/* MODAL */
+.modal-backdrop{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:200; display:none; place-items:center; padding:20px}
+.modal-backdrop.open{display:grid}
+.modal-box{background:#fff; border-radius:14px; width:100%; max-width:550px; padding:24px; box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.modal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px}
+.modal-head h3{font-family:var(--display); font-size:18px; font-weight:800; margin:0}
+</style>
+</head>
+<body>
+
+<div class="admin-shell">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span>
+      Inspeksi<span style="color:var(--amber)">Pro</span> <span style="font-size:12px; color:#889DB0; margin-left:6px; font-weight:600">Portal Inspektor</span>
+    </div>
+
+    <nav class="top-nav">
+      <button class="nav-tab-btn active" onclick="switchTab('appointments', this)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Jadwal & Antrean
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('inspection-form', this)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Form Input Lapangan
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('reports', this)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        Arsip Laporan Digital
+      </button>
+    </nav>
+
+    <div class="user-profile">
+      <a href="index.html" class="nav-tab-btn" style="color:#fff; font-size:12.5px" title="Buka Landing Page Publik">Web Publik ↗</a>
+      <div class="avatar">RP</div>
+      <div class="user-info">
+        <span class="user-name">Rian Pratama</span>
+        <span class="user-role"><span class="online-dot"></span> Inspektor BNSP #8821</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-wrap">
+    
+    <!-- ==================== TAB 1: APPOINTMENTS / JADWAL ==================== -->
+    <section id="tab-appointments" class="tab-content active">
+      <!-- KPI STATS -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Total Jadwal Booking</div>
+          <div class="kpi-num" id="kpiTotal">4</div>
+          <div class="kpi-sub">Masuk sistem InspeksiPro</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Menunggu Inspeksi (Pending)</div>
+          <div class="kpi-num" id="kpiPending" style="color:var(--amber-deep)">2</div>
+          <div class="kpi-sub">Perlu penugasan inspektor</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Sedang Diinspeksi</div>
+          <div class="kpi-num" id="kpiProgress" style="color:var(--purple)">1</div>
+          <div class="kpi-sub">Inspektor di lokasi fisik</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Inspeksi Selesai (Laporan Siap)</div>
+          <div class="kpi-num" id="kpiCompleted" style="color:var(--green)">1</div>
+          <div class="kpi-sub">Dapat dibagikan ke klien</div>
+        </div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8898A4" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="searchInput" placeholder="Cari ID booking, klien, mobil, plat..." oninput="filterAppointments()">
+        </div>
+
+        <div class="filter-group">
+          <select class="f-select" id="statusFilter" onchange="filterAppointments()">
+            <option value="all">Semua Status</option>
+            <option value="Pending">Menunggu (Pending)</option>
+            <option value="Assigned">Ditugaskan (Assigned)</option>
+            <option value="In Progress">Dalam Proses</option>
+            <option value="Completed">Selesai</option>
+          </select>
+          <button class="btn btn-primary" onclick="openManualBookingModal()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Tambah Jadwal Manual
+          </button>
+        </div>
+      </div>
+
+      <!-- APPOINTMENTS TABLE -->
+      <div class="table-card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID Booking</th>
+                <th>Klien & Kontak</th>
+                <th>Unit Kendaraan</th>
+                <th>Jadwal & Lokasi</th>
+                <th>Paket</th>
+                <th>Inspektor</th>
+                <th>Status</th>
+                <th style="text-align:right">Aksi Lapangan</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentTableBody">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== TAB 2: FORM INPUT INSPEKSI LAPANGAN ==================== -->
+    <section id="tab-inspection-form" class="tab-content">
+      <div class="form-container">
+        <!-- VEHICLE & BOOKING INFO -->
+        <div class="panel-card">
+          <div class="panel-head">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              1. Identitas Kendaraan & Dokumen Legalitas
+            </h3>
+            <span class="status-badge inprogress" id="formCurrentBookingId">Input Baru</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="input-group">
+              <label>Nama / Merek Mobil *</label>
+              <input type="text" id="fCarName" placeholder="cth. Honda CR-V 1.5 Turbo Prestige" value="Honda CR-V 1.5 Turbo Prestige">
+            </div>
+            <div class="input-group">
+              <label>Nomor Polisi (Plat) *</label>
+              <input type="text" id="fPlate" placeholder="cth. B 1842 UYJ" value="B 1842 UYJ">
+            </div>
+            <div class="input-group">
+              <label>Tahun Pembuatan & Transmisi *</label>
+              <input type="text" id="fYearTrans" placeholder="cth. 2021 · Matic CVT" value="2021 · Matic CVT">
+            </div>
+            <div class="input-group">
+              <label>Odometer Terakhir (KM) *</label>
+              <input type="text" id="fOdo" placeholder="cth. 42.850 km" value="42.850 km">
+            </div>
+            <div class="input-group">
+              <label>Warna Bodi *</label>
+              <input type="text" id="fColor" placeholder="cth. Modern Steel Metalik" value="Modern Steel Metalik">
+            </div>
+            <div class="input-group">
+              <label>Status Pajak STNK *</label>
+              <input type="text" id="fTax" placeholder="cth. Nov 2026 (Aktif)" value="Nov 2026 (Aktif)">
+            </div>
+            <div class="input-group">
+              <label>Kepemilikan BPKB & Faktur</label>
+              <input type="text" id="fBpkb" placeholder="cth. Asli Ready, Tangan Pertama" value="Asli Ready, Tangan Pertama">
+            </div>
+            <div class="input-group">
+              <label>Nomor Rangka (VIN)</label>
+              <input type="text" id="fVin" placeholder="cth. MHRRW1880MJ102941" value="MHRRW1880MJ102941">
+            </div>
+            <div class="input-group">
+              <label>Nama Klien Pemesan</label>
+              <input type="text" id="fClientName" placeholder="cth. Bpk. Hendra Wijaya" value="Bpk. Hendra Wijaya">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 CRITICAL PILLARS (BELIMOBILGUE CORE STANDARD) -->
+        <div class="panel-card">
+          <div class="panel-head">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              2. Hasil 3 Cek Jaminan Kritis
+            </h3>
+            <span style="font-size:12px; color:var(--mist)">Wajib diperiksa cermat di lokasi</span>
+          </div>
+
+          <div class="pillars-toggle-grid">
+            <div class="pillar-switch safe" id="boxCritFlood">
+              <div>
+                <strong>Bebas Indikasi Banjir</strong>
+                <p style="margin:2px 0 0; font-size:12px; color:#50626E">Bawah karpet, soket ECU, kolong dasbor</p>
+              </div>
+              <input type="checkbox" id="chkFlood" checked style="width:20px; height:20px; accent-color:var(--green)">
+            </div>
+
+            <div class="pillar-switch safe" id="boxCritCrash">
+              <div>
+                <strong>Bebas Tabrakan Besar</strong>
+                <p style="margin:2px 0 0; font-size:12px; color:#50626E">Apron, pilar A/B/C, lantai bagasi belakang</p>
+              </div>
+              <input type="checkbox" id="chkCrash" checked style="width:20px; height:20px; accent-color:var(--green)">
+            </div>
+
+            <div class="pillar-switch safe" id="boxCritOdo">
+              <div>
+                <strong>Odometer Asli Terverifikasi</strong>
+                <p style="margin:2px 0 0; font-size:12px; color:#50626E">Sinkron dengan rekam servis berkala</p>
+              </div>
+              <input type="checkbox" id="chkOdo" checked style="width:20px; height:20px; accent-color:var(--green)">
+            </div>
+          </div>
+        </div>
+
+        <!-- VISUAL DAMAGE STENCIL (BELIMOBILGUE STENCIL TOOL) -->
+        <div class="panel-card">
+          <div class="panel-head">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              3. Peta Kerusakan Visual (Visual Damage Stencil Marker)
+            </h3>
+            <span style="font-size:12px; color:var(--amber-deep); font-weight:700">Klik bodi mobil untuk menandai titik minus</span>
+          </div>
+
+          <div class="stencil-board">
+            <div>
+              <div class="damage-type-picker">
+                <span style="font-weight:700; font-size:12.5px; align-self:center; margin-right:4px">Tipe Kerusakan:</span>
+                <button type="button" class="type-btn active" data-type="baret" onclick="setDamageType('baret', this)">
+                  <span style="width:10px; height:10px; border-radius:50%; background:#F5A623"></span> Baret (Scratch)
+                </button>
+                <button type="button" class="type-btn" data-type="penyok" onclick="setDamageType('penyok', this)">
+                  <span style="width:10px; height:10px; border-radius:50%; background:#D64533"></span> Penyok (Dent)
+                </button>
+                <button type="button" class="type-btn" data-type="dempul" onclick="setDamageType('dempul', this)">
+                  <span style="width:10px; height:10px; border-radius:50%; background:#8B5CF6"></span> Dempul / Cat Ulang
+                </button>
+                <button type="button" class="type-btn" data-type="rusak" onclick="setDamageType('rusak', this)">
+                  <span style="width:10px; height:10px; border-radius:50%; background:#111827"></span> Retak / Pecah
+                </button>
+              </div>
+
+              <div class="blueprint-area" id="blueprintCanvas" onclick="handleBlueprintClick(event)">
+                <svg id="interactiveStencilSvg" viewBox="0 0 680 280" style="width:100%; max-height:260px; pointer-events:none">
+                  <!-- Car body outline -->
+                  <path d="M120 70 C160 55 240 50 340 50 C440 50 520 55 560 70 C590 85 600 120 600 140 C600 160 590 195 560 210 C520 225 440 230 340 230 C240 230 160 225 120 210 C90 195 80 160 80 140 C80 120 90 85 120 70 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="3"/>
+                  <!-- Windshield & lines -->
+                  <path d="M210 70 L250 85 C300 80 380 80 430 85 L470 70" fill="none" stroke="#607D8B" stroke-width="2"/>
+                  <path d="M230 85 L260 115 C300 110 380 110 420 115 L450 85" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
+                  <rect x="250" y="115" width="180" height="50" fill="#E2EBF0" stroke="#9AB1BF" stroke-width="1.5" rx="6"/>
+                  <path d="M230 195 L260 165 C300 170 380 170 420 165 L450 195" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
+                  <!-- Wheels -->
+                  <rect x="150" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
+                  <rect x="480" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
+                  <rect x="150" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+                  <rect x="480" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+
+                  <!-- Dynamic Pins -->
+                  <g id="liveStencilPins"></g>
+                </svg>
+                <div class="blueprint-tip">Ketuk atau klik pada diagram mobil di atas untuk menaruh pin kerusakan</div>
+              </div>
+            </div>
+
+            <!-- MARKED DAMAGE TABLE -->
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+                <strong style="font-size:13.5px">Daftar Titik Kerusakan (<span id="damageCountText">0</span>)</strong>
+                <button type="button" class="btn-sm btn-outline" onclick="clearAllDamages()" style="height:28px; font-size:11px">Reset Semua</button>
+              </div>
+              <div style="max-height:260px; overflow-y:auto; border:1px solid var(--line); border-radius:8px">
+                <table class="marked-damages-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Tipe</th>
+                      <th>Bagian Bodi & Catatan</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="markedDamagesBody">
+                    <!-- Javascript will render -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 152 POINT CHECKLIST (5 ZONAS) -->
+        <div class="panel-card">
+          <div class="panel-head">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              4. Checklist 152 Titik Pemeriksaan
+            </h3>
+            <div>
+              <button type="button" class="btn btn-outline" onclick="setAllChecklistPass()" style="height:34px; font-size:12px">
+                ✓ Tandai Semua Lulus (Pass All)
+              </button>
+            </div>
+          </div>
+
+          <div id="zoneAccordionsContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- FOTO DOKUMENTASI LAPANGAN & GRADE -->
+        <div class="panel-card">
+          <div class="panel-head">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              5. Foto Dokumentasi, Grade & Rekomendasi
+            </h3>
+            <button type="button" class="btn btn-outline" onclick="applySamplePhotos()" style="height:34px; font-size:12px">
+              Gunakan Foto Sampel Realistis
+            </button>
+          </div>
+
+          <div class="form-grid" style="margin-bottom:18px">
+            <div class="input-group">
+              <label>Foto Utama Mobil (URL / Link)</label>
+              <input type="text" id="fPhotoMain" placeholder="https://..." value="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80">
+            </div>
+            <div class="input-group">
+              <label>Hasil Penilaian Grade</label>
+              <select id="fGrade" style="font-weight:700">
+                <option value="A">Grade A (Sangat Istimewa / Like New)</option>
+                <option value="A-" selected>Grade A- (Sangat Baik / Wajar Pemakaian)</option>
+                <option value="B">Grade B (Baik / Butuh Sedikit Perawatan)</option>
+                <option value="C">Grade C (Cukup / Ada PR Servis Signifikan)</option>
+                <option value="D">Grade D (Tidak Direkomendasikan / Rusak Berat)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Estimasi Biaya Perbaikan (Rp)</label>
+              <input type="text" id="fRefurbTotal" placeholder="cth. 1.050.000" value="1.050.000">
+            </div>
+          </div>
+
+          <div class="input-group" style="margin-bottom:24px">
+            <label>Kesimpulan & Catatan Rekomendasi Inspektor *</label>
+            <textarea id="fVerdict" rows="3">Mobil terawat prima, mesin & transmisi sangat halus. Minus hanya kosmetik eksterior ringan (baret pemakaian) tanpa indikasi kerusakan struktural.</textarea>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:12px; border-top:1px solid var(--line); padding-top:18px">
+            <button type="button" class="btn btn-outline" onclick="saveDraft()">Simpan Draf</button>
+            <button type="button" class="btn btn-success" onclick="publishReport()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Selesaikan & Terbitkan Laporan Digital
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== TAB 3: ARSIP & LAPORAN DIGITAL ==================== -->
+    <section id="tab-reports" class="tab-content">
+      <div class="toolbar">
+        <div>
+          <h2 style="font-family:var(--display); font-size:20px; font-weight:800; margin:0 0 4px">Arsip Laporan Digital Selesai</h2>
+          <p style="margin:0; font-size:13.5px; color:var(--mist)">Laporan digital yang siap dibagikan ke klien atau dicetak sebagai sertifikat inspeksi resmi.</p>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>No. Laporan</th>
+                <th>Mobil & Nopol</th>
+                <th>Klien</th>
+                <th>Tanggal</th>
+                <th>Grade</th>
+                <th>Inspektor</th>
+                <th style="text-align:right">Aksi Publikasi</th>
+              </tr>
+            </thead>
+            <tbody id="reportsArchiveBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- MODAL: TAMBAH JADWAL MANUAL -->
+<div class="modal-backdrop" id="manualBookingModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Tambah Jadwal Inspeksi Baru</h3>
+      <button onclick="closeModal()" style="border:none; background:none; font-size:18px">✕</button>
+    </div>
+    <form id="manualBookingForm" onsubmit="handleManualBooking(event)">
+      <div class="input-group" style="margin-bottom:12px">
+        <label>Nama Pemesan *</label>
+        <input type="text" id="mCustName" required placeholder="Bpk / Ibu...">
+      </div>
+      <div class="input-group" style="margin-bottom:12px">
+        <label>Nomor WhatsApp *</label>
+        <input type="tel" id="mCustPhone" required placeholder="08xx xxxx xxxx" value="0895-6343-61840">
+      </div>
+      <div class="input-group" style="margin-bottom:12px">
+        <label>Merek & Tipe Mobil *</label>
+        <input type="text" id="mCar" required placeholder="cth. Toyota Fortuner 2.8 VRZ 2022">
+      </div>
+      <div class="input-group" style="margin-bottom:12px">
+        <label>Lokasi Inspeksi *</label>
+        <input type="text" id="mLoc" required placeholder="cth. Bintaro, Tangerang Selatan">
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px">
+        <div class="input-group">
+          <label>Paket</label>
+          <select id="mPkg">
+            <option>Menyeluruh — Rp750rb</option>
+            <option>Standar — Rp550rb</option>
+            <option>Menyeluruh + Garansi — Rp1,9jt</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Tanggal</label>
+          <input type="date" id="mDate" required>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:10px">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Jadwal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ==================== MOCK INITIAL DATA ==================== */
+const INITIAL_APPOINTMENTS = [
+  {
+    id: "INSP-2026-0842",
+    customer: "Bpk. Hendra Wijaya",
+    phone: "62895634361840",
+    car: "Honda CR-V 1.5 Turbo Prestige 2021",
+    plate: "B 1842 UYJ",
+    location: "Kelapa Gading, Jakarta Utara",
+    package: "Menyeluruh — Rp750rb",
+    date: "2026-09-21",
+    time: "10:00 WIB",
+    inspector: "Rian Pratama",
+    status: "Completed"
+  },
+  {
+    id: "INSP-2026-0843",
+    customer: "Ibu Maya Santoso",
+    phone: "6281298765432",
+    car: "Toyota Kijang Innova Zenix 2.0 Q Hybrid 2023",
+    plate: "B 2031 TZL",
+    location: "Kuningan, Jakarta Selatan",
+    package: "Menyeluruh + Garansi — Rp1,9jt",
+    date: "2026-09-22",
+    time: "13:30 WIB",
+    inspector: "Rian Pratama",
+    status: "In Progress"
+  },
+  {
+    id: "INSP-2026-0844",
+    customer: "Bpk. Donny Setiawan",
+    phone: "6281356789012",
+    car: "Mitsubishi Pajero Sport Dakar 4x2 2020",
+    plate: "B 1198 KJH",
+    location: "Serpong, Tangerang Selatan",
+    package: "Menyeluruh — Rp750rb",
+    date: "2026-09-22",
+    time: "15:30 WIB",
+    inspector: "Bambang Suherman",
+    status: "Assigned"
+  },
+  {
+    id: "INSP-2026-0845",
+    customer: "dr. Kevin Pratomo",
+    phone: "6281876543210",
+    car: "Mazda CX-5 2.5 GT 2019",
+    plate: "B 777 KVN",
+    location: "Puri Indah, Jakarta Barat",
+    package: "Standar — Rp550rb",
+    date: "2026-09-23",
+    time: "11:00 WIB",
+    inspector: "Belum Ditugaskan",
+    status: "Pending"
+  }
+];
+
+const CHECKLIST_ZONES = [
+  {
+    title: "Zona 1 · Eksterior & Rangka (34 Titik)",
+    items: [
+      { id: "z1_1", name: "Apron Depan & Tulang Radiator Support", status: "pass", note: "Las titik orisinil, lurus" },
+      { id: "z1_2", name: "Pilar A, B, C (Kanan & Kiri)", status: "pass", note: "Sealer utuh pabrikan" },
+      { id: "z1_3", name: "Lantai Bagasi Belakang (Rear Floor Panel)", status: "pass", note: "Bebas bekas tabrakan belakang" },
+      { id: "z1_4", name: "Bumper Depan & Grille", status: "warn", note: "Baret goresan trotoar sudut kiri" },
+      { id: "z1_5", name: "Fender Kiri Belakang", status: "warn", note: "Indikasi touch up cat ulang" },
+      { id: "z1_6", name: "Pintu Kanan Belakang", status: "warn", note: "Lesung pipit kecil (2cm)" }
+    ]
+  },
+  {
+    title: "Zona 2 · Ruang Mesin & Transmisi (41 Titik)",
+    items: [
+      { id: "z2_1", name: "Kebocoran Oli Cylinder Head & Carter", status: "pass", note: "Kering dan bersih" },
+      { id: "z2_2", name: "Suara & Getaran Abnormal Mesin", status: "pass", note: "Stasioner halus" },
+      { id: "z2_3", name: "Sistem Turbocharger / Kompresi", status: "pass", note: "Boost lancar, bebas oli" },
+      { id: "z2_4", name: "Respon Transmisi CVT (Maju & Mundur)", status: "pass", note: "Halus tanpa jeduk" },
+      { id: "z2_5", name: "Kondisi Radiator & Cairan Pendingin", status: "pass", note: "Coolant jernih, bebas karat" },
+      { id: "z2_6", name: "Tegangan & Kondisi Aki (Battery Health)", status: "pass", note: "12.6V Off / 14.1V On" }
+    ]
+  },
+  {
+    title: "Zona 3 · Interior & Fitur Kelistrikan (31 Titik)",
+    items: [
+      { id: "z3_1", name: "Kesejukan AC & Blower", status: "pass", note: "Dingin optimal 6.8°C" },
+      { id: "z3_2", name: "Lampu Indikator Malfungsi (Check Engine)", status: "pass", note: "Normal padam saat hidup" },
+      { id: "z3_3", name: "Karpet Dasar & Busa Kursi (Cek Banjir)", status: "pass", note: "Bebas lumpur / apek" },
+      { id: "z3_4", name: "Sistem Airbag & Sensor Keselamatan", status: "pass", note: "Semua airbag utuh" },
+      { id: "z3_5", name: "Power Window, Audio & Head Unit", status: "pass", note: "Semua tombol berfungsi" }
+    ]
+  },
+  {
+    title: "Zona 4 · Kaki-Kaki & Kolong (26 Titik)",
+    items: [
+      { id: "z4_1", name: "Ketebalan Kampas Rem Depan", status: "warn", note: "Tersisa ~30%" },
+      { id: "z4_2", name: "Ketebalan Kampas Rem Belakang", status: "pass", note: "Tersisa ~65%" },
+      { id: "z4_3", name: "Shockbreaker & Link Stabilizer", status: "pass", note: "Bebas rembesan oli" },
+      { id: "z4_4", name: "Kondisi Keausan Ban 4 Roda", status: "pass", note: "Ban 2022, alur 70%" }
+    ]
+  },
+  {
+    title: "Zona 5 · Uji Jalan / Road Test (20 Titik)",
+    items: [
+      { id: "z5_1", name: "Kepresisian Kemudi (Spooring)", status: "warn", note: "Setir agak condong kiri tipis" },
+      { id: "z5_2", name: "Pengereman Mendadak (ABS)", status: "pass", note: "Pakem tanpa lari arah" },
+      { id: "z5_3", name: "Kenyamanan Suspensi di Jalan Bergelombang", status: "pass", note: "Kedap dan nyaman" }
+    ]
+  }
+];
+
+/* ACTIVE STATE */
+let appointments = [];
+let currentDamages = [
+  { num: 1, type: "baret", label: "Bumper Depan Kiri Bawah", note: "Goresan pemakaian saat parkir / serempet trotoar ringan, tidak pecah atau robek.", cx: 110, cy: 85 },
+  { num: 2, type: "penyok", label: "Pintu Kanan Belakang", note: "Lesung pipit kecil (diameter ~2cm) tanpa cat terkelupas, bisa perbaikan PDR.", cx: 430, cy: 225 },
+  { num: 3, type: "dempul", label: "Fender Kiri Belakang", note: "Ketebalan cat 180 micron (indikasi touch up/pengecatan ulang rapi).", cx: 510, cy: 65 }
+];
+let selectedDamageType = 'baret';
+let activeEditingBookingId = "INSP-2026-0842";
+
+/* ==================== APP LIFECYCLE ==================== */
+function init() {
+  loadAppointments();
+  renderAppointments();
+  renderKPIs();
+  renderChecklistAccordion();
+  renderStencilPins();
+  renderDamagesTable();
+  renderReportsArchive();
+  document.getElementById('mDate').min = new Date().toISOString().split('T')[0];
+}
+
+function loadAppointments() {
+  const stored = localStorage.getItem('inspeksi_pro_bookings');
+  if (stored) {
+    appointments = JSON.parse(stored);
+  } else {
+    appointments = INITIAL_APPOINTMENTS;
+    localStorage.setItem('inspeksi_pro_bookings', JSON.stringify(appointments));
+  }
+}
+
+function saveAppointments() {
+  localStorage.setItem('inspeksi_pro_bookings', JSON.stringify(appointments));
+  renderAppointments();
+  renderKPIs();
+}
+
+/* ==================== TAB NAVIGATION ==================== */
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+  
+  const target = document.getElementById('tab-' + tabId);
+  if (target) target.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+/* ==================== APPOINTMENTS LIST & ACTIONS ==================== */
+function renderKPIs() {
+  document.getElementById('kpiTotal').textContent = appointments.length;
+  document.getElementById('kpiPending').textContent = appointments.filter(a => a.status === 'Pending').length;
+  document.getElementById('kpiProgress').textContent = appointments.filter(a => a.status === 'In Progress').length;
+  document.getElementById('kpiCompleted').textContent = appointments.filter(a => a.status === 'Completed').length;
+}
+
+function renderAppointments(list = appointments) {
+  const tbody = document.getElementById('appointmentTableBody');
+  tbody.innerHTML = '';
+
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#8898A4">Tidak ada jadwal booking yang cocok.</td></tr>`;
+    return;
+  }
+
+  list.forEach(a => {
+    const tr = document.createElement('tr');
+    const badgeClass = a.status.toLowerCase().replace(/\s+/g, '');
+
+    tr.innerHTML = `
+      <td style="font-family:var(--mono); font-weight:700; color:var(--ink-3)">${a.id}</td>
+      <td>
+        <strong>${a.customer}</strong>
+        <div style="font-size:12px; color:#50626E; font-family:var(--mono)">
+          <a href="https://wa.me/${a.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--green)">
+            WA: ${a.phone}
+          </a>
+        </div>
+      </td>
+      <td>
+        <strong style="color:var(--ink)">${a.car}</strong>
+        <div style="font-size:12px; color:#6B7280; font-family:var(--mono)">${a.plate || '-'}</div>
+      </td>
+      <td>
+        <div>${a.date} · ${a.time || '10:00 WIB'}</div>
+        <div style="font-size:12px; color:#6B7280">${a.location}</div>
+      </td>
+      <td><span style="font-size:12.5px; font-weight:600">${a.package}</span></td>
+      <td>
+        <select onchange="updateInspector('${a.id}', this.value)" style="font-size:12px; border:1px solid var(--line); border-radius:6px; padding:3px 6px; background:#fff">
+          <option ${a.inspector==='Belum Ditugaskan'?'selected':''}>Belum Ditugaskan</option>
+          <option ${a.inspector==='Rian Pratama'?'selected':''}>Rian Pratama</option>
+          <option ${a.inspector==='Bambang Suherman'?'selected':''}>Bambang Suherman</option>
+          <option ${a.inspector==='Agus Hartono'?'selected':''}>Agus Hartono</option>
+        </select>
+      </td>
+      <td>
+        <span class="status-badge ${badgeClass}">${a.status}</span>
+      </td>
+      <td style="text-align:right">
+        <div style="display:inline-flex; gap:6px">
+          ${a.status === 'Completed' ? `
+            <a href="laporan.html?id=${a.id}" target="_blank" class="btn btn-outline" style="height:32px; font-size:12px; padding:0 10px; color:var(--blue)">
+              Lihat Laporan ↗
+            </a>
+          ` : `
+            <button class="btn btn-primary" onclick="startInspection('${a.id}')" style="height:32px; font-size:12px; padding:0 10px">
+              Input Inspeksi ✍
+            </button>
+          `}
+          <button class="btn btn-outline" onclick="deleteAppointment('${a.id}')" style="height:32px; font-size:12px; padding:0 8px; color:var(--red)" title="Hapus">
+            ✕
+          </button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function filterAppointments() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const status = document.getElementById('statusFilter').value;
+
+  const filtered = appointments.filter(a => {
+    const matchQuery = !query || 
+      a.id.toLowerCase().includes(query) ||
+      a.customer.toLowerCase().includes(query) ||
+      a.car.toLowerCase().includes(query) ||
+      (a.plate && a.plate.toLowerCase().includes(query));
+    
+    const matchStatus = status === 'all' || a.status === status;
+    return matchQuery && matchStatus;
+  });
+
+  renderAppointments(filtered);
+}
+
+function updateInspector(id, inspectorName) {
+  const item = appointments.find(a => a.id === id);
+  if (item) {
+    item.inspector = inspectorName;
+    if (item.status === 'Pending' && inspectorName !== 'Belum Ditugaskan') {
+      item.status = 'Assigned';
+    }
+    saveAppointments();
+  }
+}
+
+function deleteAppointment(id) {
+  if (confirm(`Yakin ingin menghapus jadwal booking ${id}?`)) {
+    appointments = appointments.filter(a => a.id !== id);
+    saveAppointments();
+  }
+}
+
+/* START INSPECTION WITH SELECTED BOOKING */
+function startInspection(bookingId) {
+  const item = appointments.find(a => a.id === bookingId);
+  if (!item) return;
+
+  activeEditingBookingId = item.id;
+  document.getElementById('formCurrentBookingId').textContent = 'ID: ' + item.id;
+  document.getElementById('fCarName').value = item.car;
+  document.getElementById('fPlate').value = item.plate || 'B ' + Math.floor(1000 + Math.random()*8999) + ' PRO';
+  document.getElementById('fClientName').value = item.customer;
+  
+  // Switch to form tab
+  switchTab('inspection-form');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ==================== STENCIL MARKER ==================== */
+function setDamageType(type, btn) {
+  selectedDamageType = type;
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function handleBlueprintClick(event) {
+  const rect = document.getElementById('interactiveStencilSvg').getBoundingClientRect();
+  const x = Math.round(((event.clientX - rect.left) / rect.width) * 680);
+  const y = Math.round(((event.clientY - rect.top) / rect.height) * 280);
+
+  // Prompt note
+  const label = prompt("Keterangan bagian bodi / posisi (cth. Bumper Depan Kanan, Pintu Kiri):", "Panel Bodi Samping");
+  if (!label) return;
+
+  const note = prompt("Deskripsi detail minus (cth. Goresan tipis, penyok diameter 3cm):", "Goresan pemakaian wajar");
+  if (!note) return;
+
+  const newDamage = {
+    num: currentDamages.length + 1,
+    type: selectedDamageType,
+    label: label,
+    note: note,
+    cx: x,
+    cy: y
+  };
+
+  currentDamages.push(newDamage);
+  renderStencilPins();
+  renderDamagesTable();
+}
+
+function renderStencilPins() {
+  const group = document.getElementById('liveStencilPins');
+  group.innerHTML = '';
+
+  const colorMap = {
+    baret: '#F5A623',
+    penyok: '#D64533',
+    dempul: '#8B5CF6',
+    rusak: '#111827'
+  };
+
+  currentDamages.forEach((d, i) => {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", d.cx);
+    circle.setAttribute("cy", d.cy);
+    circle.setAttribute("r", "11");
+    circle.setAttribute("fill", colorMap[d.type] || '#F5A623');
+    circle.setAttribute("stroke", "#fff");
+    circle.setAttribute("stroke-width", "2");
+
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", d.cx);
+    text.setAttribute("y", d.cy + 4);
+    text.setAttribute("font-family", "Archivo");
+    text.setAttribute("font-size", "10");
+    text.setAttribute("font-weight", "800");
+    text.setAttribute("fill", d.type === 'baret' ? '#000' : '#fff');
+    text.setAttribute("text-anchor", "middle");
+    text.textContent = d.num || (i + 1);
+
+    group.appendChild(circle);
+    group.appendChild(text);
+  });
+
+  document.getElementById('damageCountText').textContent = currentDamages.length;
+}
+
+function renderDamagesTable() {
+  const tbody = document.getElementById('markedDamagesBody');
+  tbody.innerHTML = '';
+
+  if (currentDamages.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#9CA3AF; padding:15px">Belum ada titik kerusakan yang ditandai.</td></tr>`;
+    return;
+  }
+
+  currentDamages.forEach((d, idx) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-weight:700">${d.num || (idx+1)}</td>
+      <td><span style="font-weight:700; text-transform:capitalize">${d.type}</span></td>
+      <td>
+        <strong>${d.label}</strong>
+        <div style="font-size:11.5px; color:#50626E">${d.note}</div>
+      </td>
+      <td style="text-align:right">
+        <button type="button" onclick="removeDamage(${idx})" style="border:none; background:none; color:var(--red); font-weight:700; cursor:pointer">✕</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function removeDamage(index) {
+  currentDamages.splice(index, 1);
+  currentDamages.forEach((d, i) => d.num = i + 1);
+  renderStencilPins();
+  renderDamagesTable();
+}
+
+function clearAllDamages() {
+  if (confirm("Reset semua titik kerusakan pada diagram?")) {
+    currentDamages = [];
+    renderStencilPins();
+    renderDamagesTable();
+  }
+}
+
+/* ==================== 152 POINT CHECKLIST ==================== */
+function renderChecklistAccordion() {
+  const container = document.getElementById('zoneAccordionsContainer');
+  container.innerHTML = '';
+
+  CHECKLIST_ZONES.forEach((zone, zIdx) => {
+    const acc = document.createElement('div');
+    acc.className = 'zone-accordion-item';
+
+    let itemsHtml = '';
+    zone.items.forEach(it => {
+      itemsHtml += `
+        <div class="item-row" data-id="${it.id}">
+          <div>
+            <strong>${it.name}</strong>
+          </div>
+          <div class="item-status-radios">
+            <div class="status-btn pass ${it.status==='pass'?'active':''}" onclick="setChecklistStatus('${it.id}', 'pass', this)">✓ Lulus</div>
+            <div class="status-btn warn ${it.status==='warn'?'active':''}" onclick="setChecklistStatus('${it.id}', 'warn', this)">▲ Catatan</div>
+            <div class="status-btn fail ${it.status==='fail'?'active':''}" onclick="setChecklistStatus('${it.id}', 'fail', this)">✕ Minus</div>
+          </div>
+          <div>
+            <input type="text" value="${it.note}" id="note_${it.id}" placeholder="Catatan temuan..." style="width:100%; font-size:12.5px; padding:5px 8px; border:1px solid var(--line); border-radius:6px">
+          </div>
+        </div>
+      `;
+    });
+
+    acc.innerHTML = `
+      <div class="zone-acc-head" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'">
+        <span>${zone.title}</span>
+        <span style="font-size:12px; color:#8898A4">(${zone.items.length} Item) ▾</span>
+      </div>
+      <div class="zone-acc-body">
+        ${itemsHtml}
+      </div>
+    `;
+
+    container.appendChild(acc);
+  });
+}
+
+function setChecklistStatus(itemId, status, btn) {
+  const row = btn.closest('.item-row');
+  row.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Update in CHECKLIST_ZONES
+  CHECKLIST_ZONES.forEach(z => {
+    const found = z.items.find(i => i.id === itemId);
+    if (found) found.status = status;
+  });
+}
+
+function setAllChecklistPass() {
+  document.querySelectorAll('.status-btn.pass').forEach(b => b.classList.add('active'));
+  document.querySelectorAll('.status-btn.warn, .status-btn.fail').forEach(b => b.classList.remove('active'));
+  
+  CHECKLIST_ZONES.forEach(z => {
+    z.items.forEach(it => it.status = 'pass');
+  });
+}
+
+function applySamplePhotos() {
+  document.getElementById('fPhotoMain').value = "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80";
+  alert("Foto sampel kendaraan telah diterapkan!");
+}
+
+/* ==================== SAVE DRAFT & PUBLISH REPORT ==================== */
+function compileCurrentReport() {
+  const bookingId = activeEditingBookingId || ("INSP-" + Date.now().toString().slice(-6));
+  
+  // Gather updated checklists
+  const compiledChecklists = CHECKLIST_ZONES.map(z => ({
+    group: z.title,
+    items: z.items.map(it => {
+      const noteInput = document.getElementById('note_' + it.id);
+      return {
+        name: it.name,
+        status: it.status,
+        note: noteInput ? noteInput.value : it.note
+      };
+    })
+  }));
+
+  const report = {
+    id: bookingId,
+    date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+    location: "Kelapa Gading, Jakarta Utara",
+    inspector: "Rian Pratama (BNSP-8821)",
+    client: document.getElementById('fClientName').value || "Bpk. Hendra Wijaya",
+    vehicle: {
+      title: document.getElementById('fCarName').value,
+      yearTrans: document.getElementById('fYearTrans').value,
+      plate: document.getElementById('fPlate').value,
+      odometer: document.getElementById('fOdo').value,
+      color: document.getElementById('fColor').value,
+      tax: document.getElementById('fTax').value,
+      bpkb: document.getElementById('fBpkb').value,
+      vin: document.getElementById('fVin').value,
+      photo: document.getElementById('fPhotoMain').value
+    },
+    critical: {
+      flood: document.getElementById('chkFlood').checked,
+      crash: document.getElementById('chkCrash').checked,
+      odometer: document.getElementById('chkOdo').checked
+    },
+    grade: document.getElementById('fGrade').value,
+    verdict: document.getElementById('fVerdict').value,
+    scores: {
+      struktur: document.getElementById('chkCrash').checked ? 96 : 55,
+      mesin: 92,
+      interior: document.getElementById('chkFlood').checked ? 90 : 50,
+      kaki: 85
+    },
+    damages: currentDamages,
+    checklists: compiledChecklists
+  };
+
+  return report;
+}
+
+function saveDraft() {
+  const report = compileCurrentReport();
+  const reports = JSON.parse(localStorage.getItem('inspeksi_pro_reports') || '[]');
+  const existingIdx = reports.findIndex(r => r.id === report.id);
+  if (existingIdx !== -1) {
+    reports[existingIdx] = report;
+  } else {
+    reports.unshift(report);
+  }
+  localStorage.setItem('inspeksi_pro_reports', JSON.stringify(reports));
+
+  // Update appointment status to In Progress
+  const appt = appointments.find(a => a.id === report.id);
+  if (appt && appt.status !== 'Completed') {
+    appt.status = 'In Progress';
+    saveAppointments();
+  }
+
+  alert("Draf inspeksi berhasil disimpan!");
+}
+
+function publishReport() {
+  const report = compileCurrentReport();
+  const reports = JSON.parse(localStorage.getItem('inspeksi_pro_reports') || '[]');
+  const existingIdx = reports.findIndex(r => r.id === report.id);
+  if (existingIdx !== -1) {
+    reports[existingIdx] = report;
+  } else {
+    reports.unshift(report);
+  }
+  localStorage.setItem('inspeksi_pro_reports', JSON.stringify(reports));
+
+  // Mark appointment completed
+  const appt = appointments.find(a => a.id === report.id);
+  if (appt) {
+    appt.status = 'Completed';
+    saveAppointments();
+  }
+
+  renderReportsArchive();
+
+  if (confirm("Laporan inspeksi digital berhasil diterbitkan! Buka halaman laporan sekarang?")) {
+    window.open(`laporan.html?id=${report.id}`, '_blank');
+  }
+}
+
+/* ==================== TAB 3: REPORTS ARCHIVE ==================== */
+function renderReportsArchive() {
+  const tbody = document.getElementById('reportsArchiveBody');
+  tbody.innerHTML = '';
+
+  const reports = JSON.parse(localStorage.getItem('inspeksi_pro_reports') || '[]');
+  
+  // Default entry if empty
+  if (reports.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td style="font-family:var(--mono); font-weight:700">INSP-2026-0842</td>
+        <td><strong>Honda CR-V 1.5 Turbo Prestige</strong><div style="font-size:12px; color:#6B7280">B 1842 UYJ</div></td>
+        <td>Bpk. Hendra Wijaya</td>
+        <td>21 September 2026</td>
+        <td><span class="status-badge completed" style="font-size:12px">Grade A-</span></td>
+        <td>Rian Pratama</td>
+        <td style="text-align:right">
+          <a href="laporan.html?id=INSP-2026-0842" target="_blank" class="btn btn-primary" style="height:32px; font-size:12px">
+            Buka Laporan Digital ↗
+          </a>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  reports.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-family:var(--mono); font-weight:700">${r.id}</td>
+      <td>
+        <strong>${r.vehicle.title}</strong>
+        <div style="font-size:12px; color:#6B7280; font-family:var(--mono)">${r.vehicle.plate}</div>
+      </td>
+      <td>${r.client}</td>
+      <td>${r.date}</td>
+      <td>
+        <span class="status-badge completed" style="font-size:12px">Grade ${r.grade}</span>
+      </td>
+      <td>${r.inspector}</td>
+      <td style="text-align:right">
+        <div style="display:inline-flex; gap:8px">
+          <a href="laporan.html?id=${r.id}" target="_blank" class="btn btn-primary" style="height:32px; font-size:12px; padding:0 12px">
+            Buka Laporan ↗
+          </a>
+          <button class="btn btn-outline" style="height:32px; font-size:12px; padding:0 10px" onclick="copyReportLink('${r.id}')" title="Salin Link">
+            Salin Link
+          </button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function copyReportLink(id) {
+  const url = window.location.origin + window.location.pathname.replace('admin.html', '') + `laporan.html?id=${id}`;
+  navigator.clipboard.writeText(url).then(() => {
+    alert("Link Laporan berhasil disalin:\n" + url);
+  });
+}
+
+/* ==================== MANUAL BOOKING MODAL ==================== */
+function openManualBookingModal() {
+  document.getElementById('manualBookingModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('manualBookingModal').classList.remove('open');
+}
+
+function handleManualBooking(e) {
+  e.preventDefault();
+  const newAppt = {
+    id: "INSP-" + Date.now().toString().slice(-6),
+    customer: document.getElementById('mCustName').value.trim(),
+    phone: document.getElementById('mCustPhone').value.trim(),
+    car: document.getElementById('mCar').value.trim(),
+    plate: "B " + Math.floor(1000 + Math.random()*8999) + " PRO",
+    location: document.getElementById('mLoc').value.trim(),
+    package: document.getElementById('mPkg').value,
+    date: document.getElementById('mDate').value,
+    time: "10:00 WIB",
+    inspector: "Rian Pratama",
+    status: "Pending"
+  };
+
+  appointments.unshift(newAppt);
+  saveAppointments();
+  closeModal();
+  e.target.reset();
+  alert(`Jadwal booking ${newAppt.id} berhasil ditambahkan!`);
+}
+
+// Init run
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
