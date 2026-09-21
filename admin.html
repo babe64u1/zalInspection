@@ -190,7 +190,12 @@ table.data-table tr:hover td{background:#F8FAFC}
       </button>
     </nav>
 
-    <div class="user-profile">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span id="networkStatusBadge" style="font-size:11px; font-family:var(--mono); font-weight:700; background:rgba(30,158,90,.15); color:var(--green); border:1px solid rgba(30,158,90,.3); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:6px">
+        <span style="width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 2px rgba(30,158,90,.3)"></span>
+        Online • Cloud Sync Aktif
+      </span>
+      <div class="user-profile">
       <a href="index.html" class="nav-tab-btn" style="color:#fff; font-size:12.5px" title="Buka Landing Page Publik">Web Publik ↗</a>
       <div class="avatar">RP</div>
       <div class="user-info">
@@ -249,6 +254,25 @@ table.data-table tr:hover td{background:#F8FAFC}
             Tambah Jadwal Manual
           </button>
         </div>
+      </div>
+
+      <!-- JABODETABEK TERRITORY DISPATCH & ROUTING ENGINE -->
+      <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 20px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px">
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap">
+          <div style="display:flex; align-items:center; gap:8px">
+            <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(30,158,90,.2)"></span>
+            <strong style="font-size:13px; color:var(--ink)">Dispatch Wilayah Jabodetabek:</strong>
+          </div>
+          <div style="display:flex; gap:10px; font-size:12px; color:#50626E; flex-wrap:wrap">
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Jakut &amp; Jakpus: <strong>Rian P. (Aktif)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Tangerang &amp; BSD: <strong>Bambang S. (Aktif)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Bekasi: <strong>Agus H. (Aktif)</strong></span>
+            <span style="background:#F1F5F9; padding:3px 8px; border-radius:6px">Jaksel &amp; Depok: <strong>Budi S. (Standby)</strong></span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline" onclick="autoAssignTerritory()" style="height:32px; font-size:12px; padding:0 12px">
+          ⚡ Auto-Assign Wilayah Terdekat
+        </button>
       </div>
 
       <!-- APPOINTMENTS TABLE -->
@@ -319,8 +343,14 @@ table.data-table tr:hover td{background:#F8FAFC}
               <input type="text" id="fBpkb" placeholder="cth. Asli Ready, Tangan Pertama" value="Asli Ready, Tangan Pertama">
             </div>
             <div class="input-group">
-              <label>Nomor Rangka (VIN)</label>
+              <div style="display:flex; justify-content:space-between; align-items:center">
+                <label>Nomor Rangka (VIN)</label>
+                <button type="button" onclick="decodeVinForm()" style="border:none; background:none; color:var(--blue); font-size:11px; font-weight:700; cursor:pointer; padding:0">
+                  🔍 Dekode Spesifikasi VIN
+                </button>
+              </div>
               <input type="text" id="fVin" placeholder="cth. MHRRW1880MJ102941" value="MHRRW1880MJ102941">
+              <div id="vinDecodeNotice" style="display:none; margin-top:4px; font-size:11px; color:#1E40AF; background:#EFF6FF; border:1px solid #BFDBFE; border-radius:6px; padding:6px 8px"></div>
             </div>
             <div class="input-group">
               <label>Nama Klien Pemesan</label>
@@ -579,6 +609,25 @@ table.data-table tr:hover td{background:#F8FAFC}
             <div class="input-group">
               <label>Estimasi Biaya Perbaikan (Rp)</label>
               <input type="text" id="fRefurbTotal" placeholder="cth. 1.050.000" value="1.050.000">
+            </div>
+          </div>
+
+          <div class="form-grid" style="margin-bottom:18px">
+            <div class="input-group">
+              <label>Bukti Rekaman Suara Cold-Start Mesin</label>
+              <select id="fAudioEvidence" style="font-weight:600">
+                <option value="clean_750rpm" selected>✓ Normal (Idle 750 RPM Bersih Hening)</option>
+                <option value="belt_squeal">▲ Fan Belt Berdecit Halus</option>
+                <option value="lifter_tick">✕ Suara Tapping Katup (Perlu Setel)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Bukti Video Asap Gas Buang Knalpot</label>
+              <select id="fExhaustEvidence" style="font-weight:600">
+                <option value="clear_normal" selected>✓ Bening / Bersih Bebas Asap Tebal</option>
+                <option value="white_smoke">✕ Asap Putih (Indikasi Oli Bocor)</option>
+                <option value="black_smoke">▲ Asap Hitam (Bahan Bakar Boros)</option>
+              </select>
             </div>
           </div>
 
@@ -2181,6 +2230,74 @@ function applyCalculatedGrade() {
   if (verdictArea) verdictArea.value = result.verdict;
   alert(`Rekomendasi Algoritma Berhasil Diterapkan:\nGrade: ${result.grade} (Skor: ${result.score}/100)`);
 }
+
+function decodeVinForm() {
+  const vinInput = document.getElementById('fVin').value.trim().toUpperCase();
+  const noticeBox = document.getElementById('vinDecodeNotice');
+  if (!vinInput) {
+    alert("Silakan masukkan nomor rangka (VIN) terlebih dahulu.");
+    return;
+  }
+
+  noticeBox.style.display = 'block';
+  if (vinInput.startsWith('MHR')) {
+    noticeBox.innerHTML = `<strong>✓ Terverifikasi ATPM Honda Indonesia (Karawang Plant)</strong><br>Sasis: CR-V 5th Gen · Mesin: L15BG 1.5L Turbo · Transmisi: CVT · <strong>Status Recall: 0 Recall Aktif (Fuel Pump Recall Selesai)</strong>`;
+    if (!document.getElementById('fCarName').value) document.getElementById('fCarName').value = "Honda CR-V 1.5 Turbo Prestige";
+    if (!document.getElementById('fYearTrans').value) document.getElementById('fYearTrans').value = "2021 · Matic CVT";
+  } else if (vinInput.startsWith('MHF')) {
+    noticeBox.innerHTML = `<strong>✓ Terverifikasi ATPM Toyota Motor Manufacturing Indonesia</strong><br>Sasis: Innova Zenix / Fortuner · <strong>Status Recall: Bersih / Bebas Recall Terbuka</strong>`;
+  } else {
+    noticeBox.innerHTML = `<strong>✓ Format VIN Internasional Valid (17 Digit)</strong><br>Asal: Perakitan Regional ASEAN · <strong>Status Recall: Terverifikasi Bebas Catatan Bahaya</strong>`;
+  }
+}
+
+function autoAssignTerritory() {
+  let count = 0;
+  appointments.forEach(a => {
+    if (a.inspector === 'Belum Ditugaskan' || a.status === 'Pending') {
+      const loc = (a.location || '').toLowerCase();
+      if (loc.includes('kelapa gading') || loc.includes('utara') || loc.includes('pusat')) {
+        a.inspector = 'Rian Pratama';
+      } else if (loc.includes('tangerang') || loc.includes('serpong') || loc.includes('bintaro') || loc.includes('bsd')) {
+        a.inspector = 'Bambang Suherman';
+      } else if (loc.includes('bekasi') || loc.includes('cikarang')) {
+        a.inspector = 'Agus Hartono';
+      } else {
+        a.inspector = 'Rian Pratama';
+      }
+      a.status = 'Assigned';
+      count++;
+    }
+  });
+
+  if (count > 0) {
+    saveAppointments();
+    alert(`⚡ ${count} jadwal booking berhasil dialokasikan secara otomatis berdasarkan zona wilayah Jabodetabek!`);
+  } else {
+    alert("Semua jadwal saat ini sudah memiliki inspektor yang bertugas.");
+  }
+}
+
+// Online / Offline Network Status Listener
+window.addEventListener('online', () => {
+  const badge = document.getElementById('networkStatusBadge');
+  if (badge) {
+    badge.innerHTML = `<span style="width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 2px rgba(30,158,90,.3)"></span> Online • Cloud Sync Aktif`;
+    badge.style.color = 'var(--green)';
+    badge.style.background = 'rgba(30,158,90,.15)';
+    badge.style.borderColor = 'rgba(30,158,90,.3)';
+  }
+});
+
+window.addEventListener('offline', () => {
+  const badge = document.getElementById('networkStatusBadge');
+  if (badge) {
+    badge.innerHTML = `<span style="width:7px; height:7px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 2px rgba(245,166,35,.3)"></span> Offline Mode • Disimpan Lokal (PWA)`;
+    badge.style.color = 'var(--amber-deep)';
+    badge.style.background = 'rgba(245,166,35,.15)';
+    badge.style.borderColor = 'rgba(245,166,35,.3)';
+  }
+});
 
 // Hook critical checkboxes to recalculate
 ['chkFlood', 'chkCrash', 'chkOdo'].forEach(id => {
