@@ -12,30 +12,30 @@
 <meta name="theme-color" content="#090D12">
 <style>
 :root{
-  --bg-dark:#090D12;
-  --surface-dark:#0F1722;
-  --surface-dark-2:#162232;
-  --surface-dark-3:#1E2F44;
+  --bg-dark:#0A0E17;
+  --surface-dark:#111827;
+  --surface-dark-2:#162032;
+  --surface-dark-3:#1E293B;
   --bg-light:#F8FAFC;
   --surface-light:#FFFFFF;
   --amber:#F59E0B;
   --amber-light:#FBBF24;
   --amber-deep:#D97706;
-  --amber-glow:rgba(245,158,11,0.18);
+  --amber-glow:rgba(245,158,11,0.14);
   --emerald:#10B981;
-  --emerald-glow:rgba(16,185,129,0.18);
+  --emerald-glow:rgba(16,185,129,0.14);
   --rose:#EF4444;
   --cyan:#06B6D4;
   --text-dark:#0F172A;
   --text-muted:#64748B;
   --text-dim:#94A3B8;
-  --text-light:#F1F5F9;
+  --text-light:#F8FAFC;
   --border-dark:rgba(255,255,255,0.08);
   --border-light:rgba(15,23,42,0.08);
-  --shadow-sm:0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md:0 4px 12px -1px rgba(0,0,0,0.08), 0 2px 6px -1px rgba(0,0,0,0.04);
-  --shadow-lg:0 20px 35px -5px rgba(0,0,0,0.1), 0 10px 15px -5px rgba(0,0,0,0.04);
-  --shadow-dark:0 24px 48px -8px rgba(0,0,0,0.45);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-md:0 4px 14px -2px rgba(0,0,0,0.08), 0 2px 6px -1px rgba(0,0,0,0.04);
+  --shadow-lg:0 20px 40px -8px rgba(0,0,0,0.12), 0 10px 20px -5px rgba(0,0,0,0.05);
+  --shadow-dark:0 24px 50px -10px rgba(0,0,0,0.55);
   --font-display:"Plus Jakarta Sans",system-ui,sans-serif;
   --font-body:"Inter",system-ui,sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,monospace;
@@ -54,124 +54,136 @@ button{font:inherit; cursor:pointer}
 .wrap{max-width:1200px; margin:0 auto; padding:0 24px}
 
 .eyebrow{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber-deep); font-weight:700; margin:0 0 14px}
-.eyebrow::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 8px var(--amber)}
+.eyebrow::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--amber)}
 .dark .eyebrow{color:var(--amber-light)}
 
 h1,h2,h3,h4{font-family:var(--font-display); line-height:1.15; letter-spacing:-.025em; margin:0}
-h1{font-size:clamp(35px,5.2vw,58px); font-weight:800}
-h2{font-size:clamp(28px,3.8vw,42px); font-weight:800}
-.sub{color:var(--text-muted); max-width:62ch; margin:16px 0 0; font-size:16.5px; line-height:1.6}
+h1{font-size:clamp(34px,5vw,56px); font-weight:800; letter-spacing:-.03em}
+h2{font-size:clamp(28px,3.8vw,42px); font-weight:800; letter-spacing:-.025em}
+.sub{color:var(--text-muted); max-width:62ch; margin:16px 0 0; font-size:16px; line-height:1.65}
 .dark .sub{color:var(--text-dim)}
-section{padding:92px 0}
-@media (max-width:768px){section{padding:56px 0}}
+section{padding:100px 0}
+@media (max-width:768px){section{padding:64px 0}}
 
 /* Buttons */
-.btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; font-family:var(--font-display); font-weight:700;
-  font-size:14.5px; min-height:48px; padding:0 24px; border-radius:10px; border:1px solid transparent;
-  text-decoration:none; transition:all .16s ease}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); font-weight:700;
+  font-size:14px; min-height:46px; padding:0 22px; border-radius:10px; border:1px solid transparent;
+  text-decoration:none; transition:all .16s ease; white-space:nowrap}
 .btn:active{transform:scale(0.98)}
 .btn-amber{background:linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color:#090D12; box-shadow:0 4px 14px rgba(245,158,11,0.25)}
 .btn-amber:hover{background:linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); box-shadow:0 6px 20px rgba(245,158,11,0.38); transform:translateY(-1px)}
-.btn-ghost{background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.12); color:#FFFFFF}
-.btn-ghost:hover{border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.08); transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.14); color:#FFFFFF}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.09); transform:translateY(-1px)}
 .btn-ghost-dark{background:transparent; border-color:var(--border-light); color:var(--text-dark)}
 .btn-ghost-dark:hover{border-color:var(--text-dark); background:rgba(15,23,42,0.03); transform:translateY(-1px)}
 .btn-wa{background:#10B981; color:#FFFFFF; box-shadow:0 4px 14px rgba(16,185,129,0.25)}
 .btn-wa:hover{background:#059669; box-shadow:0 6px 20px rgba(16,185,129,0.35); transform:translateY(-1px)}
 
-/* Header & Navbar */
-header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); backdrop-filter:blur(16px);
+/* Header & Navbar - Streamlined, Zero Wrapping */
+header.top{position:sticky; top:0; z-index:70; background:rgba(11,15,23,0.92); backdrop-filter:blur(20px) saturate(1.4);
   border-bottom:1px solid var(--border-dark)}
-.nav{display:flex; align-items:center; gap:24px; height:70px}
-.logo{display:flex; align-items:center; gap:10px; text-decoration:none; color:#FFFFFF; font-family:var(--font-display); font-weight:800; font-size:19px; letter-spacing:-.02em}
-.logo .mark{width:36px; height:36px; border-radius:9px; background:linear-gradient(135deg, #F59E0B 0%, #D97706 100%); display:grid; place-items:center; color:#090D12; box-shadow:0 4px 12px rgba(245,158,11,0.25)}
-.nav-links{display:flex; gap:2px; margin-left:auto}
-.nav-links a{color:#94A3B8; text-decoration:none; font-size:13.5px; font-weight:600; padding:8px 12px; border-radius:8px; transition:color .15s, background .15s}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:16px; height:70px}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; color:#FFFFFF; font-family:var(--font-display); font-weight:800; font-size:18.5px; letter-spacing:-.02em; white-space:nowrap; flex-shrink:0}
+.logo .mark{width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, #F59E0B 0%, #D97706 100%); display:grid; place-items:center; color:#090D12; box-shadow:0 4px 14px rgba(245,158,11,0.25); flex-shrink:0}
+.nav-links{display:flex; gap:2px; align-items:center; margin-left:auto; white-space:nowrap}
+.nav-links a{color:#94A3B8; text-decoration:none; font-size:13px; font-weight:600; padding:8px 12px; border-radius:8px; transition:color .15s, background .15s; white-space:nowrap}
 .nav-links a:hover{color:#FFFFFF; background:rgba(255,255,255,0.06)}
-.nav .btn{min-height:38px; padding:0 18px; font-size:13px}
+.nav .btn{min-height:40px; padding:0 18px; font-size:13.5px; flex-shrink:0; white-space:nowrap}
 .burger{display:none; margin-left:auto; background:none; border:1px solid var(--border-dark); border-radius:8px; padding:8px 10px; color:#FFFFFF}
-@media (max-width:1040px){
+@media (max-width:1080px){
   .nav-links,.nav > .btn{display:none}
   .burger{display:block}
   .nav.open .nav-links{display:flex; position:absolute; top:70px; left:0; right:0; flex-direction:column;
-    background:var(--bg-dark); padding:18px 24px 26px; border-bottom:1px solid var(--border-dark); gap:6px}
-  .nav.open .nav-links a{padding:12px 14px; font-size:15px}
+    background:rgba(11,15,23,0.98); backdrop-filter:blur(20px); padding:18px 24px 26px;
+    border-bottom:1px solid var(--border-dark); gap:4px;
+    animation:slideMenu .2s ease-out}
+  .nav.open .nav-links a{padding:14px 16px; font-size:15px; border-radius:10px}
 }
+@keyframes slideMenu{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 
 /* Hero */
 .hero{background:
-  radial-gradient(850px 480px at 85% 0%, rgba(245,158,11,0.12), transparent 70%),
-  radial-gradient(600px 350px at 15% 10%, rgba(16,185,129,0.06), transparent 70%),
+  radial-gradient(850px 480px at 85% 0%, rgba(245,158,11,0.1), transparent 70%),
+  radial-gradient(600px 350px at 15% 10%, rgba(16,185,129,0.05), transparent 70%),
   linear-gradient(180deg, var(--bg-dark) 0%, var(--surface-dark) 100%);
-  color:#FFFFFF; padding:76px 0 68px; overflow:hidden; border-bottom:1px solid var(--border-dark)}
-.hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center}
+  color:#FFFFFF; padding:80px 0 72px; overflow:hidden; border-bottom:1px solid var(--border-dark)}
+.hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center}
 @media (max-width:1024px){.hero-grid{grid-template-columns:1fr; gap:44px}}
-.hero h1{color:#FFFFFF; background:linear-gradient(180deg, #FFFFFF 50%, #CBD5E1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+.hero h1{color:#FFFFFF; background:linear-gradient(180deg, #FFFFFF 60%, #CBD5E1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
 .hero h1 em{font-style:normal; background:linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
-.hero p.lede{font-size:17.5px; color:#94A3B8; max-width:52ch; margin:20px 0 28px; line-height:1.65}
+.hero p.lede{font-size:16.5px; color:#94A3B8; max-width:50ch; margin:20px 0 32px; line-height:1.7}
 .hero-cta{display:flex; flex-wrap:wrap; gap:12px}
 
-.trust-badges{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:36px; padding-top:24px; border-top:1px solid var(--border-dark)}
+.trust-badges{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:36px; padding-top:28px; border-top:1px solid var(--border-dark)}
 @media (max-width:560px){.trust-badges{grid-template-columns:1fr}}
-.trust-item{display:flex; align-items:flex-start; gap:11px; font-size:13px; color:#94A3B8}
-.trust-item b{display:block; color:#FFFFFF; font-size:14px; margin-bottom:2px}
-.trust-item svg{flex-shrink:0; margin-top:2px; color:var(--amber)}
+.trust-item{display:flex; align-items:flex-start; gap:13px; font-size:13px; color:#CBD5E1;
+  background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:14px 16px;
+  transition:border-color .15s}
+.trust-item:hover{border-color:rgba(245,158,11,0.25)}
+.trust-item b{display:block; color:#FFFFFF; font-size:14px; margin-bottom:3px; font-family:var(--font-display); font-weight:700}
+.trust-item svg{flex-shrink:0; margin-top:1px; color:var(--amber); width:20px; height:20px}
 
 /* Hero Visual Dossier Console */
 .hero-visual{position:relative; border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--border-dark);
   box-shadow:var(--shadow-dark); background:var(--surface-dark-2)}
-.hero-dossier-topbar{padding:14px 18px; background:rgba(9,13,18,0.95); border-bottom:1px solid var(--border-dark);
-  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px}
+.hero-dossier-topbar{padding:12px 18px; background:rgba(9,13,18,0.95); border-bottom:1px solid var(--border-dark);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px}
 .hdt-badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:11px;
   letter-spacing:.08em; text-transform:uppercase; color:var(--amber-light); font-weight:700}
-.hdt-inspector{display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:11px;
+.hdt-inspector{display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px;
   color:#34D399; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.25); padding:3px 9px; border-radius:4px}
-.hdt-inspector::before{content:""; width:6px; height:6px; border-radius:50%; background:#10B981; box-shadow:0 0 6px #10B981}
-.hero-vehicle-meta{padding:10px 18px; background:rgba(22,34,50,0.85); border-bottom:1px solid var(--border-dark);
+.hdt-inspector::before{content:""; width:6px; height:6px; border-radius:50%; background:#10B981}
+.hero-vehicle-meta{padding:10px 18px; background:rgba(17,24,39,0.9); border-bottom:1px solid var(--border-dark);
   display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:12px; color:#94A3B8}
 .hero-vehicle-meta b{color:#FFFFFF; font-size:13px; font-family:var(--font-display)}
 .hero-vehicle-meta span{font-family:var(--font-mono); font-size:11px}
 
-.hero-photo-wrap{position:relative; overflow:hidden; background:#000}
+.hero-photo-wrap{position:relative; overflow:hidden; background:#0B0F17}
 .hero-dossier-photo{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover; transition:transform .4s ease}
 .hero-photo-wrap:hover .hero-dossier-photo{transform:scale(1.02)}
 
-.hud-pill{position:absolute; font-family:var(--font-mono); font-size:11px; font-weight:700; padding:6px 12px; border-radius:6px;
-  background:rgba(9,13,18,0.88); backdrop-filter:blur(8px); display:flex; align-items:center; gap:7px; box-shadow:0 4px 12px rgba(0,0,0,0.4)}
-.hud-p1{top:16px; left:16px; border:1px solid rgba(16,185,129,0.4); color:#34D399}
-.hud-p2{top:16px; right:16px; border:1px solid rgba(245,158,11,0.4); color:#FBBF24}
-.hud-stamp{position:absolute; bottom:14px; left:14px; right:14px; background:rgba(9,13,18,0.88); backdrop-filter:blur(8px);
-  border:1px solid var(--border-dark); border-radius:6px; padding:8px 12px; font-size:11.5px; color:#CBD5E1;
-  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px}
-.hud-stamp b{color:#FFFFFF; font-family:var(--font-mono); font-size:11px; font-weight:700}
-.hud-stamp span{color:var(--text-dim); font-size:11px}
+.hero-photo-watermark{position:absolute; top:14px; left:14px; font-family:var(--font-mono); font-size:10.5px;
+  background:rgba(11,15,23,0.85); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.12);
+  color:#E2E8F0; padding:4px 10px; border-radius:4px; font-weight:600; display:flex; align-items:center; gap:6px}
+.hero-photo-caption-bar{position:absolute; bottom:0; left:0; right:0; background:linear-gradient(0deg, rgba(11,15,23,0.96) 0%, rgba(11,15,23,0.7) 75%, transparent 100%);
+  padding:24px 18px 12px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:10px}
+.hpc-reading{display:flex; flex-direction:column; gap:2px}
+.hpc-val{font-family:var(--font-mono); font-size:22px; font-weight:800; color:#FBBF24}
+.hpc-val small{font-size:13px; font-weight:600; color:#CBD5E1}
+.hpc-status{font-size:12px; font-weight:600; color:#34D399; display:flex; align-items:center; gap:5px}
+.hpc-meta{font-size:11px; font-family:var(--font-mono); color:#94A3B8; text-align:right}
 
 /* Live Diagnostic Telemetry Grid */
 .hero-telemetry-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-dark); border-top:1px solid var(--border-dark)}
-.ht-col{background:rgba(15,23,34,0.98); padding:9px 10px; text-align:center}
+.ht-col{background:rgba(17,24,39,0.98); padding:9px 10px; text-align:center}
 .ht-label{font-family:var(--font-mono); font-size:10px; color:#64748B; text-transform:uppercase; display:block; margin-bottom:2px}
 .ht-value{font-family:var(--font-mono); font-size:12px; font-weight:700; color:#F1F5F9}
 .ht-value.ok{color:#34D399}
 .ht-value.amber{color:var(--amber-light)}
 @media (max-width:480px){.hero-telemetry-strip{grid-template-columns:1fr 1fr}}
 
-/* Terminal Card */
-.terminal-compact{padding:18px 20px; background:rgba(15,23,34,0.96); border-top:1px solid var(--border-dark)}
-.terminal-head{display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:11px;
-  letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px}
-.terminal-head .live{display:inline-flex; align-items:center; gap:6px; color:var(--amber-light)}
-.terminal-head .live::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--amber); animation:pulse 1.6s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.terminal-logs{list-style:none; margin:0; padding:0; display:grid; gap:7px}
-.terminal-logs li{display:flex; align-items:center; gap:9px; font-family:var(--font-mono); font-size:12px; color:#E2E8F0;
-  background:rgba(255,255,255,0.03); border:1px solid var(--border-dark); border-radius:6px; padding:7px 11px;
-  opacity:0; transform:translateY(4px); transition:opacity .35s, transform .35s}
-.terminal-logs li.show{opacity:1; transform:none}
-.terminal-logs li .st{margin-left:auto; font-weight:700; font-size:11px; padding:2px 7px; border-radius:4px}
-.terminal-logs li .st.ok{background:rgba(16,185,129,0.14); color:#34D399; border:1px solid rgba(16,185,129,0.25)}
-.terminal-logs li .st.warn{background:rgba(245,158,11,0.14); color:#FBBF24; border:1px solid rgba(245,158,11,0.25)}
-.terminal-bar{height:4px; background:rgba(255,255,255,0.08); border-radius:99px; margin-top:14px; overflow:hidden}
-.terminal-bar i{display:block; height:100%; width:0%; background:linear-gradient(90deg, #F59E0B, #10B981); border-radius:99px; transition:width .4s}
+/* Authoritative Dossier Checklist Panel (Replaces Fake Terminal) */
+.dossier-checklist-panel{padding:16px 18px; background:rgba(17,24,39,0.96); border-top:1px solid var(--border-dark)}
+.dcp-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px}
+.dcp-label{font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; color:#94A3B8; letter-spacing:.06em}
+.dcp-badge-grade{font-family:var(--font-mono); font-size:11px; font-weight:800; color:#34D399; background:rgba(16,185,129,0.12);
+  border:1px solid rgba(16,185,129,0.25); padding:2px 8px; border-radius:4px}
+.dcp-list{list-style:none; margin:0; padding:0; display:grid; gap:6px}
+.dcp-list li{display:flex; align-items:center; gap:8px; font-size:12px; color:#E2E8F0;
+  background:rgba(255,255,255,0.025); border:1px solid var(--border-dark); border-radius:6px; padding:6px 10px}
+.dcp-check{width:16px; height:16px; border-radius:4px; background:rgba(16,185,129,0.15); color:#34D399;
+  display:grid; place-items:center; font-size:10.5px; font-weight:800; flex-shrink:0}
+.dcp-check.warn{background:rgba(245,158,11,0.15); color:#FBBF24}
+.dcp-name{flex:1; font-weight:500}
+.dcp-result{margin-left:auto; font-family:var(--font-mono); font-size:10.5px; font-weight:700; padding:2px 6px; border-radius:3px}
+.dcp-result.ok{color:#34D399; background:rgba(16,185,129,0.1)}
+.dcp-result.warn{color:#FBBF24; background:rgba(245,158,11,0.1)}
+.dcp-foot{display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:10px;
+  border-top:1px solid var(--border-dark); font-size:11px; color:#94A3B8; flex-wrap:wrap; gap:8px}
+.dcp-inspector-sign{display:flex; align-items:center; gap:6px}
+.dcp-inspector-sign svg{color:#34D399; width:15px; height:15px}
+.dcp-link{color:var(--amber-light); font-weight:700; text-decoration:none; font-family:var(--font-mono); font-size:11px}
+.dcp-link:hover{text-decoration:underline}
 .terminal-foot{display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11px; color:var(--text-dim); margin-top:8px}
 
 /* Standards Band */
@@ -195,12 +207,13 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .forensic-tabs{display:grid; grid-template-columns:repeat(4,1fr); background:rgba(9,13,18,0.85); border-bottom:1px solid var(--border-dark)}
 @media (max-width:860px){.forensic-tabs{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.forensic-tabs{grid-template-columns:1fr}}
-.ft-btn{background:transparent; border:none; border-bottom:2px solid transparent; border-right:1px solid var(--border-dark);
-  padding:16px 14px; text-align:left; color:#94A3B8; cursor:pointer; transition:all .15s}
+.ft-btn{background:transparent; border:none; border-bottom:3px solid transparent; border-right:1px solid var(--border-dark);
+  padding:18px 16px; text-align:left; color:#94A3B8; cursor:pointer; transition:all .18s ease}
 .ft-btn:last-child{border-right:none}
-.ft-btn:hover{background:rgba(255,255,255,0.03); color:#FFFFFF}
-.ft-btn.active{background:rgba(245,158,11,0.08); border-bottom-color:var(--amber); color:#FFFFFF}
-.ft-num{font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--amber-light); display:block; margin-bottom:4px}
+.ft-btn:hover{background:rgba(255,255,255,0.04); color:#E2E8F0}
+.ft-btn.active{background:rgba(245,158,11,0.1); border-bottom-color:var(--amber); color:#FFFFFF;
+  box-shadow:inset 3px 0 0 var(--amber)}
+.ft-num{font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--amber-light); display:block; margin-bottom:5px}
 .ft-title{font-family:var(--font-display); font-size:13.5px; font-weight:700; line-height:1.3; display:block}
 
 .forensic-grid{display:grid; grid-template-columns:1fr 1.08fr; gap:0; align-items:stretch}
@@ -317,32 +330,32 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .layer-fill{height:100%; border-radius:3px; transition:width .3s}
 
 /* 152 Points Map */
-.map-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:start; margin-top:36px}
+.map-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:start; margin-top:36px}
 @media (max-width:960px){.map-grid{grid-template-columns:1fr}}
-.carbox{background:var(--surface-light); border:1px solid var(--border-light); border-radius:var(--r-lg); padding:28px 24px 20px; box-shadow:var(--shadow-sm)}
+.carbox{background:var(--surface-light); border:1.5px solid var(--border-light); border-radius:var(--r-lg); padding:24px 20px; box-shadow:0 4px 20px rgba(0,0,0,0.03)}
 .carbox svg{width:100%; height:auto}
-.zone{cursor:pointer}
+.zone{cursor:pointer; outline:none}
 .zone .hit{fill:transparent}
-.zone .pin{transition:transform .15s}
-.zone:hover .pin, .zone.active .pin{transform:scale(1.18)}
-.zone .ring{fill:var(--amber); opacity:.25; transform-origin:center; animation:ring 2.4s infinite}
-@keyframes ring{0%{transform:scale(.6); opacity:.35}70%{transform:scale(1.35); opacity:0}100%{opacity:0}}
+.zone .pin{transition:transform .2s cubic-bezier(0.34, 1.56, 0.64, 1)}
+.zone:hover .pin, .zone:focus-visible .pin, .zone.active .pin{transform:scale(1.2)}
+.zone .ring{fill:var(--amber); opacity:0; transform-origin:center; transition:opacity .2s, transform .2s}
+.zone:hover .ring, .zone.active .ring{opacity:.35; transform:scale(1.3)}
 .zone.active .core{fill:var(--surface-dark)}
 .zone.active .num{fill:#FFFFFF}
-.zone-card{background:var(--surface-dark); color:#FFFFFF; border-radius:var(--r-lg); padding:26px; position:sticky; top:92px; border:1px solid var(--border-dark); box-shadow:var(--shadow-lg)}
-.zone-card .zn{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber-light)}
-.zone-card h3{font-size:22px; margin:8px 0 4px; font-weight:800}
-.zone-card .pts{font-family:var(--font-mono); font-size:12px; color:#94A3B8; margin:0 0 16px}
-.zone-card ul{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.zone-card{background:var(--surface-dark); color:#FFFFFF; border-radius:var(--r-lg); padding:28px 24px; position:sticky; top:92px; border:1px solid var(--border-dark); box-shadow:var(--shadow-lg)}
+.zone-card .zn{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber-light); font-weight:700}
+.zone-card h3{font-size:22px; margin:8px 0 6px; font-weight:800}
+.zone-card .pts{font-family:var(--font-mono); font-size:12px; color:#94A3B8; margin:0 0 18px; display:inline-block; background:rgba(255,255,255,0.04); border:1px solid var(--border-dark); padding:3px 10px; border-radius:4px}
+.zone-card ul{list-style:none; margin:0; padding:0; display:grid; gap:10px}
 .zone-card li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:#DCE5EA;
-  border-bottom:1px solid var(--border-dark); padding-bottom:8px}
-.zone-card li:last-child{border-bottom:0}
-.zone-card li::before{content:"✓"; color:#34D399; font-weight:700; flex:0 0 auto}
-.zone-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
-.zone-tabs button{font-family:var(--font-mono); font-size:11.5px; padding:7px 12px; border-radius:99px;
+  border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:10px; line-height:1.5}
+.zone-card li:last-child{border-bottom:0; padding-bottom:0}
+.zone-card li::before{content:"✓"; color:#34D399; font-weight:800; flex:0 0 auto}
+.zone-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+.zone-tabs button{font-family:var(--font-mono); font-size:11.5px; font-weight:600; padding:8px 14px; border-radius:99px;
   border:1px solid var(--border-light); background:var(--surface-light); color:var(--text-muted); transition:all .15s}
 .zone-tabs button:hover{border-color:var(--text-dark); color:var(--text-dark)}
-.zone-tabs button[aria-pressed="true"]{background:var(--surface-dark); border-color:var(--surface-dark); color:#FFFFFF}
+.zone-tabs button[aria-pressed="true"]{background:var(--surface-dark); border-color:var(--surface-dark); color:#FFFFFF; box-shadow:0 2px 8px rgba(0,0,0,0.15)}
 
 /* Methodology */
 .methodology-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:40px}
@@ -372,6 +385,10 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .nego-recom{font-family:var(--font-mono); font-size:28px; font-weight:800; color:#34D399; line-height:1.1; margin:8px 0}
 .nego-saving-badge{background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:#34D399;
   padding:6px 14px; border-radius:99px; font-size:12.5px; font-weight:700; display:inline-block; margin-top:14px}
+.price-chip{font-family:var(--font-mono); font-size:11px; font-weight:600; background:rgba(255,255,255,0.06);
+  border:1px solid var(--border-dark); color:#94A3B8; padding:5px 12px; border-radius:6px; cursor:pointer; transition:all .15s}
+.price-chip:hover{background:rgba(255,255,255,0.12); color:#FFFFFF; border-color:#CBD5E1}
+.price-chip.active{background:var(--amber); color:#090D12; border-color:var(--amber); font-weight:700}
 
 /* Case Studies */
 .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px}
@@ -393,23 +410,31 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .case-saving b{font-family:var(--font-mono); font-size:14px; color:#059669}
 
 /* Pricing Plans */
-.plans{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px}
-@media (max-width:920px){.plans{grid-template-columns:1fr; max-width:440px; margin-left:auto; margin-right:auto}}
-.plan{background:var(--surface-light); border:1px solid var(--border-light); border-radius:var(--r-lg); padding:30px 26px; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); transition:transform .15s}
-.plan:hover{transform:translateY(-2px)}
-.plan.hot{border-color:var(--amber); box-shadow:0 18px 44px rgba(245,158,11,0.12); position:relative; transform:scale(1.02)}
-.plan.hot::before{content:"Rekomendasi Terbaik"; position:absolute; top:-12px; left:24px; background:linear-gradient(135deg, #F59E0B, #D97706);
-  color:#090D12; font-size:11px; font-weight:800; font-family:var(--font-mono); padding:3px 12px; border-radius:99px}
-.plan h3{font-size:18px; font-weight:800}
-.plan .for{font-size:13.5px; color:var(--text-muted); margin:4px 0 16px}
-.plan .price{font-family:var(--font-display); font-weight:800; font-size:36px; letter-spacing:-.03em}
+.plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px}
+@media (max-width:920px){.plans{grid-template-columns:1fr; max-width:460px; margin-left:auto; margin-right:auto}}
+.plan{background:var(--surface-light); border:1.5px solid rgba(15,23,42,0.06); border-radius:18px; padding:32px 28px;
+  display:flex; flex-direction:column; box-shadow:0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.03);
+  transition:transform .18s ease, box-shadow .18s ease}
+.plan:hover{transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)}
+.plan.hot{border-color:var(--amber); border-width:2px;
+  box-shadow:0 8px 32px rgba(245,158,11,0.12), 0 24px 48px rgba(245,158,11,0.06);
+  position:relative; transform:scale(1.03);
+  background:linear-gradient(180deg, #FFFCF5 0%, #FFFFFF 40%)}
+.plan.hot:hover{transform:scale(1.03) translateY(-3px); box-shadow:0 12px 40px rgba(245,158,11,0.18), 0 28px 52px rgba(245,158,11,0.08)}
+.plan.hot::before{content:"Rekomendasi Terbaik"; position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:linear-gradient(135deg, #F59E0B, #D97706);
+  color:#090D12; font-size:11px; font-weight:800; font-family:var(--font-mono); padding:5px 16px; border-radius:99px;
+  box-shadow:0 4px 12px rgba(245,158,11,0.3); white-space:nowrap}
+.plan h3{font-size:19px; font-weight:800}
+.plan .for{font-size:13.5px; color:var(--text-muted); margin:4px 0 20px}
+.plan .price{font-family:var(--font-display); font-weight:800; font-size:38px; letter-spacing:-.03em}
 .plan .price small{font-size:14px; font-weight:500; color:var(--text-muted); font-family:var(--font-body)}
-.plan ul{list-style:none; padding:0; margin:18px 0 24px; display:grid; gap:9px; flex:1}
-.plan li{display:flex; gap:9px; font-size:13.5px; color:#334155}
+.plan ul{list-style:none; padding:0; margin:20px 0 28px; display:grid; gap:10px; flex:1}
+.plan li{display:flex; gap:10px; font-size:13.5px; color:#334155}
 .plan li::before{content:"✓"; color:#059669; font-weight:700}
 .plan li.no{color:#94A3B8}
 .plan li.no::before{content:"✕"; color:#CBD5E1}
-.plan .btn{width:100%}
+.plan .btn{width:100%; min-height:50px; font-size:15px}
 
 /* Warranty */
 .warranty{background:linear-gradient(135deg, var(--bg-dark) 0%, var(--surface-dark-2) 100%); color:#FFFFFF}
@@ -454,15 +479,15 @@ header.top{position:sticky; top:0; z-index:70; background:rgba(9,13,18,0.88); ba
 .form .fs{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin:0 0 16px}
 .f-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 @media (max-width:560px){.f-row{grid-template-columns:1fr}}
-.field{margin-bottom:15px}
-.field label{display:block; font-size:13.5px; font-weight:700; margin-bottom:6px; font-family:var(--font-display)}
-.field input,.field select,.field textarea{width:100%; min-height:44px; border:1px solid #CBD5E1; border-radius:9px;
-  padding:9px 12px; font:inherit; font-size:14.5px; background:var(--surface-light); color:var(--text-dark);
-  transition:border-color .12s, box-shadow .12s}
-.field textarea{min-height:85px; resize:vertical}
+.field{margin-bottom:16px}
+.field label{display:block; font-size:13.5px; font-weight:700; margin-bottom:7px; font-family:var(--font-display)}
+.field input,.field select,.field textarea{width:100%; min-height:48px; border:1.5px solid #E2E8F0; border-radius:12px;
+  padding:11px 16px; font:inherit; font-size:14.5px; background:var(--surface-light); color:var(--text-dark);
+  transition:border-color .15s ease, box-shadow .15s ease}
+.field textarea{min-height:90px; resize:vertical}
 .field input:hover,.field select:hover,.field textarea:hover{border-color:#94A3B8}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--amber);
-  box-shadow:0 0 0 3px rgba(245,158,11,0.18); outline:none}
+  box-shadow:0 0 0 4px rgba(245,158,11,0.12); outline:none}
 .field .hint{font-size:12px; color:var(--text-muted); margin-top:4px}
 .field.bad input{border-color:var(--rose); background:#FFFBFB}
 .field .err{display:none; font-size:12px; color:var(--rose); margin-top:5px; font-weight:600}
@@ -483,13 +508,25 @@ footer.site a:hover{color:#FFFFFF}
   flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:12px}
 
 /* WA Float */
-.wa-float{position:fixed; right:20px; bottom:20px; z-index:70; width:54px; height:54px; border-radius:50%;
-  background:#10B981; color:#FFFFFF; display:grid; place-items:center; box-shadow:0 8px 25px rgba(16,185,129,0.35); text-decoration:none;
-  transition:transform .15s, background .15s}
-.wa-float:hover{background:#059669; transform:translateY(-2px)}
+.wa-float{position:fixed; right:20px; bottom:20px; z-index:70; display:flex; align-items:center; gap:0;
+  text-decoration:none; transition:all .2s ease}
+.wa-float-icon{width:56px; height:56px; border-radius:50%; background:#10B981; color:#FFFFFF;
+  display:grid; place-items:center; box-shadow:0 8px 25px rgba(16,185,129,0.35); flex-shrink:0;
+  transition:background .15s, transform .15s; position:relative}
+.wa-float-icon::after{content:""; position:absolute; inset:-4px; border-radius:50%; border:2px solid rgba(16,185,129,0.3);
+  animation:waPulse 2s ease-out infinite}
+@keyframes waPulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.3);opacity:0}100%{opacity:0}}
+.wa-float-label{background:#10B981; color:#FFFFFF; font-family:var(--font-display); font-size:13px; font-weight:700;
+  padding:8px 14px 8px 12px; border-radius:10px 0 0 10px; white-space:nowrap;
+  max-width:0; overflow:hidden; opacity:0; transition:max-width .25s ease, opacity .2s ease, padding .25s ease; padding-left:0; padding-right:0}
+.wa-float:hover .wa-float-label{max-width:180px; opacity:1; padding:8px 14px 8px 12px}
+.wa-float:hover .wa-float-icon{background:#059669; transform:scale(1.05)}
 
-.reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease}
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .55s cubic-bezier(0.22, 0.61, 0.36, 1), transform .55s cubic-bezier(0.22, 0.61, 0.36, 1)}
 .reveal.in{opacity:1; transform:none}
+.reveal-d1{transition-delay:80ms}
+.reveal-d2{transition-delay:160ms}
+.reveal-d3{transition-delay:240ms}
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important; transition:none !important}
   .reveal{opacity:1; transform:none}
@@ -502,19 +539,17 @@ footer.site a:hover{color:#FFFFFF}
 <header class="top">
   <div class="wrap nav" id="nav">
     <a class="logo" href="#">
-      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
       zal<span style="color:var(--amber-light)">Inspection</span>
     </a>
     <nav class="nav-links" aria-label="Menu Navigasi Utama">
-      <a href="#reveal">X-Ray vs Awam</a>
-      <a href="#radar">Radar Mobil</a>
+      <a href="#reveal">Audit Forensik</a>
       <a href="#inspeksi">152 Titik Uji</a>
-      <a href="#alat">Simulator Alat</a>
-      <a href="#metode">Metodologi</a>
+      <a href="#alat">Alat &amp; SOP</a>
       <a href="#nego">Kalkulator Nego</a>
-      <a href="#harga">Harga</a>
-      <a href="laporan.html">Laporan Digital</a>
-      <a href="admin.html">Portal Inspektor</a>
+      <a href="#harga">Paket Biaya</a>
+      <a href="laporan.html">Laporan Demo</a>
+      <a href="admin.html">Portal Admin ↗</a>
     </nav>
     <a class="btn btn-amber" href="#booking">Jadwalkan Inspeksi</a>
     <button class="burger" id="burger" aria-label="Buka Menu Navigasi" aria-expanded="false">☰</button>
@@ -526,19 +561,19 @@ footer.site a:hover{color:#FFFFFF}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">Layanan Lapangan Independen: Datang ke Lokasi Anda</p>
-        <h1>Tahu kondisi mobil bekas <em>sebelum</em> Anda membayar.</h1>
-        <p class="lede">Inspektor tersertifikasi memeriksa 152 titik fisik dan digital: mulai dari kelurusan sasis utama, ketebalan cat per panel, riwayat rendaman banjir, hingga diagnosa komputer OBD-II. Laporan digital interaktif terbit maksimal 24 jam.</p>
+        <p class="eyebrow">Inspeksi Mobil Bekas Independen · Jabodetabek</p>
+        <h1>Tahu kondisi fisik &amp; riwayat mobil <em>sebelum</em> Anda membayar.</h1>
+        <p class="lede">Inspektor tersertifikasi memeriksa 152 titik fisik dan digital langsung di lokasi penjual: kelurusan sasis tiang utama, ketebalan cat per panel dengan sensor ultrasonik, riwayat rendaman banjir, hingga scanning komputer transmisi OBD-II. Laporan interaktif terbit maksimal 24 jam.</p>
         <div class="hero-cta">
           <a class="btn btn-amber" href="#booking">Jadwalkan Inspeksi Lapangan</a>
-          <button type="button" class="btn btn-ghost" id="openSampleModalBtn">Intip Laporan Digital ↗</button>
+          <button type="button" class="btn btn-ghost" id="openSampleModalBtn">Intip Sampel Laporan ↗</button>
         </div>
         <div class="trust-badges">
           <div class="trust-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <div>
               <b>100% Independen</b>
-              Bebas komisi showroom dan tanpa ikatan marketplace
+              Bebas komisi showroom &amp; tanpa ikatan marketplace
             </div>
           </div>
           <div class="trust-item">
@@ -559,27 +594,30 @@ footer.site a:hover{color:#FFFFFF}
             <span>DOKUMEN AUDIT FISIK #ZAL-JKT-8821</span>
           </div>
           <div class="hdt-inspector">
-            <span>INSPEKTOR BNSP AKTIF DI LOKASI</span>
+            <span>INSPEKTOR BNSP TERVERIFIKASI</span>
           </div>
         </div>
 
         <div class="hero-vehicle-meta">
-          <div><b>Honda CR-V 1.5 Turbo Prestige</b> · 2019</div>
-          <span>VIN: MHRRU8850KK102948 · Plat: B 1029 ZAL</span>
+          <div><b>Dokumentasi Audit Lapangan Nyata</b> · Unit #ZAL-JKT-8821</div>
+          <span>Verifikasi Ketebalan Cat &amp; Kelurusan Struktur Sasis</span>
         </div>
 
         <!-- Real Photographic Inspection Documentation -->
         <div class="hero-photo-wrap">
-          <img src="paint-inspection-gauge.jpg" alt="Dokumentasi Lapangan Nyata Pengukuran Ketebalan Cat Kap Mesin zalInspection" class="hero-dossier-photo" width="1280" height="720">
-          <div class="hud-pill hud-p1">
-            <span style="color:#34D399">●</span> TITIK UJI #04: KAP MESIN
+          <img src="paint-inspection-gauge.jpg" alt="Dokumentasi Lapangan Nyata Pengukuran Ketebalan Cat Panel zalInspection" class="hero-dossier-photo" width="1280" height="720">
+          <div class="hero-photo-watermark">
+            <span>● FOTO BUKTI AUDIT LAPANGAN</span>
           </div>
-          <div class="hud-pill hud-p2">
-            <span style="color:#FBBF24">▲</span> TEBAL CAT: 92.4 µm (OEM)
-          </div>
-          <div class="hud-stamp">
-            <b>HASIL: CAT ORISINIL PABRIK</b>
-            <span>Substrat: Aluminium · Bebas Dempul</span>
+          <div class="hero-photo-caption-bar">
+            <div class="hpc-reading">
+              <span class="hpc-val">92.4 <small>µm</small></span>
+              <span class="hpc-status">● Cat Orisinil Pabrik (OEM Range 80–130 µm)</span>
+            </div>
+            <div class="hpc-meta">
+              <span>Substrat: Baja Galvanis / Al</span><br>
+              <span>Panel: Kap Mesin Depan</span>
+            </div>
           </div>
         </div>
 
@@ -587,38 +625,62 @@ footer.site a:hover{color:#FFFFFF}
         <div class="hero-telemetry-strip">
           <div class="ht-col">
             <span class="ht-label">Idling RPM</span>
-            <span class="ht-value ok">740 RPM</span>
+            <span class="ht-value ok">740 RPM (Stabil)</span>
           </div>
           <div class="ht-col">
             <span class="ht-label">Suhu Mesin</span>
-            <span class="ht-value">88°C</span>
+            <span class="ht-value">88°C (Normal)</span>
           </div>
           <div class="ht-col">
             <span class="ht-label">DTC Error</span>
-            <span class="ht-value ok">0 Codes</span>
+            <span class="ht-value ok">0 Codes (Clean)</span>
           </div>
           <div class="ht-col">
             <span class="ht-label">Odometer ECU</span>
-            <span class="ht-value amber">54.120 km</span>
+            <span class="ht-value amber">54.120 km (Sinkron)</span>
           </div>
         </div>
         
-        <!-- Live Diagnostic Terminal Readout -->
-        <div class="terminal-compact">
-          <div class="terminal-head">
-            <span>Diagnostik Komputer: Honda CR-V 1.5 Turbo 2019</span>
-            <span class="live">Live Uji</span>
+        <!-- Authoritative Dossier Checklist Panel (Replaced Fake Terminal) -->
+        <div class="dossier-checklist-panel">
+          <div class="dcp-head">
+            <span class="dcp-label">LEMBAR VERIFIKASI SEKTOR KRITIS</span>
+            <span class="dcp-badge-grade">GRADE B+ (88/100)</span>
           </div>
-          <ul class="terminal-logs" id="terminalLogs">
-            <li data-st="ok"><span style="color:#34D399">✓</span> Struktur Apron &amp; Tiang Pilar A/B <span class="st ok">LULUS</span></li>
-            <li data-st="ok"><span style="color:#34D399">✓</span> Soket Harness ECU &amp; Bawah Karpet <span class="st ok">BEBAS BANJIR</span></li>
-            <li data-st="ok"><span style="color:#34D399">✓</span> Freeze-Frame DTC Scanner OBD-II <span class="st ok">0 FAULT CODE</span></li>
-            <li data-st="warn"><span style="color:#FBBF24">!</span> Ketebalan Cat Fender Depan Kanan (240 µm) <span class="st warn">RE-SPRAY</span></li>
-            <li data-st="ok"><span style="color:#34D399">✓</span> Fisik No. Rangka (VIN) vs STNK &amp; BPKB <span class="st ok">VALID IDENTIK</span></li>
+          <ul class="dcp-list">
+            <li>
+              <span class="dcp-check">✓</span>
+              <span class="dcp-name">Struktur Rangka &amp; Apron Sasis</span>
+              <span class="dcp-result ok">Lulus Uji Simetris</span>
+            </li>
+            <li>
+              <span class="dcp-check">✓</span>
+              <span class="dcp-name">Indikasi Banjir &amp; Harness Kelistrikan</span>
+              <span class="dcp-result ok">Bebas Korosi / Lumpur</span>
+            </li>
+            <li>
+              <span class="dcp-check">✓</span>
+              <span class="dcp-name">Sistem Komputer ECU &amp; Transmisi</span>
+              <span class="dcp-result ok">0 Fault Code</span>
+            </li>
+            <li>
+              <span class="dcp-check warn">!</span>
+              <span class="dcp-name">Ketebalan Cat Fender Depan Kanan</span>
+              <span class="dcp-result warn">Re-spray 240 µm</span>
+            </li>
+            <li>
+              <span class="dcp-check">✓</span>
+              <span class="dcp-name">Legalitas Fisik No. Mesin vs BPKB/STNK</span>
+              <span class="dcp-result ok">Identik &amp; Sah</span>
+            </li>
           </ul>
-          <div class="terminal-bar"><i id="terminalBar"></i></div>
-          <div class="terminal-foot"><span id="terminalCount">0 / 152 titik selesai</span><span>Durasi: 90 menit</span></div>
-        </div>
+          <div class="dcp-foot">
+            <div class="dcp-inspector-sign">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              <span>Inspektor: <b>Hendra Wahyudi, S.T.</b> (BNSP Reg. 4821)</span>
+            </div>
+            <a href="laporan.html" class="dcp-link">Buka Sertifikat Lengkap ↗</a>
+          </div>
       </div>
     </div>
   </div>
@@ -947,42 +1009,138 @@ footer.site a:hover{color:#FFFFFF}
       <div>
         <div class="carbox">
           <svg viewBox="0 0 760 340" role="img" aria-label="Diagram zona inspeksi kendaraan zalInspection">
-            <line x1="30" y1="300" x2="730" y2="300" stroke="#CBD5E1" stroke-width="2"/>
-            <path d="M85 262 C 90 232 108 214 150 208 L 216 200 C 262 158 318 138 386 138 C 452 138 502 156 546 198 L 630 210 C 668 216 686 234 690 262 L 690 278 L 85 278 Z"
-                  fill="#F1F5F9" stroke="#0F172A" stroke-width="2.8" stroke-linejoin="round"/>
-            <path d="M238 200 L 292 154 C 322 146 352 143 380 143 L 380 200 Z" fill="#E2E8F0" stroke="#0F172A" stroke-width="2.2"/>
-            <path d="M396 200 L 396 143 C 428 144 458 152 486 168 L 526 200 Z" fill="#E2E8F0" stroke="#0F172A" stroke-width="2.2"/>
-            <line x1="388" y1="143" x2="388" y2="276" stroke="#0F172A" stroke-width="2.2"/>
-            <path d="M300 238 h 30" stroke="#0F172A" stroke-width="2.6" stroke-linecap="round"/>
-            <path d="M430 238 h 30" stroke="#0F172A" stroke-width="2.6" stroke-linecap="round"/>
-            <circle cx="196" cy="278" r="42" fill="#0F172A"/>
-            <circle cx="196" cy="278" r="20" fill="#F1F5F9"/>
-            <circle cx="196" cy="278" r="7" fill="#0F172A"/>
-            <circle cx="576" cy="278" r="42" fill="#0F172A"/>
-            <circle cx="576" cy="278" r="20" fill="#F1F5F9"/>
-            <circle cx="576" cy="278" r="7" fill="#0F172A"/>
-            <path d="M88 246 q 16 -8 30 -6 l -2 14 l -28 0 Z" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/>
-            <path d="M688 250 q -14 -8 -26 -6 l 2 12 l 24 0 Z" fill="#EF4444" stroke="#0F172A" stroke-width="2"/>
+            <defs>
+              <pattern id="cadGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#F1F5F9" stroke-width="1"/>
+              </pattern>
+              <linearGradient id="carGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="100%" stop-color="#F1F5F9"/>
+              </linearGradient>
+            </defs>
 
+            <!-- CAD Background Grid -->
+            <rect x="0" y="0" width="760" height="340" fill="url(#cadGrid)"/>
+
+            <!-- Technical Dimension Caliper Lines -->
+            <line x1="85" y1="290" x2="685" y2="290" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="85" y1="280" x2="85" y2="300" stroke="#94A3B8" stroke-width="1.5"/>
+            <line x1="685" y1="280" x2="685" y2="300" stroke="#94A3B8" stroke-width="1.5"/>
+            <text x="385" y="318" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" fill="#64748B" font-weight="600" letter-spacing="0.06em">AUDIT SIMETRIS PANJANG KENDARAAN: 4.625 mm · TOLERANSI DEVIASI ±0.5 mm</text>
+
+            <!-- Roof Rail & Antenna -->
+            <line x1="330" y1="130" x2="510" y2="130" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="340" y1="130" x2="340" y2="135" stroke="#475569" stroke-width="2"/>
+            <line x1="500" y1="130" x2="500" y2="135" stroke="#475569" stroke-width="2"/>
+            <path d="M 525 130 L 538 120" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Modern SUV Silhouette -->
+            <path d="M 95 245 
+                     C 100 230, 115 210, 155 204
+                     L 235 198
+                     C 275 160, 315 136, 365 135
+                     L 520 135
+                     C 555 135, 595 150, 630 195
+                     L 655 210
+                     C 675 220, 685 235, 685 255
+                     L 685 265
+                     L 610 265
+                     A 44 44 0 0 0 522 265
+                     L 258 265
+                     A 44 44 0 0 0 170 265
+                     L 95 265 Z"
+                  fill="url(#carGrad)" stroke="#1E293B" stroke-width="2.4" stroke-linejoin="round"/>
+
+            <!-- Windows Glass Panes -->
+            <path d="M 252 194 L 305 146 C 328 140, 350 139, 375 139 L 375 194 Z" fill="#E2E8F0" stroke="#1E293B" stroke-width="1.8"/>
+            <path d="M 390 194 L 390 139 C 425 140, 460 146, 490 162 L 522 194 Z" fill="#E2E8F0" stroke="#1E293B" stroke-width="1.8"/>
+            <path d="M 532 194 L 500 168 C 515 176, 535 186, 545 194 Z" fill="#E2E8F0" stroke="#1E293B" stroke-width="1.6"/>
+            
+            <!-- Pillar Dividers & Door Cuts -->
+            <line x1="382" y1="139" x2="382" y2="263" stroke="#1E293B" stroke-width="2"/>
+            <path d="M 285 218 h 28" stroke="#334155" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M 425 218 h 28" stroke="#334155" stroke-width="2.2" stroke-linecap="round"/>
+
+            <!-- Body Character Waistline -->
+            <path d="M 155 204 C 280 206, 480 202, 655 210" fill="none" stroke="#CBD5E1" stroke-width="1.6"/>
+
+            <!-- Headlights & Taillights -->
+            <path d="M 98 232 C 115 226, 130 228, 140 230 L 136 242 L 96 242 Z" fill="#FEF08A" stroke="#CA8A04" stroke-width="1.5"/>
+            <path d="M 683 234 C 670 228, 655 230, 646 232 L 648 244 L 684 244 Z" fill="#FECACA" stroke="#DC2626" stroke-width="1.5"/>
+
+            <!-- Alloy Wheels Front & Rear -->
+            <g transform="translate(214, 265)">
+              <circle cx="0" cy="0" r="42" fill="#0F172A"/>
+              <circle cx="0" cy="0" r="30" fill="#334155" stroke="#64748B" stroke-width="2"/>
+              <circle cx="0" cy="0" r="22" fill="#94A3B8"/>
+              <circle cx="0" cy="0" r="14" fill="#E2E8F0"/>
+              <circle cx="0" cy="0" r="6" fill="#0F172A"/>
+              <!-- Brake Caliper Gold -->
+              <path d="M -16 -16 A 22 22 0 0 1 0 -22 L 0 -16 Z" fill="#F59E0B"/>
+              <!-- Spokes -->
+              <line x1="0" y1="-22" x2="0" y2="22" stroke="#CBD5E1" stroke-width="2.5"/>
+              <line x1="-20" y1="-10" x2="20" y2="10" stroke="#CBD5E1" stroke-width="2.5"/>
+              <line x1="-20" y1="10" x2="20" y2="-10" stroke="#CBD5E1" stroke-width="2.5"/>
+            </g>
+
+            <g transform="translate(566, 265)">
+              <circle cx="0" cy="0" r="42" fill="#0F172A"/>
+              <circle cx="0" cy="0" r="30" fill="#334155" stroke="#64748B" stroke-width="2"/>
+              <circle cx="0" cy="0" r="22" fill="#94A3B8"/>
+              <circle cx="0" cy="0" r="14" fill="#E2E8F0"/>
+              <circle cx="0" cy="0" r="6" fill="#0F172A"/>
+              <!-- Brake Caliper Gold -->
+              <path d="M -16 -16 A 22 22 0 0 1 0 -22 L 0 -16 Z" fill="#F59E0B"/>
+              <!-- Spokes -->
+              <line x1="0" y1="-22" x2="0" y2="22" stroke="#CBD5E1" stroke-width="2.5"/>
+              <line x1="-20" y1="-10" x2="20" y2="10" stroke="#CBD5E1" stroke-width="2.5"/>
+              <line x1="-20" y1="10" x2="20" y2="-10" stroke="#CBD5E1" stroke-width="2.5"/>
+            </g>
+
+            <!-- INTERACTIVE INSPECTION ZONES HOTSPOTS -->
             <g class="zone" data-zone="0" tabindex="0" role="button" aria-label="Zona 1: Eksterior dan Struktur Rangka">
-              <rect class="hit" x="60" y="190" width="140" height="70"/>
-              <g class="pin"><circle class="ring" cx="130" cy="222" r="16"/><circle class="core" cx="130" cy="222" r="15" fill="#F59E0B"/><text class="num" x="130" y="227" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="14" fill="#090D12">1</text></g>
+              <rect class="hit" x="70" y="180" width="130" height="80"/>
+              <g class="pin">
+                <circle class="ring" cx="130" cy="216" r="18"/>
+                <circle class="core" cx="130" cy="216" r="14" fill="#F59E0B"/>
+                <text class="num" x="130" y="221" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="13" fill="#090D12">1</text>
+              </g>
             </g>
+
             <g class="zone" data-zone="1" tabindex="0" role="button" aria-label="Zona 2: Interior dan Kabin">
-              <rect class="hit" x="300" y="150" width="160" height="70"/>
-              <g class="pin"><circle class="ring" cx="388" cy="182" r="16"/><circle class="core" cx="388" cy="182" r="15" fill="#F59E0B"/><text class="num" x="388" y="187" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="14" fill="#090D12">2</text></g>
+              <rect class="hit" x="320" y="140" width="160" height="80"/>
+              <g class="pin">
+                <circle class="ring" cx="400" cy="180" r="18"/>
+                <circle class="core" cx="400" cy="180" r="14" fill="#F59E0B"/>
+                <text class="num" x="400" y="185" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="13" fill="#090D12">2</text>
+              </g>
             </g>
+
             <g class="zone" data-zone="2" tabindex="0" role="button" aria-label="Zona 3: Mesin dan Transmisi">
-              <rect class="hit" x="560" y="190" width="150" height="70"/>
-              <g class="pin"><circle class="ring" cx="636" cy="228" r="16"/><circle class="core" cx="636" cy="228" r="15" fill="#F59E0B"/><text class="num" x="636" y="233" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="14" fill="#090D12">3</text></g>
+              <rect class="hit" x="200" y="170" width="110" height="70"/>
+              <g class="pin">
+                <circle class="ring" cx="245" cy="205" r="18"/>
+                <circle class="core" cx="245" cy="205" r="14" fill="#F59E0B"/>
+                <text class="num" x="245" y="210" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="13" fill="#090D12">3</text>
+              </g>
             </g>
+
             <g class="zone" data-zone="3" tabindex="0" role="button" aria-label="Zona 4: Kaki-kaki dan Uji Jalan">
-              <rect class="hit" x="150" y="248" width="100" height="80"/>
-              <g class="pin"><circle class="ring" cx="252" cy="290" r="16"/><circle class="core" cx="252" cy="290" r="15" fill="#F59E0B"/><text class="num" x="252" y="295" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="14" fill="#090D12">4</text></g>
+              <rect class="hit" x="480" y="225" width="140" height="85"/>
+              <g class="pin">
+                <circle class="ring" cx="566" cy="265" r="18"/>
+                <circle class="core" cx="566" cy="265" r="14" fill="#F59E0B"/>
+                <text class="num" x="566" y="270" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="13" fill="#090D12">4</text>
+              </g>
             </g>
+
             <g class="zone" data-zone="4" tabindex="0" role="button" aria-label="Zona 5: Surat dan Dokumen">
-              <rect class="hit" x="440" y="248" width="110" height="80"/>
-              <g class="pin"><circle class="ring" cx="500" cy="290" r="16"/><circle class="core" cx="500" cy="290" r="15" fill="#F59E0B"/><text class="num" x="500" y="295" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="14" fill="#090D12">5</text></g>
+              <rect class="hit" x="620" y="180" width="90" height="80"/>
+              <g class="pin">
+                <circle class="ring" cx="648" cy="216" r="18"/>
+                <circle class="core" cx="648" cy="216" r="14" fill="#F59E0B"/>
+                <text class="num" x="648" y="221" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="13" fill="#090D12">5</text>
+              </g>
             </g>
           </svg>
         </div>
@@ -1051,10 +1209,19 @@ footer.site a:hover{color:#FFFFFF}
     <div class="nego-calculator reveal">
       <div class="nego-layout">
         <div>
-          <label for="carPriceInput" style="font-size:13.5px; font-weight:700; color:#CBD5E1; display:block; margin-bottom:8px; font-family:var(--font-display)">Harga Iklan / Penawaran Penjual (Rp):</label>
-          <div style="display:flex; align-items:center; background:rgba(255,255,255,0.06); border:1px solid var(--border-dark); border-radius:10px; padding:0 16px">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+            <label for="carPriceInput" style="font-size:13.5px; font-weight:700; color:#CBD5E1; font-family:var(--font-display); margin:0">Harga Iklan / Penawaran Penjual:</label>
+            <span id="carPriceFormatted" style="font-family:var(--font-mono); font-size:13px; color:var(--amber-light); font-weight:700">Rp 285.000.000</span>
+          </div>
+          <div style="display:flex; align-items:center; background:rgba(255,255,255,0.06); border:1.5px solid var(--border-dark); border-radius:12px; padding:0 16px; transition:border-color .15s ease">
             <span style="font-family:var(--font-mono); color:var(--amber-light); font-weight:700; font-size:16px">Rp</span>
             <input type="number" id="carPriceInput" value="285000000" step="5000000" style="background:transparent; border:none; color:#FFFFFF; font-family:var(--font-mono); font-size:22px; font-weight:700; padding:12px; width:100%; outline:none">
+          </div>
+          <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap">
+            <button type="button" class="price-chip" data-val="145000000">Rp 145 Jt</button>
+            <button type="button" class="price-chip active" data-val="285000000">Rp 285 Jt</button>
+            <button type="button" class="price-chip" data-val="420000000">Rp 420 Jt</button>
+            <button type="button" class="price-chip" data-val="650000000">Rp 650 Jt</button>
           </div>
 
           <p style="font-size:13px; color:#94A3B8; margin:18px 0 8px">Pilih Temuan Cacat Umum Hasil Inspeksi:</p>
@@ -1191,7 +1358,7 @@ footer.site a:hover{color:#FFFFFF}
       <div class="plan reveal">
         <h3>Paket Standar</h3>
         <p class="for">Cocok untuk City Car &amp; MPV Harian</p>
-        <p class="price">Rp550<small>rb / unit</small></p>
+        <p class="price">Rp 550.000 <small>/ unit</small></p>
         <ul>
           <li>152 titik pemeriksaan terstruktur</li>
           <li>Uji jalan dinamis &amp; diagnosa scan OBD-II</li>
@@ -1206,7 +1373,7 @@ footer.site a:hover{color:#FFFFFF}
       <div class="plan hot reveal">
         <h3>Paket Menyeluruh</h3>
         <p class="for">Semua Jenis &amp; Kategori Mobil</p>
-        <p class="price">Rp750<small>rb / unit</small></p>
+        <p class="price">Rp 750.000 <small>/ unit</small></p>
         <ul>
           <li>Seluruh fitur di Paket Standar</li>
           <li>Pengukuran ketebalan cat 36 panel bodi</li>
@@ -1221,7 +1388,7 @@ footer.site a:hover{color:#FFFFFF}
       <div class="plan reveal">
         <h3>Menyeluruh + Garansi</h3>
         <p class="for">Proteksi Penuh Mobil Lolos Uji</p>
-        <p class="price">Rp1,9<small>jt / unit</small></p>
+        <p class="price">Rp 1.900.000 <small>/ unit</small></p>
         <ul>
           <li>Seluruh fitur di Paket Menyeluruh</li>
           <li>Garansi mesin &amp; transmisi selama 12 bulan</li>
@@ -1495,7 +1662,10 @@ footer.site a:hover{color:#FFFFFF}
 </div>
 
 <a class="wa-float" href="https://wa.me/62895634361840?text=Halo%20zalInspection,%20saya%20ingin%20tanya%20seputar%20inspeksi%20mobil" target="_blank" rel="noopener" aria-label="Konsultasi via WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
+  <span class="wa-float-label">Tanya Inspektor</span>
+  <span class="wa-float-icon">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.3 1.5z"/></svg>
+  </span>
 </a>
 
 <script>
@@ -1559,39 +1729,6 @@ document.querySelectorAll('.zone').forEach(el=>{
 });
 tabs.addEventListener('click',e=>{const b=e.target.closest('button'); if(b) setZone(+b.dataset.zone);});
 setZone(0);
-
-/* ---------- HERO TERMINAL LOOP ---------- */
-const tItems=[...document.querySelectorAll('#terminalLogs li')];
-const tBar=document.getElementById('terminalBar'), tCnt=document.getElementById('terminalCount');
-const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-if(reducedMotion){
-  tItems.forEach(li=>li.classList.add('show'));
-  tBar.style.width='100%';
-  tCnt.textContent='152 / 152 titik selesai';
-} else {
-  let tStep=0;
-  function runTerminal(){
-    if(tStep===0){
-      tItems.forEach(li=>li.classList.remove('show'));
-      tBar.style.width='0%';
-      tCnt.textContent='0 / 152 titik';
-    }
-    if(tStep<tItems.length){
-      tItems[tStep].classList.add('show');
-      const pct=Math.round((tStep+1)/tItems.length*100);
-      tBar.style.width=pct+'%';
-      tCnt.textContent=Math.round(152*(tStep+1)/tItems.length)+' / 152 titik selesai';
-      tStep++;
-      setTimeout(runTerminal, 850);
-    } else {
-      tStep=0;
-      setTimeout(runTerminal, 3200);
-    }
-  }
-  setTimeout(runTerminal, 500);
-}
-
 /* ---------- FORENSIC INVESTIGATION COMPARISON TABS ---------- */
 const FORENSIC_DATA = {
   sasis: {
@@ -1880,6 +2017,7 @@ simPicker.addEventListener('click', e=>{
 
 /* ---------- FAIR PRICE & NEGOTIATION CALCULATOR ---------- */
 const carPriceInput=document.getElementById('carPriceInput');
+const carPriceFormatted=document.getElementById('carPriceFormatted');
 const defectsList=document.getElementById('defectsList');
 const totalDefectCostEl=document.getElementById('totalDefectCost');
 const fairOfferPriceEl=document.getElementById('fairOfferPrice');
@@ -1891,6 +2029,7 @@ function fmtRupiah(num){
 
 function calculateNego(){
   const basePrice = parseInt(carPriceInput.value, 10) || 0;
+  if(carPriceFormatted) carPriceFormatted.textContent = fmtRupiah(basePrice);
   let defectTotal = 0;
   defectsList.querySelectorAll('input[type="checkbox"]:checked').forEach(cb=>{
     defectTotal += parseInt(cb.dataset.cost, 10) || 0;
@@ -1902,7 +2041,20 @@ function calculateNego(){
   savingBadgeEl.textContent = 'Potensi Penghematan Dana: ' + fmtRupiah(defectTotal);
 }
 
-carPriceInput.addEventListener('input', calculateNego);
+carPriceInput.addEventListener('input', ()=>{
+  document.querySelectorAll('.price-chip').forEach(c=>c.classList.remove('active'));
+  calculateNego();
+});
+
+document.querySelectorAll('.price-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.price-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    carPriceInput.value = chip.dataset.val;
+    calculateNego();
+  });
+});
+
 defectsList.addEventListener('change', calculateNego);
 calculateNego();
 
