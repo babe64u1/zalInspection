@@ -133,6 +133,10 @@ table.data-table tr:hover td{background:#F8FAFC}
 .type-btn{border:1px solid var(--line); border-radius:6px; background:#fff; padding:6px 12px; font-size:12.5px; font-weight:700; display:flex; align-items:center; gap:6px}
 .type-btn.active{border-color:var(--ink); background:var(--ink); color:#fff}
 
+.angle-tab-btn{padding:5px 12px; font-size:12px; font-weight:700; border-radius:20px; border:1px solid var(--line); background:#fff; color:var(--mist); cursor:pointer; transition:all .2s ease}
+.angle-tab-btn:hover{border-color:var(--ink); color:var(--ink)}
+.angle-tab-btn.active{background:var(--ink); color:#fff; border-color:var(--ink)}
+
 .marked-damages-table{width:100%; border-collapse:collapse; font-size:13px}
 .marked-damages-table th{background:#F1F5F9; padding:8px 12px; text-align:left; font-size:11.5px}
 .marked-damages-table td{padding:8px 12px; border-bottom:1px solid #E2E8F0}
@@ -386,20 +390,96 @@ table.data-table tr:hover td{background:#F8FAFC}
                 </button>
               </div>
 
+              <!-- MULTI-ANGLE BLUEPRINT VIEW SELECTOR -->
+              <div style="display:flex; justify-content:center; gap:8px; margin-bottom:12px; flex-wrap:wrap">
+                <button type="button" class="angle-tab-btn active" onclick="switchAdminStencilAngle('top', this)">Tampak Atas</button>
+                <button type="button" class="angle-tab-btn" onclick="switchAdminStencilAngle('side_left', this)">Samping Kiri</button>
+                <button type="button" class="angle-tab-btn" onclick="switchAdminStencilAngle('side_right', this)">Samping Kanan</button>
+                <button type="button" class="angle-tab-btn" onclick="switchAdminStencilAngle('front_rear', this)">Depan &amp; Belakang</button>
+              </div>
+
               <div class="blueprint-area" id="blueprintCanvas" onclick="handleBlueprintClick(event)">
                 <svg id="interactiveStencilSvg" viewBox="0 0 680 280" style="width:100%; max-height:260px; pointer-events:none">
-                  <!-- Car body outline -->
-                  <path d="M120 70 C160 55 240 50 340 50 C440 50 520 55 560 70 C590 85 600 120 600 140 C600 160 590 195 560 210 C520 225 440 230 340 230 C240 230 160 225 120 210 C90 195 80 160 80 140 C80 120 90 85 120 70 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="3"/>
-                  <!-- Windshield & lines -->
-                  <path d="M210 70 L250 85 C300 80 380 80 430 85 L470 70" fill="none" stroke="#607D8B" stroke-width="2"/>
-                  <path d="M230 85 L260 115 C300 110 380 110 420 115 L450 85" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
-                  <rect x="250" y="115" width="180" height="50" fill="#E2EBF0" stroke="#9AB1BF" stroke-width="1.5" rx="6"/>
-                  <path d="M230 195 L260 165 C300 170 380 170 420 165 L450 195" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
-                  <!-- Wheels -->
-                  <rect x="150" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
-                  <rect x="480" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
-                  <rect x="150" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
-                  <rect x="480" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+                  <!-- VIEW 1: TOP-DOWN BLUEPRINT -->
+                  <g id="adminSvgAngle_top">
+                    <!-- Car body outline -->
+                    <path d="M120 70 C160 55 240 50 340 50 C440 50 520 55 560 70 C590 85 600 120 600 140 C600 160 590 195 560 210 C520 225 440 230 340 230 C240 230 160 225 120 210 C90 195 80 160 80 140 C80 120 90 85 120 70 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="3"/>
+                    <!-- Windshield & lines -->
+                    <path d="M210 70 L250 85 C300 80 380 80 430 85 L470 70" fill="none" stroke="#607D8B" stroke-width="2"/>
+                    <path d="M230 85 L260 115 C300 110 380 110 420 115 L450 85" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
+                    <rect x="250" y="115" width="180" height="50" fill="#E2EBF0" stroke="#9AB1BF" stroke-width="1.5" rx="6"/>
+                    <path d="M230 195 L260 165 C300 170 380 170 420 165 L450 195" fill="#D2DFE6" stroke="#607D8B" stroke-width="2"/>
+                    <rect x="235" y="40" width="16" height="12" rx="3" fill="#607D8B"/>
+                    <rect x="235" y="228" width="16" height="12" rx="3" fill="#607D8B"/>
+                    <!-- Wheels -->
+                    <rect x="150" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
+                    <rect x="480" y="36" width="48" height="15" rx="4" fill="#0D1B24"/>
+                    <rect x="150" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+                    <rect x="480" y="229" width="48" height="15" rx="4" fill="#0D1B24"/>
+                    <line x1="200" y1="58" x2="200" y2="222" stroke="#B8CCD8" stroke-dasharray="3,3"/>
+                    <line x1="340" y1="50" x2="340" y2="230" stroke="#B8CCD8" stroke-dasharray="3,3"/>
+                    <line x1="480" y1="58" x2="480" y2="222" stroke="#B8CCD8" stroke-dasharray="3,3"/>
+                  </g>
+
+                  <!-- VIEW 2: SIDE LEFT BLUEPRINT -->
+                  <g id="adminSvgAngle_side_left" style="display:none">
+                    <line x1="60" y1="230" x2="620" y2="230" stroke="#CBD5E1" stroke-width="2"/>
+                    <circle cx="170" cy="210" r="32" fill="#0D1B24"/>
+                    <circle cx="170" cy="210" r="16" fill="#E2E8F0"/>
+                    <circle cx="510" cy="210" r="32" fill="#0D1B24"/>
+                    <circle cx="510" cy="210" r="16" fill="#E2E8F0"/>
+                    <path d="M90 195 C95 165 115 155 150 150 L210 145 C250 100 300 85 370 85 C440 85 490 100 520 145 L580 155 C605 160 615 175 615 195 L615 210 L545 210 C540 185 520 170 495 170 C470 170 450 185 445 210 L235 210 C230 185 210 170 185 170 C160 170 140 185 135 210 L90 210 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="2.5"/>
+                    <path d="M225 142 L275 100 C300 95 330 92 365 92 L365 142 Z" fill="#D2DFE6" stroke="#607D8B" stroke-width="1.8"/>
+                    <path d="M375 142 L375 92 C410 93 440 100 465 112 L505 142 Z" fill="#D2DFE6" stroke="#607D8B" stroke-width="1.8"/>
+                    <line x1="370" y1="92" x2="370" y2="208" stroke="#9AB1BF" stroke-width="1.8"/>
+                    <line x1="240" y1="142" x2="240" y2="208" stroke="#9AB1BF" stroke-width="1.8"/>
+                    <line x1="495" y1="142" x2="495" y2="208" stroke="#9AB1BF" stroke-width="1.8"/>
+                    <rect x="330" y="152" width="22" height="5" rx="2" fill="#607D8B"/>
+                    <rect x="440" y="152" width="22" height="5" rx="2" fill="#607D8B"/>
+                    <path d="M92 180 L115 175 L112 188 L92 192 Z" fill="#F5A623"/>
+                    <path d="M613 182 L592 178 L594 190 L613 194 Z" fill="#D64533"/>
+                  </g>
+
+                  <!-- VIEW 3: SIDE RIGHT BLUEPRINT -->
+                  <g id="adminSvgAngle_side_right" style="display:none">
+                    <line x1="60" y1="230" x2="620" y2="230" stroke="#CBD5E1" stroke-width="2"/>
+                    <circle cx="170" cy="210" r="32" fill="#0D1B24"/>
+                    <circle cx="170" cy="210" r="16" fill="#E2E8F0"/>
+                    <circle cx="510" cy="210" r="32" fill="#0D1B24"/>
+                    <circle cx="510" cy="210" r="16" fill="#E2E8F0"/>
+                    <path d="M590 195 C585 165 565 155 530 150 L470 145 C430 100 380 85 310 85 C240 85 190 100 160 145 L100 155 C75 160 65 175 65 195 L65 210 L135 210 C140 185 160 170 185 170 C210 170 230 185 235 210 L445 210 C450 185 470 170 495 170 C520 170 540 185 545 210 L590 210 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="2.5"/>
+                    <path d="M455 142 L405 100 C380 95 350 92 315 92 L315 142 Z" fill="#D2DFE6" stroke="#607D8B" stroke-width="1.8"/>
+                    <path d="M305 142 L305 92 C270 93 240 100 215 112 L175 142 Z" fill="#D2DFE6" stroke="#607D8B" stroke-width="1.8"/>
+                    <line x1="310" y1="92" x2="310" y2="208" stroke="#9AB1BF" stroke-width="1.8"/>
+                    <line x1="440" y1="142" x2="440" y2="208" stroke="#9AB1BF" stroke-width="1.8"/>
+                    <line x1="185" y1="142" x2="185" y2="208" stroke="#9AB1BF" stroke-width="1.8"/>
+                    <rect x="328" y="152" width="22" height="5" rx="2" fill="#607D8B"/>
+                    <rect x="218" y="152" width="22" height="5" rx="2" fill="#607D8B"/>
+                    <path d="M588 180 L565 175 L568 188 L588 192 Z" fill="#F5A623"/>
+                    <path d="M67 182 L88 178 L86 190 L67 194 Z" fill="#D64533"/>
+                  </g>
+
+                  <!-- VIEW 4: FRONT & REAR VIEW -->
+                  <g id="adminSvgAngle_front_rear" style="display:none">
+                    <!-- Front Car -->
+                    <text x="180" y="45" font-family="Archivo" font-size="12" font-weight="800" fill="#64748B" text-anchor="middle">TAMPAK DEPAN</text>
+                    <path d="M100 200 C100 130 120 110 180 110 C240 110 260 130 260 200 L260 220 L100 220 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="2.5"/>
+                    <path d="M125 125 L145 80 L215 80 L235 125 Z" fill="#D2DFE6" stroke="#607D8B" stroke-width="1.8"/>
+                    <rect x="140" y="150" width="80" height="25" rx="4" fill="#0D1B24"/>
+                    <path d="M105 155 L130 150 L130 170 L105 165 Z" fill="#F5A623"/>
+                    <path d="M255 155 L230 150 L230 170 L255 165 Z" fill="#F5A623"/>
+                    <rect x="150" y="185" width="60" height="16" fill="#fff" stroke="#000" stroke-width="1.5"/>
+
+                    <!-- Rear Car -->
+                    <text x="500" y="45" font-family="Archivo" font-size="12" font-weight="800" fill="#64748B" text-anchor="middle">TAMPAK BELAKANG</text>
+                    <path d="M420 200 C420 130 440 110 500 110 C560 110 580 130 580 200 L580 220 L420 220 Z" fill="#EEF3F6" stroke="#9AB1BF" stroke-width="2.5"/>
+                    <path d="M445 125 L465 80 L535 80 L555 125 Z" fill="#D2DFE6" stroke="#607D8B" stroke-width="1.8"/>
+                    <path d="M425 155 L450 150 L450 170 L425 165 Z" fill="#D64533"/>
+                    <path d="M575 155 L550 150 L550 170 L575 165 Z" fill="#D64533"/>
+                    <rect x="470" y="175" width="60" height="16" fill="#fff" stroke="#000" stroke-width="1.5"/>
+                    <circle cx="435" cy="225" r="7" fill="#0D1B24"/>
+                    <circle cx="565" cy="225" r="7" fill="#0D1B24"/>
+                  </g>
 
                   <!-- Dynamic Pins -->
                   <g id="liveStencilPins"></g>
@@ -706,11 +786,12 @@ const CHECKLIST_ZONES = [
 /* ACTIVE STATE */
 let appointments = [];
 let currentDamages = [
-  { num: 1, type: "baret", label: "Bumper Depan Kiri Bawah", note: "Goresan pemakaian saat parkir / serempet trotoar ringan, tidak pecah atau robek.", cx: 110, cy: 85 },
-  { num: 2, type: "penyok", label: "Pintu Kanan Belakang", note: "Lesung pipit kecil (diameter ~2cm) tanpa cat terkelupas, bisa perbaikan PDR.", cx: 430, cy: 225 },
-  { num: 3, type: "dempul", label: "Fender Kiri Belakang", note: "Ketebalan cat 180 micron (indikasi touch up/pengecatan ulang rapi).", cx: 510, cy: 65 }
+  { num: 1, type: "baret", label: "Bumper Depan Kiri Bawah", note: "Goresan pemakaian saat parkir / serempet trotoar ringan, tidak pecah atau robek.", cx: 110, cy: 85, angle: "top" },
+  { num: 2, type: "penyok", label: "Pintu Kanan Belakang", note: "Lesung pipit kecil (diameter ~2cm) tanpa cat terkelupas, bisa perbaikan PDR.", cx: 430, cy: 225, angle: "top" },
+  { num: 3, type: "dempul", label: "Fender Kiri Belakang", note: "Ketebalan cat 180 micron (indikasi touch up/pengecatan ulang rapi).", cx: 510, cy: 65, angle: "top" }
 ];
 let selectedDamageType = 'baret';
+let currentAdminStencilAngle = 'top';
 let activeEditingBookingId = "INSP-2026-0842";
 
 /* ==================== APP LIFECYCLE ==================== */
@@ -893,13 +974,27 @@ function setDamageType(type, btn) {
   btn.classList.add('active');
 }
 
+function switchAdminStencilAngle(angle, btn) {
+  currentAdminStencilAngle = angle;
+  document.querySelectorAll('.angle-tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  const angles = ['top', 'side_left', 'side_right', 'front_rear'];
+  angles.forEach(a => {
+    const el = document.getElementById('adminSvgAngle_' + a);
+    if (el) el.style.display = (a === angle) ? 'block' : 'none';
+  });
+
+  renderStencilPins();
+}
+
 function handleBlueprintClick(event) {
   const rect = document.getElementById('interactiveStencilSvg').getBoundingClientRect();
   const x = Math.round(((event.clientX - rect.left) / rect.width) * 680);
   const y = Math.round(((event.clientY - rect.top) / rect.height) * 280);
 
   // Prompt note
-  const label = prompt("Keterangan bagian bodi / posisi (cth. Bumper Depan Kanan, Pintu Kiri):", "Panel Bodi Samping");
+  const label = prompt("Keterangan bagian bodi / posisi (cth. Bumper Depan Kanan, Pintu Kiri):", "Panel Bodi");
   if (!label) return;
 
   const note = prompt("Deskripsi detail minus (cth. Goresan tipis, penyok diameter 3cm):", "Goresan pemakaian wajar");
@@ -911,7 +1006,8 @@ function handleBlueprintClick(event) {
     label: label,
     note: note,
     cx: x,
-    cy: y
+    cy: y,
+    angle: currentAdminStencilAngle
   };
 
   currentDamages.push(newDamage);
@@ -931,6 +1027,9 @@ function renderStencilPins() {
   };
 
   currentDamages.forEach((d, i) => {
+    // Only display pin on the canvas if it matches currently selected angle
+    if ((d.angle || 'top') !== currentAdminStencilAngle) return;
+
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", d.cx);
     circle.setAttribute("cy", d.cy);
@@ -965,13 +1064,24 @@ function renderDamagesTable() {
     return;
   }
 
+  const angleLabels = {
+    top: 'Tampak Atas',
+    side_left: 'Samping Kiri',
+    side_right: 'Samping Kanan',
+    front_rear: 'Depan/Belakang'
+  };
+
   currentDamages.forEach((d, idx) => {
+    const pinAngle = d.angle || 'top';
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="font-weight:700">${d.num || (idx+1)}</td>
       <td><span style="font-weight:700; text-transform:capitalize">${escapeHtml(d.type)}</span></td>
       <td>
-        <strong>${escapeHtml(d.label)}</strong>
+        <div style="display:flex; align-items:center; gap:6px">
+          <strong>${escapeHtml(d.label)}</strong>
+          <span style="font-size:10px; font-weight:700; color:#64748B; background:#EDF2F7; padding:1px 5px; border-radius:4px">${escapeHtml(angleLabels[pinAngle] || pinAngle)}</span>
+        </div>
         <div style="font-size:11.5px; color:#50626E">${escapeHtml(d.note)}</div>
       </td>
       <td style="text-align:right">
