@@ -159,6 +159,24 @@ table.data-table tr:hover td{background:#F8FAFC}
 .modal-box{background:#fff; border-radius:14px; width:100%; max-width:550px; padding:24px; box-shadow:0 20px 40px rgba(0,0,0,.2)}
 .modal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px}
 .modal-head h3{font-family:var(--display); font-size:18px; font-weight:800; margin:0}
+
+/* Share Location (Admin) */
+.admin-shareloc-btn{display:inline-flex; align-items:center; gap:6px; background:var(--blue-bg); border:1px dashed var(--blue); color:var(--blue); font-family:var(--body); font-size:12px; font-weight:600; padding:8px 14px; border-radius:8px; cursor:pointer; transition:.2s; width:100%; justify-content:center; margin-top:6px}
+.admin-shareloc-btn:hover{background:#DBEAFE; border-style:solid}
+.admin-shareloc-btn:disabled{opacity:.5; cursor:not-allowed}
+.admin-shareloc-preview{display:none; margin-top:8px; background:var(--green-bg); border:1px solid rgba(30,158,90,.25); border-radius:8px; padding:10px 12px}
+.admin-shareloc-preview.active{display:block}
+.admin-shareloc-preview .asl-badge{display:flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:var(--green); margin-bottom:4px}
+.admin-shareloc-preview .asl-coords{font-family:var(--mono); font-size:11px; color:#4B5563; margin-bottom:6px}
+.admin-shareloc-preview .asl-actions{display:flex; gap:6px; align-items:center}
+.admin-shareloc-preview .asl-link{font-size:11px; font-weight:600; color:var(--blue); text-decoration:none; display:inline-flex; align-items:center; gap:3px}
+.admin-shareloc-preview .asl-link:hover{text-decoration:underline}
+.admin-shareloc-preview .asl-remove{font-size:11px; color:var(--red); background:none; border:none; cursor:pointer; padding:0}
+.admin-shareloc-preview .asl-remove:hover{text-decoration:underline}
+.admin-shareloc-error{display:none; margin-top:6px; font-size:11px; color:var(--amber-deep); background:rgba(245,166,35,.08); border:1px solid rgba(245,166,35,.2); border-radius:6px; padding:6px 10px}
+.admin-shareloc-error.active{display:flex; align-items:center; gap:5px}
+.maps-link-cell{display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:600; color:var(--blue); text-decoration:none; margin-top:2px}
+.maps-link-cell:hover{text-decoration:underline; color:#1D4ED8}
 </style>
 </head>
 <body>
@@ -806,6 +824,20 @@ table.data-table tr:hover td{background:#F8FAFC}
       <div class="input-group" style="margin-bottom:12px">
         <label>Lokasi Inspeksi *</label>
         <input type="text" id="mLoc" required placeholder="cth. Bintaro, Tangerang Selatan">
+        <input type="hidden" id="mLocCoords" value="">
+        <input type="hidden" id="mLocMapUrl" value="">
+        <button type="button" id="adminShareLocBtn" class="admin-shareloc-btn" onclick="adminRequestGeolocation()">
+          📍 <span id="adminShareLocBtnText">Bagikan Lokasi GPS</span>
+        </button>
+        <div id="adminShareLocPreview" class="admin-shareloc-preview">
+          <div class="asl-badge">✓ Lokasi GPS Terlampir</div>
+          <div class="asl-coords" id="adminShareLocCoords"></div>
+          <div class="asl-actions">
+            <a id="adminShareLocOpenMaps" href="#" target="_blank" rel="noopener" class="asl-link">📍 Buka Maps ↗</a>
+            <button type="button" class="asl-remove" onclick="adminClearGeolocation()">✕ Hapus</button>
+          </div>
+        </div>
+        <div id="adminShareLocError" class="admin-shareloc-error"></div>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px">
         <div class="input-group">
@@ -1033,6 +1065,8 @@ const INITIAL_APPOINTMENTS = [
     car: "Honda CR-V 1.5 Turbo Prestige 2021",
     plate: "DK 1842 FZ",
     location: "Sunset Road Kuta, Badung - Bali",
+    locationCoords: "-8.7188,115.1690",
+    locationMapUrl: "https://www.google.com/maps?q=-8.7188,115.1690",
     package: "Menyeluruh — Rp750rb",
     date: "2026-09-21",
     time: "10:00 WITA",
@@ -1046,6 +1080,8 @@ const INITIAL_APPOINTMENTS = [
     car: "Toyota Kijang Innova Zenix 2.0 Q Hybrid 2023",
     plate: "DK 2031 ZAL",
     location: "Teuku Umar Barat, Denpasar, Bali",
+    locationCoords: "-8.6580,115.2126",
+    locationMapUrl: "https://www.google.com/maps?q=-8.6580,115.2126",
     package: "Menyeluruh + Garansi — Rp1,9jt",
     date: "2026-09-22",
     time: "13:30 WITA",
@@ -1059,6 +1095,8 @@ const INITIAL_APPOINTMENTS = [
     car: "Mitsubishi Pajero Sport Dakar 4x2 2020",
     plate: "DK 1198 BB",
     location: "Griya Manik Asri, Tabanan, Bali",
+    locationCoords: "-8.5397,115.1289",
+    locationMapUrl: "https://www.google.com/maps?q=-8.5397,115.1289",
     package: "Menyeluruh — Rp750rb",
     date: "2026-09-22",
     time: "15:30 WITA",
@@ -1072,6 +1110,8 @@ const INITIAL_APPOINTMENTS = [
     car: "Mazda CX-5 2.5 GT 2019",
     plate: "DK 777 QA",
     location: "Batu Bulan, Sukawati, Gianyar - Bali",
+    locationCoords: "-8.5950,115.2870",
+    locationMapUrl: "https://www.google.com/maps?q=-8.5950,115.2870",
     package: "Standar — Rp550rb",
     date: "2026-09-23",
     time: "11:00 WITA",
@@ -1671,6 +1711,7 @@ function renderAppointments(list = appointments) {
       <td>
         <div>${escapeHtml(a.date)} · ${escapeHtml(a.time || '10:00 WIB')}</div>
         <div style="font-size:12px; color:#6B7280">${escapeHtml(a.location)}</div>
+        ${a.locationMapUrl ? `<a href="${escapeHtml(a.locationMapUrl)}" target="_blank" rel="noopener" class="maps-link-cell">📍 Buka Maps ↗</a>` : ''}
       </td>
       <td><span style="font-size:12.5px; font-weight:600">${escapeHtml(a.package)}</span></td>
       <td>
@@ -2147,6 +2188,8 @@ function handleManualBooking(e) {
     car: document.getElementById('mCar').value.trim(),
     plate: "B " + Math.floor(1000 + Math.random()*8999) + " PRO",
     location: document.getElementById('mLoc').value.trim(),
+    locationCoords: document.getElementById('mLocCoords').value || '',
+    locationMapUrl: document.getElementById('mLocMapUrl').value || '',
     package: document.getElementById('mPkg').value,
     date: document.getElementById('mDate').value,
     time: "10:00 WIB",
@@ -2157,6 +2200,7 @@ function handleManualBooking(e) {
   appointments.unshift(newAppt);
   saveAppointments();
   closeModal();
+  adminClearGeolocation();
   e.target.reset();
   alert(`Jadwal booking ${newAppt.id} berhasil ditambahkan!`);
 }
@@ -2314,6 +2358,66 @@ if ('serviceWorker' in navigator) {
       console.log('SW registration note:', err);
     });
   });
+}
+
+/* ---------- ADMIN GEOLOCATION SHARE LOCATION ---------- */
+function adminRequestGeolocation() {
+  const btn = document.getElementById('adminShareLocBtn');
+  const btnText = document.getElementById('adminShareLocBtnText');
+  const preview = document.getElementById('adminShareLocPreview');
+  const errorBox = document.getElementById('adminShareLocError');
+
+  if (!navigator.geolocation) {
+    errorBox.classList.add('active');
+    errorBox.textContent = '⚠ Browser tidak mendukung GPS.';
+    return;
+  }
+
+  btn.disabled = true;
+  btnText.textContent = 'Mengambil GPS...';
+  errorBox.classList.remove('active');
+
+  navigator.geolocation.getCurrentPosition(
+    function(pos) {
+      const lat = pos.coords.latitude.toFixed(6);
+      const lng = pos.coords.longitude.toFixed(6);
+      const coords = lat + ',' + lng;
+      const mapUrl = 'https://www.google.com/maps?q=' + coords;
+
+      document.getElementById('mLocCoords').value = coords;
+      document.getElementById('mLocMapUrl').value = mapUrl;
+      document.getElementById('adminShareLocCoords').textContent = coords;
+      document.getElementById('adminShareLocOpenMaps').href = mapUrl;
+
+      preview.classList.add('active');
+      btn.style.display = 'none';
+      btn.disabled = false;
+      btnText.textContent = 'Bagikan Lokasi GPS';
+    },
+    function(err) {
+      btn.disabled = false;
+      btnText.textContent = 'Bagikan Lokasi GPS';
+      errorBox.classList.add('active');
+      const msgs = {
+        1: '⚠ Izin lokasi ditolak. Isi alamat manual.',
+        2: '⚠ Sinyal GPS tidak tersedia.',
+        3: '⚠ Timeout GPS. Coba lagi.'
+      };
+      errorBox.textContent = msgs[err.code] || '⚠ Gagal mendapatkan lokasi.';
+    },
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 }
+  );
+}
+
+function adminClearGeolocation() {
+  document.getElementById('mLocCoords').value = '';
+  document.getElementById('mLocMapUrl').value = '';
+  const preview = document.getElementById('adminShareLocPreview');
+  if (preview) preview.classList.remove('active');
+  const btn = document.getElementById('adminShareLocBtn');
+  if (btn) btn.style.display = '';
+  const errBox = document.getElementById('adminShareLocError');
+  if (errBox) errBox.classList.remove('active');
 }
 
 // Init run

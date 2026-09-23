@@ -121,6 +121,145 @@ select.form-input option {
   padding-right: 2rem;
 }
 
+/* Share Location Styles */
+.shareloc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(187, 207, 29, 0.08);
+  border: 1px dashed rgba(187, 207, 29, 0.35);
+  color: #bbcf1d;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  justify-content: center;
+}
+.shareloc-btn:hover {
+  background: rgba(187, 207, 29, 0.15);
+  border-color: rgba(187, 207, 29, 0.6);
+  box-shadow: 0 0 20px rgba(187, 207, 29, 0.1);
+}
+.shareloc-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.shareloc-btn.loading {
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(187, 207, 29, 0); }
+  50% { box-shadow: 0 0 25px rgba(187, 207, 29, 0.2); }
+}
+.shareloc-preview {
+  display: none;
+  margin-top: 10px;
+  background: rgba(187, 207, 29, 0.06);
+  border: 1px solid rgba(187, 207, 29, 0.2);
+  border-radius: 14px;
+  padding: 14px;
+  animation: blurReveal 0.5s ease-out;
+}
+.shareloc-preview.active {
+  display: block;
+}
+.shareloc-preview .loc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #22c55e;
+  margin-bottom: 8px;
+}
+.shareloc-preview .loc-coords {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+.shareloc-preview .loc-map-frame {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 10px;
+}
+.shareloc-preview .loc-map-frame iframe {
+  width: 100%;
+  height: 180px;
+  border: none;
+  filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(1.1);
+}
+.shareloc-preview .loc-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.shareloc-preview .loc-open-maps {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #bbcf1d;
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid rgba(187, 207, 29, 0.3);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.shareloc-preview .loc-open-maps:hover {
+  background: rgba(187, 207, 29, 0.1);
+  border-color: rgba(187, 207, 29, 0.5);
+}
+.shareloc-preview .loc-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ef4444;
+  background: none;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.shareloc-preview .loc-remove:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+.shareloc-error {
+  display: none;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.shareloc-error.active {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-on-scroll {
     animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important;
@@ -1182,6 +1321,39 @@ select.form-input option {
                 </label>
                 <input type="text" id="lokasi" name="lokasi" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Jl. Sunset Road Kuta / Teuku Umar Denpasar / Tabanan">
                 <p class="err text-xs text-rose-400 hidden">Titik lokasi mobil wajib diisi.</p>
+
+                <!-- Share Location GPS -->
+                <input type="hidden" id="locationCoords" name="locationCoords" value="">
+                <input type="hidden" id="locationMapUrl" name="locationMapUrl" value="">
+
+                <button type="button" id="shareLocBtn" class="shareloc-btn" onclick="requestGeolocation()">
+                  <iconify-icon icon="solar:map-point-wave-linear" width="18"></iconify-icon>
+                  <span id="shareLocBtnText">Bagikan Lokasi GPS via Google Maps</span>
+                </button>
+
+                <div id="shareLocPreview" class="shareloc-preview">
+                  <div class="loc-badge">
+                    <iconify-icon icon="solar:verified-check-bold" width="16"></iconify-icon>
+                    Lokasi GPS Terlampir
+                  </div>
+                  <div class="loc-coords" id="shareLocCoords">-8.5432, 115.2345</div>
+                  <div class="loc-map-frame" id="shareLocMapFrame"></div>
+                  <div class="loc-actions">
+                    <a id="shareLocOpenMaps" href="#" target="_blank" rel="noopener" class="loc-open-maps">
+                      <iconify-icon icon="solar:map-arrow-right-linear" width="14"></iconify-icon>
+                      Buka Google Maps
+                    </a>
+                    <button type="button" class="loc-remove" onclick="clearGeolocation()">
+                      <iconify-icon icon="solar:close-circle-linear" width="14"></iconify-icon>
+                      Hapus Pin
+                    </button>
+                  </div>
+                </div>
+
+                <div id="shareLocError" class="shareloc-error">
+                  <iconify-icon icon="solar:danger-triangle-linear" width="16"></iconify-icon>
+                  <span id="shareLocErrorMsg">Izin lokasi ditolak. Silakan isi alamat manual.</span>
+                </div>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1818,6 +1990,9 @@ select.form-input option {
       const custDate = document.getElementById('tgl').value;
       const custNote = document.getElementById('note').value.trim();
 
+      const custCoords = document.getElementById('locationCoords').value;
+      const custMapUrl = document.getElementById('locationMapUrl').value;
+
       try {
         const booking = {
           id: ticketId,
@@ -1826,6 +2001,8 @@ select.form-input option {
           car: custCar,
           plate: "DK " + Math.floor(1000 + Math.random() * 8999) + " " + ["FZ","BB","QA","DK","XX","AF"][Math.floor(Math.random()*6)],
           location: custLoc,
+          locationCoords: custCoords || '',
+          locationMapUrl: custMapUrl || '',
           package: custPkg,
           date: custDate,
           time: "10:00 WITA",
@@ -1846,10 +2023,14 @@ select.form-input option {
 
       const metaListEl = document.getElementById('okMetaList');
       if(metaListEl) {
+        const mapsLinkHtml = custMapUrl
+          ? `<div style="margin-top:4px"><a href="${custMapUrl}" target="_blank" rel="noopener" style="color:#bbcf1d; font-size:11px; font-family:'Orbitron',sans-serif; text-transform:uppercase; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:4px"><iconify-icon icon="solar:map-point-wave-linear" width="14"></iconify-icon> Buka Lokasi di Google Maps ↗</a></div>`
+          : '';
         metaListEl.innerHTML = `
           <div><b>Pemohon:</b> ${custName} (${custPhone})</div>
           <div><b>Unit Kendaraan:</b> ${custCar}</div>
           <div><b>Lokasi Unit:</b> ${custLoc}</div>
+          ${mapsLinkHtml}
           <div><b>Paket Layanan:</b> ${custPkg}</div>
           <div><b>Tanggal Rencana:</b> ${custDate}</div>
         `;
@@ -1857,11 +2038,13 @@ select.form-input option {
 
       const waSyncBtn = document.getElementById('okWaSyncBtn');
       if(waSyncBtn) {
+        const mapsLine = custMapUrl ? `• 📍 Share Location Maps: ${custMapUrl}\n` : '';
         const waMsg = `Halo Chief Dispatch zalInspection, saya telah mengajukan permohonan inspeksi:\n` +
           `• No. Tiket: ${ticketId}\n` +
           `• Pemohon: ${custName}\n` +
           `• Unit: ${custCar}\n` +
           `• Lokasi: ${custLoc}\n` +
+          mapsLine +
           `• Paket: ${custPkg}\n` +
           `• Tanggal: ${custDate}\n` +
           `Mohon alokasi dan konfirmasi penugasan inspektor lapangan Bali. Terima kasih.`;
@@ -1885,6 +2068,85 @@ select.form-input option {
   // Minimum date
   const tglInput = document.getElementById('tgl');
   if(tglInput) tglInput.min = new Date().toISOString().split('T')[0];
+
+  /* ---------- GEOLOCATION SHARE LOCATION ---------- */
+  function requestGeolocation() {
+    const btn = document.getElementById('shareLocBtn');
+    const btnText = document.getElementById('shareLocBtnText');
+    const preview = document.getElementById('shareLocPreview');
+    const errorBox = document.getElementById('shareLocError');
+    const errorMsg = document.getElementById('shareLocErrorMsg');
+
+    if (!navigator.geolocation) {
+      errorBox.classList.add('active');
+      errorMsg.textContent = 'Browser tidak mendukung GPS. Silakan isi alamat manual.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+    btnText.textContent = 'Mengambil Koordinat GPS...';
+    errorBox.classList.remove('active');
+
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const lat = position.coords.latitude.toFixed(6);
+        const lng = position.coords.longitude.toFixed(6);
+        const coords = lat + ',' + lng;
+        const mapUrl = 'https://www.google.com/maps?q=' + coords;
+
+        document.getElementById('locationCoords').value = coords;
+        document.getElementById('locationMapUrl').value = mapUrl;
+
+        document.getElementById('shareLocCoords').textContent = coords;
+        document.getElementById('shareLocOpenMaps').href = mapUrl;
+
+        const mapFrame = document.getElementById('shareLocMapFrame');
+        mapFrame.innerHTML = '<iframe src="https://maps.google.com/maps?q=' + coords + '&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer" title="Lokasi kendaraan"></iframe>';
+
+        preview.classList.add('active');
+        btn.style.display = 'none';
+        btn.disabled = false;
+        btn.classList.remove('loading');
+        btnText.textContent = 'Bagikan Lokasi GPS via Google Maps';
+      },
+      function(error) {
+        btn.disabled = false;
+        btn.classList.remove('loading');
+        btnText.textContent = 'Bagikan Lokasi GPS via Google Maps';
+
+        errorBox.classList.add('active');
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            errorMsg.textContent = 'Izin lokasi ditolak. Anda tetap bisa isi alamat manual di atas.';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            errorMsg.textContent = 'Sinyal GPS tidak tersedia. Coba lagi atau isi alamat manual.';
+            break;
+          case error.TIMEOUT:
+            errorMsg.textContent = 'Permintaan GPS timeout. Coba lagi di area terbuka.';
+            break;
+          default:
+            errorMsg.textContent = 'Gagal mendapatkan lokasi. Silakan isi alamat manual.';
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 60000
+      }
+    );
+  }
+
+  function clearGeolocation() {
+    document.getElementById('locationCoords').value = '';
+    document.getElementById('locationMapUrl').value = '';
+    document.getElementById('shareLocPreview').classList.remove('active');
+    document.getElementById('shareLocMapFrame').innerHTML = '';
+    const btn = document.getElementById('shareLocBtn');
+    btn.style.display = '';
+    document.getElementById('shareLocError').classList.remove('active');
+  }
   </script>
 </body>
 </html>
