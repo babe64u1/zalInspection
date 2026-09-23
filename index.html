@@ -4,55 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zalInspection: Layanan Inspeksi Mobil Bekas Profesional Bali</title>
-<meta name="description" content="Layanan inspeksi mobil bekas independen nomor 1 di Bali. 152 titik uji fisik, audit sasis, ketebalan cat mikron, dan scanning ECU OBD-II di lokasi kendaraan.">
+<meta name="description" content="Layanan inspeksi mobil bekas independen nomor 1 di Bali. 152 titik uji fisik, audit sasis, ketebalan cat mikron, audit indikator malfungsi panel speedometer, dan kelistrikan di lokasi kendaraan.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#000000">
 
 <style>
-.font-orbitron { font-family: 'Orbitron', sans-serif; }
+/* Semler Premium Typography */
+.font-orbitron { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: -0.01em; }
+.font-luxury { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
-body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #e4e4e7; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #000000; color: #d4d4d8; }
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb { background: rgba(187, 207, 29, 0.3); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(187, 207, 29, 0.6); }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: rgba(229, 194, 135, 0.3); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(229, 194, 135, 0.6); }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Premium Background Effects */
+/* Semler Premium Lighting & Vignette */
 .bg-radial-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 60%),
-              radial-gradient(circle at 100% 50%, rgba(187, 207, 29, 0.03) 0%, transparent 40%);
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 60%),
+              radial-gradient(circle at 100% 50%, rgba(229, 194, 135, 0.03) 0%, transparent 40%);
 }
 .cinematic-vignette {
-  background: radial-gradient(circle, transparent 40%, rgba(10,10,10,0.95) 100%);
+  background: radial-gradient(circle, transparent 35%, rgba(0,0,0,0.95) 100%);
 }
 
-/* Glassmorphism Panels */
+/* Glassmorphism Panels — Delicate Hairlines & Deep Frost */
 .glass-panel {
   background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 .glass-panel-hover:hover {
   background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-  border-color: rgba(187, 207, 29, 0.35);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(187, 207, 29, 0.12), inset 0 1px 0 rgba(255,255,255,0.2);
+  border-color: rgba(229, 194, 135, 0.35);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(229, 194, 135, 0.08), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
-/* Glowing Elements */
-.neon-glow {
-  box-shadow: 0 0 30px rgba(187, 207, 29, 0.25), inset 0 0 10px rgba(187, 207, 29, 0.15);
+/* Luxury Ambient Glow */
+.neon-glow, .luxury-glow {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(229, 194, 135, 0.15);
 }
-.neon-text-glow {
-  text-shadow: 0 0 20px rgba(187, 207, 29, 0.4);
+.neon-text-glow, .luxury-text-glow {
+  text-shadow: 0 0 20px rgba(229, 194, 135, 0.3);
 }
 
 /* Animations */
@@ -95,12 +97,12 @@ body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #e4e4
 }
 .form-input:focus {
   outline: none;
-  border-color: rgba(187, 207, 29, 0.6);
+  border-color: rgba(229, 194, 135, 0.6);
   background: rgba(255,255,255,0.05);
-  box-shadow: 0 0 30px rgba(187,207,29,0.15);
+  box-shadow: 0 0 30px rgba(229, 194, 135, 0.15);
 }
 select.form-input option {
-  background-color: #111111;
+  background-color: #0d0d0f;
   color: white;
 }
 
@@ -110,9 +112,9 @@ select.form-input option {
 }
 #main-nav.nav-scrolled {
   max-width: 1100px;
-  background: rgba(0, 0, 0, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 #main-nav.nav-scrolled .nav-inner {
   padding-top: 0.85rem;
@@ -126,10 +128,10 @@ select.form-input option {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(187, 207, 29, 0.08);
-  border: 1px dashed rgba(187, 207, 29, 0.35);
-  color: #bbcf1d;
-  font-family: 'Orbitron', sans-serif;
+  background: rgba(229, 194, 135, 0.08);
+  border: 1px dashed rgba(229, 194, 135, 0.35);
+  color: #E5C287;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -142,9 +144,9 @@ select.form-input option {
   justify-content: center;
 }
 .shareloc-btn:hover {
-  background: rgba(187, 207, 29, 0.15);
-  border-color: rgba(187, 207, 29, 0.6);
-  box-shadow: 0 0 20px rgba(187, 207, 29, 0.1);
+  background: rgba(229, 194, 135, 0.15);
+  border-color: rgba(229, 194, 135, 0.6);
+  box-shadow: 0 0 20px rgba(229, 194, 135, 0.1);
 }
 .shareloc-btn:disabled {
   opacity: 0.5;
@@ -154,14 +156,14 @@ select.form-input option {
   animation: pulseGlow 1.5s ease-in-out infinite;
 }
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 rgba(187, 207, 29, 0); }
-  50% { box-shadow: 0 0 25px rgba(187, 207, 29, 0.2); }
+  0%, 100% { box-shadow: 0 0 0 rgba(229, 194, 135, 0); }
+  50% { box-shadow: 0 0 25px rgba(229, 194, 135, 0.2); }
 }
 .shareloc-preview {
   display: none;
   margin-top: 10px;
-  background: rgba(187, 207, 29, 0.06);
-  border: 1px solid rgba(187, 207, 29, 0.2);
+  background: rgba(229, 194, 135, 0.06);
+  border: 1px solid rgba(229, 194, 135, 0.2);
   border-radius: 14px;
   padding: 14px;
   animation: blurReveal 0.5s ease-out;
@@ -173,7 +175,7 @@ select.form-input option {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -208,28 +210,28 @@ select.form-input option {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #bbcf1d;
+  color: #E5C287;
   text-decoration: none;
   padding: 6px 14px;
-  border: 1px solid rgba(187, 207, 29, 0.3);
+  border: 1px solid rgba(229, 194, 135, 0.3);
   border-radius: 8px;
   transition: all 0.2s;
 }
 .shareloc-preview .loc-open-maps:hover {
-  background: rgba(187, 207, 29, 0.1);
-  border-color: rgba(187, 207, 29, 0.5);
+  background: rgba(229, 194, 135, 0.1);
+  border-color: rgba(229, 194, 135, 0.5);
 }
 .shareloc-preview .loc-remove {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-size: 10px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #ef4444;
@@ -268,85 +270,93 @@ select.form-input option {
 </style>
 </head>
 
-<body class="text-zinc-300 overflow-x-hidden min-h-screen relative selection:bg-[#bbcf1d]/30 selection:text-white bg-[#0a0a0a]">
+<body class="text-zinc-300 overflow-x-hidden min-h-screen relative selection:bg-[#E5C287]/30 selection:text-white bg-black">
 
-  <!-- TOP FLOATING PILL NAVIGATION -->
+  <!-- TOP FLOATING PILL NAVIGATION (SEMLER PREMIUM STYLE) -->
   <header id="global-navigation" class="fixed top-5 left-0 right-0 z-[100] flex justify-center px-4 md:px-6 w-full pointer-events-none">
-    <nav id="main-nav" class="pointer-events-auto w-full max-w-[1280px] border-2 border-[#bbcf1d] shadow-[0_8px_32px_rgba(0,0,0,0.45)] rounded-full transition-all duration-300 opacity-0 bg-black/60 backdrop-blur-xl" style="animation: fadeInNav 0.6s ease-out forwards;">
-      <div class="nav-inner flex w-full px-8 md:px-12 py-5 md:py-6 items-center justify-between relative transition-all duration-300">
-        <!-- Logo Brand -->
+    <nav id="main-nav" class="pointer-events-auto w-full max-w-[1280px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] rounded-full transition-all duration-300 opacity-0 bg-black/75 backdrop-blur-2xl" style="animation: fadeInNav 0.6s ease-out forwards;">
+      <div class="nav-inner flex w-full px-6 md:px-10 py-4 md:py-5 items-center justify-between relative transition-all duration-300">
+        <!-- Logo Brand Semler Premium Style -->
         <a href="#home" class="flex-shrink-0 flex items-center gap-3 group">
-          <div class="w-9 h-9 rounded-full bg-[#bbcf1d] flex items-center justify-center text-black font-orbitron font-extrabold text-base shadow-[0_0_20px_rgba(187,207,29,0.4)] group-hover:scale-105 transition-transform">
+          <div class="w-8 h-8 rounded-full border border-[#E5C287]/40 bg-white/[0.03] flex items-center justify-center text-[#E5C287] font-semibold text-xs tracking-widest group-hover:border-[#E5C287] group-hover:scale-105 transition-all">
             Z
           </div>
-          <span class="font-orbitron font-bold text-lg md:text-xl tracking-wider text-white uppercase">
-            zal<span class="text-[#bbcf1d]">Inspection</span>
-          </span>
+          <div class="flex flex-col">
+            <span class="font-light text-base md:text-lg tracking-[0.22em] text-white uppercase leading-none">
+              ZAL<span class="text-[#E5C287] font-medium ml-1.5">PREMIUM</span>
+            </span>
+            <span class="text-[9px] font-normal tracking-[0.28em] text-neutral-400 uppercase mt-1">
+              Automotive Inspection
+            </span>
+          </div>
         </a>
 
         <!-- Desktop Navigation Links -->
         <div class="hidden lg:flex items-center gap-6 xl:gap-8">
-          <a href="#home" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="#home" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             Beranda
           </a>
-          <a href="#reveal" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="#reveal" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             Audit Forensik
           </a>
-          <a href="#inspeksi" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="#inspeksi" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             152 Titik Uji
           </a>
-          <a href="#alat" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="#alat" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             Instrumen &amp; SOP
           </a>
-          <a href="#nego" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="#nego" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             Kalkulator Nego
           </a>
-          <a href="#harga" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="#harga" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             Paket Biaya
           </a>
-          <a href="laporan.html" class="js-nav-link text-xs font-orbitron font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-[#bbcf1d] transition-all hover:scale-105">
+          <a href="laporan.html" class="js-nav-link text-xs font-medium uppercase tracking-[0.2em] text-white/70 hover:text-[#E5C287] transition-all hover:scale-105">
             Laporan Demo
           </a>
         </div>
 
-        <!-- Action CTA Button -->
+        <!-- Action CTA Button (Semler Pill Signature) -->
         <div class="flex items-center gap-3 justify-end">
-          <a href="#booking" class="hidden md:inline-flex items-center gap-2 whitespace-nowrap text-xs font-orbitron font-semibold uppercase tracking-[0.2em] bg-[#bbcf1d] text-[#0a0a0a] px-6 py-2.5 rounded-full hover:bg-[#d4e34a] transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(187,207,29,0.25)] hover:shadow-[0_0_30px_rgba(187,207,29,0.45)]">
-            Jadwalkan Inspeksi
+          <a href="#booking" class="hidden md:inline-flex items-center gap-3 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.2em] bg-white text-black pl-5 pr-2.5 py-2 rounded-full hover:bg-[#E5C287] transition-all duration-300 hover:scale-[1.02]">
+            <span>Booking</span>
+            <span class="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-[10px]">
+              <svg width="10" height="10" viewBox="0 0 13 13" fill="currentColor"><path d="M12.92 6.27L7.42 0.64C7.02 0.24 6.38 0.24 5.92 0.64C5.52 1.04 5.52 1.68 5.92 2.14L9.4 5.61H1.39C0.82 5.61 0.33 6.08 0.33 6.67C0.33 7.25 0.82 7.72 1.39 7.72H9.4L5.92 11.19C5.52 11.65 5.52 12.29 5.92 12.69C6.38 13.09 7.02 13.09 7.42 12.69L12.7 7.41C12.92 7.19 13 6.8 12.92 6.27Z"/></svg>
+            </span>
           </a>
-          <button id="mobileMenuBtn" class="lg:hidden text-white/80 hover:text-[#bbcf1d] transition-colors p-1" aria-label="Buka Menu">
+          <button id="mobileMenuBtn" class="lg:hidden text-white/80 hover:text-[#E5C287] transition-colors p-1" aria-label="Buka Menu">
             <iconify-icon icon="solar:hamburger-menu-linear" width="28"></iconify-icon>
           </button>
         </div>
       </div>
 
       <!-- Mobile Dropdown Menu -->
-      <div id="mobileMenu" class="hidden lg:hidden px-8 pb-6 pt-2 border-t border-white/10 flex flex-col gap-3 font-orbitron text-xs uppercase tracking-widest">
-        <a href="#home" class="py-2 text-white/70 hover:text-[#bbcf1d]">Beranda</a>
-        <a href="#reveal" class="py-2 text-white/70 hover:text-[#bbcf1d]">Audit Forensik</a>
-        <a href="#inspeksi" class="py-2 text-white/70 hover:text-[#bbcf1d]">152 Titik Uji</a>
-        <a href="#alat" class="py-2 text-white/70 hover:text-[#bbcf1d]">Instrumen &amp; SOP</a>
-        <a href="#nego" class="py-2 text-white/70 hover:text-[#bbcf1d]">Kalkulator Nego</a>
-        <a href="#harga" class="py-2 text-white/70 hover:text-[#bbcf1d]">Paket Biaya</a>
-        <a href="laporan.html" class="py-2 text-white/70 hover:text-[#bbcf1d]">Laporan Demo</a>
-        <a href="admin.html" class="py-2 text-[#bbcf1d]">Portal Admin</a>
-        <a href="#booking" class="mt-2 text-center bg-[#bbcf1d] text-black py-3 rounded-full font-bold">Jadwalkan Inspeksi Lapangan</a>
+      <div id="mobileMenu" class="hidden lg:hidden px-8 pb-6 pt-2 border-t border-white/10 flex flex-col gap-3 font-luxury text-xs uppercase tracking-widest">
+        <a href="#home" class="py-2 text-white/70 hover:text-[#E5C287]">Beranda</a>
+        <a href="#reveal" class="py-2 text-white/70 hover:text-[#E5C287]">Audit Forensik</a>
+        <a href="#inspeksi" class="py-2 text-white/70 hover:text-[#E5C287]">152 Titik Uji</a>
+        <a href="#alat" class="py-2 text-white/70 hover:text-[#E5C287]">Instrumen &amp; SOP</a>
+        <a href="#nego" class="py-2 text-white/70 hover:text-[#E5C287]">Kalkulator Nego</a>
+        <a href="#harga" class="py-2 text-white/70 hover:text-[#E5C287]">Paket Biaya</a>
+        <a href="laporan.html" class="py-2 text-white/70 hover:text-[#E5C287]">Laporan Demo</a>
+        <a href="admin.html" class="py-2 text-[#E5C287]">Portal Admin</a>
+        <a href="#booking" class="mt-2 text-center bg-white text-black py-3 rounded-full font-medium hover:bg-[#E5C287] transition-colors">Jadwalkan Inspeksi Lapangan</a>
       </div>
     </nav>
   </header>
 
   <!-- TOP SCROLL PROGRESS BAR -->
-  <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] w-full z-[120] bg-gradient-to-r from-transparent via-[#bbcf1d] to-[#d4e34a] pointer-events-none"></div>
+  <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] w-full z-[120] bg-gradient-to-r from-transparent via-[#E5C287] to-[#F2D7A5] pointer-events-none"></div>
 
   <main class="relative z-10 w-full flex flex-col">
 
-    <!-- 1. CINEMATIC HERO SECTION -->
-    <section id="home" class="relative w-full min-h-[100svh] overflow-hidden flex items-center shrink-0 bg-[#0a0a0a] pt-28 pb-20">
+    <!-- 1. CINEMATIC HERO SECTION (SEMLER PREMIUM EDITORIAL) -->
+    <section id="home" class="relative w-full min-h-[100svh] overflow-hidden flex items-center shrink-0 bg-black pt-28 pb-20">
       <div class="absolute inset-0 z-0 bg-black">
         <video src="https://res.cloudinary.com/detrjtngk/video/upload/v1773097900/kling_20260310_VIDEO_shot_1_5s__1814_0_1_w1gepg.mp4" autoplay loop muted playsinline disablepictureinpicture class="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-40"></video>
         <!-- Cinematic Vignette & Gradients -->
         <div class="absolute inset-0 cinematic-vignette z-10 mix-blend-multiply"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-[#0a0a0a] z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black z-10"></div>
       </div>
 
       <div class="relative z-30 w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 flex items-center">
@@ -354,46 +364,55 @@ select.form-input option {
           <!-- Eyebrow & Title -->
           <div style="opacity: 0; animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
             <div class="flex items-center gap-4 mb-6">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron font-medium tracking-widest text-[#bbcf1d] uppercase">
-                Inspeksi Mobil Bekas Independen: Wilayah Bali
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-light tracking-[0.25em] text-[#E5C287] uppercase">
+                Standar Inspeksi Prestisius · Wilayah Bali
               </span>
             </div>
 
-            <h1 class="font-orbitron font-medium uppercase leading-[1.06] tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] text-white drop-shadow-2xl">
-              Kepastian Nyata
+            <h1 class="font-light uppercase leading-[1.06] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[5.25rem] text-white">
+              Kepastian Mutlak.
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
-                Sebelum Anda Membayar
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-[#E5C287]">
+                Sebelum Anda Memutuskan.
               </span>
             </h1>
           </div>
 
-          <!-- Lede & CTA Buttons -->
+          <!-- Lede & CTA Buttons (Signature Semler Buttons) -->
           <div style="opacity: 0; animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;">
             <p class="mt-6 text-base md:text-xl text-zinc-300 font-light max-w-2xl leading-relaxed">
-              Inspektor berlisensi BNSP menguji 152 titik fisik dan digital langsung di lokasi penjual: kelurusan sasis tiang utama, ketebalan cat per panel dengan sensor ultrasonik, riwayat rendaman banjir, hingga scanning komputer transmisi OBD-II.
+              Inspektor berlisensi BNSP menguji 152 titik fisik langsung di lokasi kendaraan: audit kelurusan sasis tiang utama, ketebalan cat per panel dengan sensor mikron, inspeksi fisik indikasi banjir, hingga verifikasi indikator malfungsi panel cluster speedometer.
             </p>
 
             <div class="mt-10 flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
-              <a href="#booking" class="group relative inline-flex items-center justify-center gap-3 bg-[#bbcf1d] text-black font-orbitron font-medium text-xs uppercase tracking-widest px-8 py-4 md:px-10 md:py-5 rounded-full transition-all duration-500 hover:bg-white w-full sm:w-auto neon-glow hover:scale-[1.02]">
+              <a href="#booking" class="group relative inline-flex items-center justify-between gap-4 bg-white text-black font-medium text-xs uppercase tracking-[0.2em] pl-7 pr-2.5 py-3.5 rounded-full transition-all duration-300 hover:bg-[#E5C287] hover:scale-[1.02] shadow-[0_10px_30px_rgba(0,0,0,0.5)] w-full sm:w-auto">
                 <span>Jadwalkan Inspeksi</span>
-                <iconify-icon icon="solar:alt-arrow-right-linear" width="20" class="transition-transform duration-500 group-hover:translate-x-1"></iconify-icon>
+                <span class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
+                  <svg width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
+                    <path d="M12.92 6.27L7.42 0.64C7.02 0.24 6.38 0.24 5.92 0.64C5.52 1.04 5.52 1.68 5.92 2.14L9.4 5.61H1.39C0.82 5.61 0.33 6.08 0.33 6.67C0.33 7.25 0.82 7.72 1.39 7.72H9.4L5.92 11.19C5.52 11.65 5.52 12.29 5.92 12.69C6.38 13.09 7.02 13.09 7.42 12.69L12.7 7.41C12.92 7.19 13 6.8 12.92 6.27Z"/>
+                  </svg>
+                </span>
               </a>
-              <button type="button" id="openSampleModalBtn" class="group relative inline-flex items-center justify-center gap-3 border border-white/20 text-white font-orbitron font-medium text-xs uppercase tracking-widest px-8 py-4 md:px-10 md:py-5 rounded-full transition-all duration-500 hover:bg-white/10 w-full sm:w-auto backdrop-blur-sm">
+              <button type="button" id="openSampleModalBtn" class="group relative inline-flex items-center justify-between gap-4 border border-white/20 text-white font-medium text-xs uppercase tracking-[0.2em] pl-7 pr-2.5 py-3.5 rounded-full transition-all duration-300 hover:border-white hover:bg-white/5 w-full sm:w-auto backdrop-blur-sm">
                 <span>Lihat Sampel Laporan</span>
+                <span class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
+                  <svg width="12" height="12" viewBox="0 0 13 13" fill="currentColor">
+                    <path d="M12.92 6.27L7.42 0.64C7.02 0.24 6.38 0.24 5.92 0.64C5.52 1.04 5.52 1.68 5.92 2.14L9.4 5.61H1.39C0.82 5.61 0.33 6.08 0.33 6.67C0.33 7.25 0.82 7.72 1.39 7.72H9.4L5.92 11.19C5.52 11.65 5.52 12.29 5.92 12.69C6.38 13.09 7.02 13.09 7.42 12.69L12.7 7.41C12.92 7.19 13 6.8 12.92 6.27Z"/>
+                  </svg>
+                </span>
               </button>
             </div>
 
             <!-- Trust line under CTA -->
-            <div class="mt-8 flex flex-wrap items-center gap-4 text-xs md:text-sm font-orbitron tracking-widest text-[#ebf1d3] uppercase opacity-90">
+            <div class="mt-8 flex flex-wrap items-center gap-4 text-xs md:text-sm tracking-widest text-[#F6EADB] uppercase opacity-90 font-light">
               <span class="flex items-center gap-2">
-                <iconify-icon icon="solar:shield-check-linear" width="20" class="text-[#bbcf1d]"></iconify-icon>
+                <iconify-icon icon="solar:shield-check-linear" width="18" class="text-[#E5C287]"></iconify-icon>
                 100% Independen Tanpa Komisi
               </span>
               <span class="text-white/20 hidden sm:inline">|</span>
               <span class="flex items-center gap-2">
-                <iconify-icon icon="solar:map-point-linear" width="20" class="text-[#bbcf1d]"></iconify-icon>
+                <iconify-icon icon="solar:map-point-linear" width="18" class="text-[#E5C287]"></iconify-icon>
                 Basis Tabanan: Layani Seluruh Bali
               </span>
             </div>
@@ -403,17 +422,17 @@ select.form-input option {
 
       <!-- Scroll Indicator -->
       <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-0" style="animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;">
-        <span class="text-[10px] font-orbitron tracking-widest uppercase text-zinc-500">Scroll</span>
-        <div class="w-[1px] h-10 bg-gradient-to-b from-zinc-500 to-transparent"></div>
+        <span class="text-[10px] tracking-[0.25em] uppercase text-zinc-500 font-light">Scroll</span>
+        <div class="w-[1px] h-10 bg-gradient-to-b from-[#E5C287]/40 to-transparent"></div>
       </div>
     </section>
 
     <!-- 2. SOCIAL PROOF TRUST STRIP -->
-    <section class="relative bg-[#0a0a0a] z-20 border-y border-white/10">
+    <section class="relative bg-black z-20 border-y border-white/10">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 py-8">
           <div class="flex flex-col items-center justify-center text-center reveal-on-scroll py-4 md:py-0">
-            <div class="flex items-center gap-1.5 text-[#bbcf1d] mb-2">
+            <div class="flex items-center gap-1.5 text-[#E5C287] mb-2">
               <iconify-icon icon="solar:star-bold" width="18"></iconify-icon>
               <iconify-icon icon="solar:star-bold" width="18"></iconify-icon>
               <iconify-icon icon="solar:star-bold" width="18"></iconify-icon>
@@ -450,25 +469,25 @@ select.form-input option {
     </section>
 
     <!-- 3. FORENSIC AUDIT SECTION: SHOWROOM VS ZALINSPECTION -->
-    <section id="reveal" class="relative py-20 lg:py-24 bg-[#0a0a0a] z-20 border-b border-white/5">
+    <section id="reveal" class="relative py-20 lg:py-24 bg-black z-20 border-b border-white/5">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Audit Forensik Komparatif
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white">
               Mata Awam vs
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">
                 Instrumen Diagnostik
               </span>
             </h2>
           </div>
-          <p class="text-zinc-400 font-light max-w-md border-l-2 border-[#bbcf1d]/40 pl-6 text-sm md:text-base leading-relaxed">
+          <p class="text-zinc-400 font-light max-w-md border-l-2 border-[#E5C287]/40 pl-6 text-sm md:text-base leading-relaxed">
             Showroom memoles cat dan menyemprotkan pewangi kabin. Instrumen kami membongkar riwayat tersembunyi hingga ke sasis apron, jeroan mesin, residu banjir, dan log komputer transmisi.
           </p>
         </div>
@@ -478,7 +497,7 @@ select.form-input option {
           <!-- Category Tabs -->
           <div class="grid grid-cols-2 md:grid-cols-4 border-b border-white/10" id="forensicTabs">
             <button type="button" class="ft-btn active p-5 text-left transition-all border-b-2 border-transparent bg-white/[0.02]" data-tab="sasis">
-              <span class="text-xs font-mono font-bold text-[#bbcf1d] block mb-1">01</span>
+              <span class="text-xs font-mono font-bold text-[#E5C287] block mb-1">01</span>
               <span class="font-orbitron text-xs md:text-sm font-semibold text-white block uppercase">Struktur Sasis</span>
             </button>
             <button type="button" class="ft-btn p-5 text-left transition-all border-b-2 border-transparent hover:bg-white/[0.03]" data-tab="cat">
@@ -529,10 +548,10 @@ select.form-input option {
             </div>
 
             <!-- Kolom zalInspection -->
-            <div class="p-8 md:p-10 flex flex-col justify-between bg-[#bbcf1d]/[0.02]">
+            <div class="p-8 md:p-10 flex flex-col justify-between bg-[#E5C287]/[0.02]">
               <div>
                 <div class="flex items-center justify-between gap-4 mb-4">
-                  <span class="text-[10px] font-orbitron tracking-widest uppercase bg-[#bbcf1d]/10 text-[#bbcf1d] px-3 py-1 rounded-full border border-[#bbcf1d]/30 font-semibold">
+                  <span class="text-[10px] font-orbitron tracking-widest uppercase bg-[#E5C287]/10 text-[#E5C287] px-3 py-1 rounded-full border border-[#E5C287]/30 font-semibold">
                     Temuan Audit zalInspection
                   </span>
                   <span id="fgZalBadge" class="text-[10px] font-orbitron uppercase text-rose-400 font-semibold">
@@ -546,7 +565,7 @@ select.form-input option {
                   Pemeriksaan fisik sasis menemukan bekas tarikan hidrolik pada apron kanan depan dan las titik robotik pabrikan yang hilang digantikan las karbit manual.
                 </p>
                 <div class="bg-black/40 border border-white/10 rounded-xl p-5 mb-6">
-                  <span class="text-xs font-orbitron uppercase tracking-wider text-[#bbcf1d] block mb-3">Bukti Fisik &amp; Hasil Uji:</span>
+                  <span class="text-xs font-orbitron uppercase tracking-wider text-[#E5C287] block mb-3">Bukti Fisik &amp; Hasil Uji:</span>
                   <ul id="fgZalList" class="space-y-2 text-xs text-zinc-300 font-light">
                     <li>• Apron depan kanan: Silang las titik robot pabrik hilang, diganti dempul setebal 380 µm.</li>
                     <li>• Pilar A kanan: Ketebalan cat melonjak hingga 440 µm akibat dempul pasca benturan lateral.</li>
@@ -572,13 +591,13 @@ select.form-input option {
     </section>
 
     <!-- 4. SERVICES SHOWCASE: 6 CORE INSPECTION PILLARS -->
-    <section id="sluzby" class="relative py-20 lg:py-24 z-20" style="background: radial-gradient(circle at 50% 50%, rgba(187,207,29,0.08) 0%, #0a0a0a 70%);">
+    <section id="sluzby" class="relative py-20 lg:py-24 z-20" style="background: radial-gradient(circle at 50% 50%, rgba(229,194,135,0.04) 0%, #000000 70%);">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Cakupan Layanan
               </span>
             </div>
@@ -599,14 +618,14 @@ select.form-input option {
             <img src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=1000" alt="Inspeksi Cat dan Bodi" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent"></div>
             <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-              <iconify-icon icon="solar:pallete-2-linear" width="32" class="text-[#bbcf1d] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
-              <h3 class="uppercase text-xl font-medium text-[#bbcf1d] tracking-tight font-orbitron mb-2">
+              <iconify-icon icon="solar:pallete-2-linear" width="32" class="text-[#E5C287] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
+              <h3 class="uppercase text-xl font-medium text-[#E5C287] tracking-tight font-orbitron mb-2">
                 1. Bodi &amp; Ketebalan Cat
               </h3>
               <p class="leading-relaxed text-xs md:text-sm font-light text-zinc-300 mb-4">
                 Pengukuran 36 panel bodi dengan sensor mikron. Membedakan cat pabrik (80-130 µm) vs dempul tebal pasca insiden.
               </p>
-              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#bbcf1d] transition-colors mt-auto">
+              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#E5C287] transition-colors mt-auto">
                 34 Titik Pemeriksaan
               </span>
             </div>
@@ -617,14 +636,14 @@ select.form-input option {
             <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1000" alt="Inspeksi Rangka Sasis" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent"></div>
             <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-              <iconify-icon icon="solar:shield-check-linear" width="32" class="text-[#bbcf1d] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
-              <h3 class="uppercase text-xl font-medium text-[#bbcf1d] tracking-tight font-orbitron mb-2">
+              <iconify-icon icon="solar:shield-check-linear" width="32" class="text-[#E5C287] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
+              <h3 class="uppercase text-xl font-medium text-[#E5C287] tracking-tight font-orbitron mb-2">
                 2. Struktur Sasis Utama
               </h3>
               <p class="leading-relaxed text-xs md:text-sm font-light text-zinc-300 mb-4">
                 Audit apron mesin, pilar A/B/C, dan lantai kolong. Memastikan las titik pabrik utuh tanpa bekas sambungan las ketok.
               </p>
-              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#bbcf1d] transition-colors mt-auto">
+              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#E5C287] transition-colors mt-auto">
                 Lulus Uji Simetris Sasis
               </span>
             </div>
@@ -635,33 +654,33 @@ select.form-input option {
             <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000" alt="Mesin & Transmisi" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent"></div>
             <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-              <iconify-icon icon="solar:settings-minimalistic-linear" width="32" class="text-[#bbcf1d] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
-              <h3 class="uppercase text-xl font-medium text-[#bbcf1d] tracking-tight font-orbitron mb-2">
+              <iconify-icon icon="solar:settings-minimalistic-linear" width="32" class="text-[#E5C287] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
+              <h3 class="uppercase text-xl font-medium text-[#E5C287] tracking-tight font-orbitron mb-2">
                 3. Mesin &amp; Transmisi
               </h3>
               <p class="leading-relaxed text-xs md:text-sm font-light text-zinc-300 mb-4">
                 Analisis suara cold-start, uji kebocoran kompresi, kestabilan tekanan oli, dan kelancaran rasio perpindahan gigi matic.
               </p>
-              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#bbcf1d] transition-colors mt-auto">
+              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#E5C287] transition-colors mt-auto">
                 41 Titik Dapur Pacu
               </span>
             </div>
           </div>
 
-          <!-- Card 4: OBD-II Scanner -->
+          <!-- Card 4: Indikator Malfungsi & Kelistrikan -->
           <div class="group relative overflow-hidden rounded-[2rem] aspect-[4/3] lg:aspect-[5/4] reveal-on-scroll glass-panel block">
-            <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?q=80&w=1000" alt="Komputer OBD-II" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
+            <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?q=80&w=1000" alt="Indikator Speedometer & Kelistrikan" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent"></div>
             <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-              <iconify-icon icon="solar:laptop-minimalistic-linear" width="32" class="text-[#bbcf1d] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
-              <h3 class="uppercase text-xl font-medium text-[#bbcf1d] tracking-tight font-orbitron mb-2">
-                4. Komputer ECU &amp; Sensor
+              <iconify-icon icon="solar:speedometer-low-linear" width="32" class="text-[#E5C287] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
+              <h3 class="uppercase text-xl font-medium text-[#E5C287] tracking-tight font-orbitron mb-2">
+                4. Indikator Malfungsi &amp; Elektrikal
               </h3>
               <p class="leading-relaxed text-xs md:text-sm font-light text-zinc-300 mb-4">
-                Bi-directional scanner menembus riwayat error DTC tersembunyi, modul airbag, ABS, dan membongkar odometer reset.
+                Verifikasi lampu peringatan cluster (Check Engine/MIL, ABS, Airbag menyala normal saat kontak ON &amp; padam saat mesin hidup) serta audit kelistrikan starter dan aki.
               </p>
-              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#bbcf1d] transition-colors mt-auto">
-                0 Hidden Fault Code
+              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#E5C287] transition-colors mt-auto">
+                Instrumen Bebas Malfungsi
               </span>
             </div>
           </div>
@@ -671,15 +690,15 @@ select.form-input option {
             <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?q=80&w=1000" alt="Cek Korosi Garam & Banjir" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent"></div>
             <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-              <iconify-icon icon="solar:waterdrops-linear" width="32" class="text-[#bbcf1d] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
-              <h3 class="uppercase text-xl font-medium text-[#bbcf1d] tracking-tight font-orbitron mb-2">
+              <iconify-icon icon="solar:waterdrops-linear" width="32" class="text-[#E5C287] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
+              <h3 class="uppercase text-xl font-medium text-[#E5C287] tracking-tight font-orbitron mb-2">
                 5. Korosi Pesisir &amp; Banjir
               </h3>
               <p class="leading-relaxed text-xs md:text-sm font-light text-zinc-300 mb-4">
-                Pemeriksaan khusus uap garam laut khas mobil pesisir Bali (Canggu/Kuta) dan lumpur tersembunyi di soket harness BCM.
+                Pemeriksaan fisik indikasi banjir pada kolong jok, kolong dashboard (bebas karat banjir), karpet dasar, celah karet pilar pintu, dan audit korosi garam pesisir Bali.
               </p>
-              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#bbcf1d] transition-colors mt-auto">
-                Fokus Wilayah Bali
+              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#E5C287] transition-colors mt-auto">
+                Bebas Karat &amp; Lumpur Banjir
               </span>
             </div>
           </div>
@@ -689,14 +708,14 @@ select.form-input option {
             <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1000" alt="Uji Jalan & Dokumen" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 opacity-40 group-hover:opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent"></div>
             <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-              <iconify-icon icon="solar:document-medicine-linear" width="32" class="text-[#bbcf1d] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
-              <h3 class="uppercase text-xl font-medium text-[#bbcf1d] tracking-tight font-orbitron mb-2">
+              <iconify-icon icon="solar:document-medicine-linear" width="32" class="text-[#E5C287] mb-3 transform transition-transform duration-500 group-hover:-translate-y-1"></iconify-icon>
+              <h3 class="uppercase text-xl font-medium text-[#E5C287] tracking-tight font-orbitron mb-2">
                 6. Uji Jalan &amp; Samsat Bali
               </h3>
               <p class="leading-relaxed text-xs md:text-sm font-light text-zinc-300 mb-4">
                 Pengecekan fisik nomor rangka dan nomor mesin langsung pada BPKB/STNK Samsat Bali Plat DK, bebas blokir progresif.
               </p>
-              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#bbcf1d] transition-colors mt-auto">
+              <span class="inline-flex items-center gap-2 text-xs font-orbitron uppercase tracking-widest text-white group-hover:text-[#E5C287] transition-colors mt-auto">
                 Verifikasi Legalitas 100%
               </span>
             </div>
@@ -706,20 +725,20 @@ select.form-input option {
     </section>
 
     <!-- 5. INTERACTIVE SIMULATOR: DIGITAL PAINT GAUGE -->
-    <section id="alat" class="relative py-20 lg:py-24 bg-[#0a0a0a] z-20 border-b border-white/5">
+    <section id="alat" class="relative py-20 lg:py-24 bg-black z-20 border-b border-white/5">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Simulasi Instrumen Ultrasonik
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white">
               Uji Ketebalan Cat
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">
                 Deteksi Dempul Mikron
               </span>
             </h2>
@@ -736,19 +755,19 @@ select.form-input option {
               Pilih Panel Uji Kendaraan:
             </span>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="simPicker">
-              <button type="button" class="panel-btn active p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#bbcf1d]/50 transition-all" data-um="108" data-title="Kap Mesin Depan" data-status="green">
+              <button type="button" class="panel-btn active p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#E5C287]/50 transition-all" data-um="108" data-title="Kap Mesin Depan" data-status="green">
                 <span class="font-orbitron font-medium text-white text-sm block">Kap Mesin Depan</span>
                 <span class="text-xs text-zinc-500 font-light">Area Rawan Benturan</span>
               </button>
-              <button type="button" class="panel-btn p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#bbcf1d]/50 transition-all" data-um="175" data-title="Pintu Kanan Depan" data-status="amber">
+              <button type="button" class="panel-btn p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#E5C287]/50 transition-all" data-um="175" data-title="Pintu Kanan Depan" data-status="amber">
                 <span class="font-orbitron font-medium text-white text-sm block">Pintu Kanan Depan</span>
                 <span class="text-xs text-zinc-500 font-light">Re-spray Goresan</span>
               </button>
-              <button type="button" class="panel-btn p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#bbcf1d]/50 transition-all" data-um="440" data-title="Tiang Pilar A Kanan" data-status="red">
+              <button type="button" class="panel-btn p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#E5C287]/50 transition-all" data-um="440" data-title="Tiang Pilar A Kanan" data-status="red">
                 <span class="font-orbitron font-medium text-white text-sm block">Tiang Pilar A Sasis</span>
                 <span class="text-xs text-zinc-500 font-light">Struktur Penahan Kabin</span>
               </button>
-              <button type="button" class="panel-btn p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#bbcf1d]/50 transition-all" data-um="115" data-title="Pintu Bagasi Belakang" data-status="green">
+              <button type="button" class="panel-btn p-4 rounded-xl text-left border border-white/10 bg-white/[0.02] hover:border-[#E5C287]/50 transition-all" data-um="115" data-title="Pintu Bagasi Belakang" data-status="green">
                 <span class="font-orbitron font-medium text-white text-sm block">Pintu Bagasi Belakang</span>
                 <span class="text-xs text-zinc-500 font-light">Rawan Sundul Belakang</span>
               </button>
@@ -761,7 +780,7 @@ select.form-input option {
           <!-- Digital Gauge Screen -->
           <div class="lg:col-span-6 bg-black/60 border border-white/10 rounded-2xl p-8 text-center shadow-2xl relative">
             <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-              <span id="gaugePanelName" class="font-orbitron text-xs uppercase tracking-widest text-[#bbcf1d] font-semibold">
+              <span id="gaugePanelName" class="font-orbitron text-xs uppercase tracking-widest text-[#E5C287] font-semibold">
                 KAP MESIN DEPAN
               </span>
               <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
@@ -772,7 +791,7 @@ select.form-input option {
             <!-- Reading Display -->
             <div class="my-6">
               <div class="font-orbitron font-extrabold text-6xl md:text-7xl text-white tracking-tighter flex items-center justify-center">
-                <span id="gaugeValue" class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">108</span>
+                <span id="gaugeValue" class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">108</span>
                 <span class="text-xl md:text-2xl text-zinc-500 font-mono ml-2">µm</span>
               </div>
               <div class="mt-4 inline-block">
@@ -789,7 +808,7 @@ select.form-input option {
                 <span class="font-mono text-zinc-500">Baja Galvanis</span>
               </div>
               <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                <div id="gaugeBar" class="h-full bg-[#bbcf1d] rounded-full transition-all duration-500" style="width: 24%;"></div>
+                <div id="gaugeBar" class="h-full bg-[#E5C287] rounded-full transition-all duration-500" style="width: 24%;"></div>
               </div>
               <p id="gaugeNotes" class="mt-4 text-xs text-zinc-400 font-light leading-relaxed">
                 Ketebalan berada pada rentang standar robot perakitan pabrik. Tidak ada indikasi pembongkaran panel atau perataan dempul.
@@ -801,20 +820,20 @@ select.form-input option {
     </section>
 
     <!-- 6. 152-POINT VEHICLE BLUEPRINT & INTERACTIVE RADAR -->
-    <section id="inspeksi" class="relative py-20 lg:py-24 z-20 bg-[#0a0a0a] border-b border-white/5">
+    <section id="inspeksi" class="relative py-20 lg:py-24 z-20 bg-black border-b border-white/5">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Blueprint Arsitektur Uji
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white">
               Peta 152 Titik Uji
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">
                 Interaktif Lapangan
               </span>
             </h2>
@@ -851,38 +870,38 @@ select.form-input option {
                 <g transform="translate(214, 265)">
                   <circle cx="0" cy="0" r="40" fill="#09090b" stroke="#3f3f46" stroke-width="2"/>
                   <circle cx="0" cy="0" r="28" fill="#18181b"/>
-                  <circle cx="0" cy="0" r="10" fill="#bbcf1d" opacity="0.8"/>
+                  <circle cx="0" cy="0" r="10" fill="#E5C287" opacity="0.8"/>
                 </g>
                 <g transform="translate(566, 265)">
                   <circle cx="0" cy="0" r="40" fill="#09090b" stroke="#3f3f46" stroke-width="2"/>
                   <circle cx="0" cy="0" r="28" fill="#18181b"/>
-                  <circle cx="0" cy="0" r="10" fill="#bbcf1d" opacity="0.8"/>
+                  <circle cx="0" cy="0" r="10" fill="#E5C287" opacity="0.8"/>
                 </g>
 
                 <!-- Interactive Pins with Click Handlers -->
                 <g class="zone cursor-pointer" data-zone="0" tabindex="0" role="button">
-                  <circle cx="130" cy="216" r="18" fill="#bbcf1d" opacity="0.2" class="animate-pulse"/>
-                  <circle cx="130" cy="216" r="14" fill="#bbcf1d"/>
+                  <circle cx="130" cy="216" r="18" fill="#E5C287" opacity="0.2" class="animate-pulse"/>
+                  <circle cx="130" cy="216" r="14" fill="#E5C287"/>
                   <text x="130" y="221" text-anchor="middle" font-family="Orbitron" font-weight="800" font-size="12" fill="#000">1</text>
                 </g>
                 <g class="zone cursor-pointer" data-zone="1" tabindex="0" role="button">
-                  <circle cx="400" cy="180" r="18" fill="#bbcf1d" opacity="0.2" class="animate-pulse"/>
-                  <circle cx="400" cy="180" r="14" fill="#bbcf1d"/>
+                  <circle cx="400" cy="180" r="18" fill="#E5C287" opacity="0.2" class="animate-pulse"/>
+                  <circle cx="400" cy="180" r="14" fill="#E5C287"/>
                   <text x="400" y="185" text-anchor="middle" font-family="Orbitron" font-weight="800" font-size="12" fill="#000">2</text>
                 </g>
                 <g class="zone cursor-pointer" data-zone="2" tabindex="0" role="button">
-                  <circle cx="245" cy="205" r="18" fill="#bbcf1d" opacity="0.2" class="animate-pulse"/>
-                  <circle cx="245" cy="205" r="14" fill="#bbcf1d"/>
+                  <circle cx="245" cy="205" r="18" fill="#E5C287" opacity="0.2" class="animate-pulse"/>
+                  <circle cx="245" cy="205" r="14" fill="#E5C287"/>
                   <text x="245" y="210" text-anchor="middle" font-family="Orbitron" font-weight="800" font-size="12" fill="#000">3</text>
                 </g>
                 <g class="zone cursor-pointer" data-zone="3" tabindex="0" role="button">
-                  <circle cx="566" cy="265" r="18" fill="#bbcf1d" opacity="0.2" class="animate-pulse"/>
-                  <circle cx="566" cy="265" r="14" fill="#bbcf1d"/>
+                  <circle cx="566" cy="265" r="18" fill="#E5C287" opacity="0.2" class="animate-pulse"/>
+                  <circle cx="566" cy="265" r="14" fill="#E5C287"/>
                   <text x="566" y="270" text-anchor="middle" font-family="Orbitron" font-weight="800" font-size="12" fill="#000">4</text>
                 </g>
                 <g class="zone cursor-pointer" data-zone="4" tabindex="0" role="button">
-                  <circle cx="648" cy="216" r="18" fill="#bbcf1d" opacity="0.2" class="animate-pulse"/>
-                  <circle cx="648" cy="216" r="14" fill="#bbcf1d"/>
+                  <circle cx="648" cy="216" r="18" fill="#E5C287" opacity="0.2" class="animate-pulse"/>
+                  <circle cx="648" cy="216" r="14" fill="#E5C287"/>
                   <text x="648" y="221" text-anchor="middle" font-family="Orbitron" font-weight="800" font-size="12" fill="#000">5</text>
                 </g>
               </svg>
@@ -893,7 +912,7 @@ select.form-input option {
 
           <!-- Zone Detail Card -->
           <div class="lg:col-span-5 glass-panel rounded-[2rem] p-8 reveal-on-scroll" style="--reveal-delay: 100ms">
-            <span id="zcZone" class="text-xs font-orbitron uppercase tracking-widest text-[#bbcf1d] font-semibold block mb-2">
+            <span id="zcZone" class="text-xs font-orbitron uppercase tracking-widest text-[#E5C287] font-semibold block mb-2">
               Zona 1: 34 Titik
             </span>
             <h3 id="zcTitle" class="font-orbitron text-2xl font-medium text-white mb-2">
@@ -909,20 +928,20 @@ select.form-input option {
     </section>
 
     <!-- 7. FAIR PRICE & NEGOTIATION CALCULATOR -->
-    <section id="nego" class="relative py-20 lg:py-24 bg-[#0a0a0a] z-20 border-b border-white/5">
+    <section id="nego" class="relative py-20 lg:py-24 bg-black z-20 border-b border-white/5">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Kalkulator Nego Cacat
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white">
               Hitung Potensi Hemat
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">
                 Berdasarkan Temuan Fisik
               </span>
             </h2>
@@ -940,7 +959,7 @@ select.form-input option {
                 <label for="carPriceInput" class="text-xs font-orbitron uppercase tracking-wider text-zinc-400">
                   Harga Iklan Penjual:
                 </label>
-                <span id="carPriceFormatted" class="font-mono text-sm text-[#bbcf1d] font-bold">
+                <span id="carPriceFormatted" class="font-mono text-sm text-[#E5C287] font-bold">
                   Rp 285.000.000
                 </span>
               </div>
@@ -950,7 +969,7 @@ select.form-input option {
               </div>
               <div class="flex gap-2 mt-2 flex-wrap">
                 <button type="button" class="price-chip text-[11px] font-orbitron px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-zinc-400 hover:text-white" data-val="145000000">Rp 145 Jt</button>
-                <button type="button" class="price-chip active text-[11px] font-orbitron px-3 py-1 rounded-full border border-[#bbcf1d] bg-[#bbcf1d]/10 text-[#bbcf1d]" data-val="285000000">Rp 285 Jt</button>
+                <button type="button" class="price-chip active text-[11px] font-orbitron px-3 py-1 rounded-full border border-[#E5C287] bg-[#E5C287]/10 text-[#E5C287]" data-val="285000000">Rp 285 Jt</button>
                 <button type="button" class="price-chip text-[11px] font-orbitron px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-zinc-400 hover:text-white" data-val="420000000">Rp 420 Jt</button>
                 <button type="button" class="price-chip text-[11px] font-orbitron px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-zinc-400 hover:text-white" data-val="650000000">Rp 650 Jt</button>
               </div>
@@ -963,28 +982,28 @@ select.form-input option {
               <div class="space-y-2" id="defectsList">
                 <label class="defect-label flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-white/[0.02] cursor-pointer hover:border-white/20 transition-all text-xs md:text-sm">
                   <span class="flex items-center gap-3">
-                    <input type="checkbox" data-cost="3500000" checked class="accent-[#bbcf1d]">
+                    <input type="checkbox" data-cost="3500000" checked class="accent-[#E5C287]">
                     Dempul dan cat ulang 2 panel bodi
                   </span>
                   <span class="font-mono text-rose-400 font-bold">+Rp 3.500.000</span>
                 </label>
                 <label class="defect-label flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-white/[0.02] cursor-pointer hover:border-white/20 transition-all text-xs md:text-sm">
                   <span class="flex items-center gap-3">
-                    <input type="checkbox" data-cost="2800000" checked class="accent-[#bbcf1d]">
+                    <input type="checkbox" data-cost="2800000" checked class="accent-[#E5C287]">
                     Kampas rem &amp; piringan cakram depan tipis
                   </span>
                   <span class="font-mono text-rose-400 font-bold">+Rp 2.800.000</span>
                 </label>
                 <label class="defect-label flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-white/[0.02] cursor-pointer hover:border-white/20 transition-all text-xs md:text-sm">
                   <span class="flex items-center gap-3">
-                    <input type="checkbox" data-cost="4500000" checked class="accent-[#bbcf1d]">
+                    <input type="checkbox" data-cost="4500000" checked class="accent-[#E5C287]">
                     Shockbreaker depan bocor &amp; bushing pecah
                   </span>
                   <span class="font-mono text-rose-400 font-bold">+Rp 4.500.000</span>
                 </label>
                 <label class="defect-label flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-white/[0.02] cursor-pointer hover:border-white/20 transition-all text-xs md:text-sm">
                   <span class="flex items-center gap-3">
-                    <input type="checkbox" data-cost="1800000" class="accent-[#bbcf1d]">
+                    <input type="checkbox" data-cost="1800000" class="accent-[#E5C287]">
                     Rembesan oli seal cover klep mesin
                   </span>
                   <span class="font-mono text-rose-400 font-bold">+Rp 1.800.000</span>
@@ -1003,18 +1022,18 @@ select.form-input option {
             </div>
 
             <div class="pt-6 border-t border-white/10">
-              <span class="text-xs font-orbitron uppercase tracking-widest text-[#bbcf1d] block mb-1">
+              <span class="text-xs font-orbitron uppercase tracking-widest text-[#E5C287] block mb-1">
                 Rekomendasi Tawaran Maksimal:
               </span>
               <div id="fairOfferPrice" class="font-orbitron font-extrabold text-3xl text-white mb-4">
                 Rp 274.200.000
               </div>
-              <span id="savingBadge" class="inline-block text-xs font-orbitron uppercase px-4 py-1.5 rounded-full bg-[#bbcf1d]/10 text-[#bbcf1d] border border-[#bbcf1d]/30 font-semibold mb-6">
+              <span id="savingBadge" class="inline-block text-xs font-orbitron uppercase px-4 py-1.5 rounded-full bg-[#E5C287]/10 text-[#E5C287] border border-[#E5C287]/30 font-semibold mb-6">
                 Potensi Hemat: Rp 10.800.000
               </span>
             </div>
 
-            <a id="negoWaBtn" href="#" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-[#bbcf1d] text-black font-orbitron text-xs uppercase tracking-widest py-4 rounded-full font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(187,207,29,0.2)]">
+            <a id="negoWaBtn" href="#" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-[#E5C287] text-black font-orbitron text-xs uppercase tracking-widest py-4 rounded-full font-bold hover:bg-white transition-all shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
               <span>Konsultasi Hasil Nego via WhatsApp</span>
               <iconify-icon icon="solar:alt-arrow-right-linear" width="16"></iconify-icon>
             </a>
@@ -1024,20 +1043,20 @@ select.form-input option {
     </section>
 
     <!-- 8. TRANSPARENT PRICING PLANS -->
-    <section id="harga" class="relative py-20 lg:py-24 bg-[#0a0a0a] z-20 border-b border-white/5">
+    <section id="harga" class="relative py-20 lg:py-24 bg-black z-20 border-b border-white/5">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Tarif Transparan
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white">
               Investasi Terjangkau
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">
                 Proteksi Puluhan Juta
               </span>
             </h2>
@@ -1057,10 +1076,10 @@ select.form-input option {
                 Rp 550.000 <span class="text-xs text-zinc-500 font-normal">/ unit</span>
               </div>
               <ul class="space-y-3 text-xs md:text-sm text-zinc-300 font-light mb-8">
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> 152 titik pemeriksaan terstruktur</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Uji jalan dinamis &amp; scan OBD-II</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Laporan digital interaktif 24 jam</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Konsultasi teknis via WhatsApp</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> 152 titik pemeriksaan terstruktur</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Uji jalan dinamis &amp; cek lampu instrumen cluster</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Laporan digital interaktif 24 jam</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Konsultasi teknis via WhatsApp</li>
                 <li class="flex items-center gap-2 text-zinc-600"><iconify-icon icon="solar:close-circle-linear"></iconify-icon> Sensor cat mikron 36 panel</li>
               </ul>
             </div>
@@ -1070,25 +1089,25 @@ select.form-input option {
           </div>
 
           <!-- Menyeluruh (Featured) -->
-          <div class="glass-panel p-8 rounded-[2rem] flex flex-col justify-between reveal-on-scroll relative border-2 border-[#bbcf1d] shadow-[0_0_30px_rgba(187,207,29,0.15)]" style="--reveal-delay: 100ms">
-            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#bbcf1d] text-black text-[10px] font-orbitron uppercase tracking-widest px-4 py-1 rounded-full font-bold">
+          <div class="glass-panel p-8 rounded-[2rem] flex flex-col justify-between reveal-on-scroll relative border border-[#E5C287]/60 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(229,194,135,0.12)]" style="--reveal-delay: 100ms">
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#E5C287] text-black text-[10px] font-orbitron uppercase tracking-widest px-4 py-1 rounded-full font-bold">
               Paling Direkomendasikan
             </span>
             <div>
               <h3 class="font-orbitron text-xl font-medium text-white mb-1">Paket Menyeluruh</h3>
-              <p class="text-xs text-[#bbcf1d] font-orbitron uppercase tracking-widest mb-6">Semua Jenis &amp; Kategori Mobil</p>
+              <p class="text-xs text-[#E5C287] font-orbitron uppercase tracking-widest mb-6">Semua Jenis &amp; Kategori Mobil</p>
               <div class="font-orbitron font-bold text-4xl text-white mb-6">
                 Rp 750.000 <span class="text-xs text-zinc-500 font-normal">/ unit</span>
               </div>
               <ul class="space-y-3 text-xs md:text-sm text-zinc-300 font-light mb-8">
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Seluruh fitur di Paket Standar</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Pengukuran cat 36 panel mikron</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Audit manipulasi odometer riil</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Estimasi biaya perbaikan tiap temuan</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Prioritas penugasan same-day</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Seluruh fitur di Paket Standar</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Pengukuran cat 36 panel mikron</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Audit manipulasi odometer riil</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Estimasi biaya perbaikan tiap temuan</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Prioritas penugasan same-day</li>
               </ul>
             </div>
-            <a href="#booking" class="w-full inline-flex justify-center bg-[#bbcf1d] text-black font-orbitron text-xs uppercase tracking-widest py-3.5 rounded-full font-bold hover:bg-white transition-all shadow-[0_0_20px_rgba(187,207,29,0.3)]">
+            <a href="#booking" class="w-full inline-flex justify-center bg-[#E5C287] text-black font-orbitron text-xs uppercase tracking-widest py-3.5 rounded-full font-bold hover:bg-white transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)]">
               Pilih Menyeluruh
             </a>
           </div>
@@ -1102,10 +1121,10 @@ select.form-input option {
                 Rp 1.900.000 <span class="text-xs text-zinc-500 font-normal">/ unit</span>
               </div>
               <ul class="space-y-3 text-xs md:text-sm text-zinc-300 font-light mb-8">
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Seluruh fitur di Paket Menyeluruh</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Garansi mesin &amp; transmisi 12 bulan</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Batas pertanggungan s/d Rp80 juta</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#bbcf1d]"></iconify-icon> Derek darurat 24 jam wilayah Bali</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Seluruh fitur di Paket Menyeluruh</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Garansi mesin &amp; transmisi 12 bulan</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Batas pertanggungan s/d Rp80 juta</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-read-linear" class="text-[#E5C287]"></iconify-icon> Derek darurat 24 jam wilayah Bali</li>
               </ul>
             </div>
             <a href="#booking" class="w-full inline-flex justify-center border border-white/20 text-white font-orbitron text-xs uppercase tracking-widest py-3.5 rounded-full hover:bg-white/10 transition-colors">
@@ -1117,30 +1136,30 @@ select.form-input option {
     </section>
 
     <!-- 9. REAL REVIEWS & SOCIAL PROOF -->
-    <section id="recenze" class="relative py-20 lg:py-24 bg-[#0a0a0a] z-20 border-b border-white/5">
+    <section id="recenze" class="relative py-20 lg:py-24 bg-black z-20 border-b border-white/5">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 mb-12">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 reveal-on-scroll">
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Testimoni Klien
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white">
               Bukti Nyata
               <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#bbcf1d]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E5C287]">
                 Inspeksi di Lapangan
               </span>
             </h2>
           </div>
 
-          <a href="https://www.google.com/maps/place/Zal+Inspeksi+Mobil+Terpercaya,+Griya+Manik+Asri+4+no+12a,+jalan+bedugul+gang+lindung+banjar+anyar+senapahan+tabanan+bal,+Kabupaten+Tabanan,+Bali/data=!4m2!3m1!1s0x2dd23bdc9660e9fd:0xc375807c404803d8!18m1!1e1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-black/60 border border-white/10 px-5 py-3 rounded-2xl hover:border-[#bbcf1d]/40 transition-colors">
-            <iconify-icon icon="solar:medal-star-linear" width="28" class="text-[#bbcf1d]"></iconify-icon>
+          <a href="https://www.google.com/maps/place/Zal+Inspeksi+Mobil+Terpercaya,+Griya+Manik+Asri+4+no+12a,+jalan+bedugul+gang+lindung+banjar+anyar+senapahan+tabanan+bal,+Kabupaten+Tabanan,+Bali/data=!4m2!3m1!1s0x2dd23bdc9660e9fd:0xc375807c404803d8!18m1!1e1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-black/60 border border-white/10 px-5 py-3 rounded-2xl hover:border-[#E5C287]/40 transition-colors">
+            <iconify-icon icon="solar:medal-star-linear" width="28" class="text-[#E5C287]"></iconify-icon>
             <div>
               <div class="font-orbitron font-bold text-white text-base leading-none">
-                4.9 <span class="text-[#bbcf1d]">★</span> <span class="text-zinc-500 text-xs font-light">/ 5.0</span>
+                4.9 <span class="text-[#E5C287]">★</span> <span class="text-zinc-500 text-xs font-light">/ 5.0</span>
               </div>
               <span class="text-[10px] font-inter uppercase tracking-widest text-zinc-500">Google Maps Tabanan Bali</span>
             </div>
@@ -1152,7 +1171,7 @@ select.form-input option {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="glass-panel p-8 rounded-[2rem] flex flex-col justify-between">
             <div>
-              <div class="flex items-center gap-1 text-[#bbcf1d] mb-4">
+              <div class="flex items-center gap-1 text-[#E5C287] mb-4">
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
@@ -1164,7 +1183,7 @@ select.form-input option {
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-white/10">
-              <div class="w-10 h-10 rounded-full bg-[#bbcf1d]/10 text-[#bbcf1d] font-orbitron font-bold flex items-center justify-center text-xs">
+              <div class="w-10 h-10 rounded-full bg-[#E5C287]/10 text-[#E5C287] font-orbitron font-bold flex items-center justify-center text-xs">
                 HW
               </div>
               <div>
@@ -1176,7 +1195,7 @@ select.form-input option {
 
           <div class="glass-panel p-8 rounded-[2rem] flex flex-col justify-between" style="--reveal-delay: 100ms">
             <div>
-              <div class="flex items-center gap-1 text-[#bbcf1d] mb-4">
+              <div class="flex items-center gap-1 text-[#E5C287] mb-4">
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
@@ -1188,7 +1207,7 @@ select.form-input option {
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-white/10">
-              <div class="w-10 h-10 rounded-full bg-[#bbcf1d]/10 text-[#bbcf1d] font-orbitron font-bold flex items-center justify-center text-xs">
+              <div class="w-10 h-10 rounded-full bg-[#E5C287]/10 text-[#E5C287] font-orbitron font-bold flex items-center justify-center text-xs">
                 IP
               </div>
               <div>
@@ -1200,7 +1219,7 @@ select.form-input option {
 
           <div class="glass-panel p-8 rounded-[2rem] flex flex-col justify-between" style="--reveal-delay: 200ms">
             <div>
-              <div class="flex items-center gap-1 text-[#bbcf1d] mb-4">
+              <div class="flex items-center gap-1 text-[#E5C287] mb-4">
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
                 <iconify-icon icon="solar:star-bold" width="16"></iconify-icon>
@@ -1212,7 +1231,7 @@ select.form-input option {
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-white/10">
-              <div class="w-10 h-10 rounded-full bg-[#bbcf1d]/10 text-[#bbcf1d] font-orbitron font-bold flex items-center justify-center text-xs">
+              <div class="w-10 h-10 rounded-full bg-[#E5C287]/10 text-[#E5C287] font-orbitron font-bold flex items-center justify-center text-xs">
                 MA
               </div>
               <div>
@@ -1226,20 +1245,20 @@ select.form-input option {
     </section>
 
     <!-- 10. OFFICIAL BOOKING FORM & BALI TERRITORY DISPATCH DESK -->
-    <section id="booking" class="relative py-20 lg:py-28 bg-[#0a0a0a] z-20">
+    <section id="booking" class="relative py-20 lg:py-28 bg-black z-20">
       <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <!-- Left: Territory Info -->
           <div class="lg:col-span-2 reveal-on-scroll">
             <div class="flex items-center gap-4 mb-6">
-              <span class="w-12 h-[1px] bg-[#bbcf1d]"></span>
-              <span class="text-xs font-orbitron tracking-widest text-[#bbcf1d] uppercase font-semibold">
+              <span class="w-12 h-[1px] bg-[#E5C287]"></span>
+              <span class="text-xs font-orbitron tracking-widest text-[#E5C287] uppercase font-semibold">
                 Alokasi Penugasan Lapangan
               </span>
             </div>
             <h2 class="font-orbitron font-medium uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl text-white mb-6 leading-[1.1]">
               Jadwalkan Inspeksi
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#bbcf1d] to-[#d4e34a]">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#E5C287] to-[#F2D7A5]">
                 di Seluruh Bali.
               </span>
             </h2>
@@ -1249,31 +1268,31 @@ select.form-input option {
 
             <div class="space-y-6">
               <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#bbcf1d]">
+                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#E5C287]">
                   <iconify-icon icon="solar:map-point-linear" width="22"></iconify-icon>
                 </div>
                 <div>
-                  <h4 class="text-xs uppercase font-medium text-[#bbcf1d] tracking-widest font-orbitron mb-1">
+                  <h4 class="text-xs uppercase font-medium text-[#E5C287] tracking-widest font-orbitron mb-1">
                     Kantor Operasional zalInspection
                   </h4>
                   <p class="text-xs text-zinc-300 font-light leading-relaxed">
                     Griya Manik Asri 4 No. 12A, Jl. Bedugul Gg. Lindung, Banjar Anyar, Senapahan, Tabanan, Bali
                   </p>
-                  <a href="https://www.google.com/maps/place/Zal+Inspeksi+Mobil+Terpercaya,+Griya+Manik+Asri+4+no+12a,+jalan+bedugul+gang+lindung+banjar+anyar+senapahan+tabanan+bal,+Kabupaten+Tabanan,+Bali/data=!4m2!3m1!1s0x2dd23bdc9660e9fd:0xc375807c404803d8!18m1!1e1" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-[11px] font-orbitron text-[#bbcf1d] hover:underline mt-2">
+                  <a href="https://www.google.com/maps/place/Zal+Inspeksi+Mobil+Terpercaya,+Griya+Manik+Asri+4+no+12a,+jalan+bedugul+gang+lindung+banjar+anyar+senapahan+tabanan+bal,+Kabupaten+Tabanan,+Bali/data=!4m2!3m1!1s0x2dd23bdc9660e9fd:0xc375807c404803d8!18m1!1e1" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-[11px] font-orbitron text-[#E5C287] hover:underline mt-2">
                     Buka Google Maps
                   </a>
                 </div>
               </div>
 
               <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#bbcf1d]">
+                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#E5C287]">
                   <iconify-icon icon="solar:phone-calling-linear" width="22"></iconify-icon>
                 </div>
                 <div>
-                  <h4 class="text-xs uppercase font-medium text-[#bbcf1d] tracking-widest font-orbitron mb-1">
+                  <h4 class="text-xs uppercase font-medium text-[#E5C287] tracking-widest font-orbitron mb-1">
                     Hotline &amp; Dispatch Cepat (WITA)
                   </h4>
-                  <a href="https://wa.me/62895634361840" target="_blank" rel="noopener" class="text-sm text-white font-light hover:text-[#bbcf1d] transition-colors block font-mono">
+                  <a href="https://wa.me/62895634361840" target="_blank" rel="noopener" class="text-sm text-white font-light hover:text-[#E5C287] transition-colors block font-mono">
                     +62 895-6343-61840
                   </a>
                 </div>
@@ -1289,14 +1308,14 @@ select.form-input option {
                   <label for="nama" class="font-orbitron text-[10px] uppercase tracking-widest text-zinc-400 pl-1">
                     Nama Lengkap Pemohon
                   </label>
-                  <input type="text" id="nama" name="nama" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Hendra Wijaya">
+                  <input type="text" id="nama" name="nama" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Hendra Wijaya">
                   <p class="err text-xs text-rose-400 hidden">Nama lengkap wajib diisi.</p>
                 </div>
                 <div class="field space-y-2" data-req data-type="phone">
                   <label for="hp" class="font-orbitron text-[10px] uppercase tracking-widest text-zinc-400 pl-1">
                     Nomor WhatsApp Aktif
                   </label>
-                  <input type="tel" id="hp" name="hp" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="0812-3456-7890">
+                  <input type="tel" id="hp" name="hp" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="0812-3456-7890">
                   <p class="err text-xs text-rose-400 hidden">Nomor WhatsApp valid wajib diisi.</p>
                 </div>
               </div>
@@ -1305,7 +1324,7 @@ select.form-input option {
                 <label for="mobil" class="font-orbitron text-[10px] uppercase tracking-widest text-zinc-400 pl-1">
                   Unit Kendaraan &amp; Tahun
                 </label>
-                <input type="text" id="mobil" name="mobil" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Honda CR-V 1.5 Turbo 2019 Prestige">
+                <input type="text" id="mobil" name="mobil" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Honda CR-V 1.5 Turbo 2019 Prestige">
                 <div class="flex gap-2 mt-2 flex-wrap">
                   <span class="text-[10px] font-orbitron text-zinc-500 self-center">Preset:</span>
                   <button type="button" class="text-[10px] font-orbitron bg-white/5 hover:bg-white/10 text-zinc-300 px-3 py-1 rounded-full border border-white/10" onclick="setCarModel('Honda CR-V 1.5 Turbo 2019')">CR-V Turbo</button>
@@ -1319,7 +1338,7 @@ select.form-input option {
                 <label for="lokasi" class="font-orbitron text-[10px] uppercase tracking-widest text-zinc-400 pl-1">
                   Titik Lokasi Mobil di Bali
                 </label>
-                <input type="text" id="lokasi" name="lokasi" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Jl. Sunset Road Kuta / Teuku Umar Denpasar / Tabanan">
+                <input type="text" id="lokasi" name="lokasi" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors" required placeholder="cth. Jl. Sunset Road Kuta / Teuku Umar Denpasar / Tabanan">
                 <p class="err text-xs text-rose-400 hidden">Titik lokasi mobil wajib diisi.</p>
 
                 <!-- Share Location GPS -->
@@ -1362,7 +1381,7 @@ select.form-input option {
                     Pilihan Paket Layanan
                   </label>
                   <div class="relative">
-                    <select id="paket" name="paket" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors appearance-none relative z-10">
+                    <select id="paket" name="paket" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors appearance-none relative z-10">
                       <option value="Paket Menyeluruh (Rp 750.000)">Paket Menyeluruh: Rp 750.000 (Rekomendasi)</option>
                       <option value="Paket Standar (Rp 550.000)">Paket Standar: Rp 550.000</option>
                       <option value="Menyeluruh + Garansi 1 Tahun (Rp 1.900.000)">Paket Garansi 1 Tahun: Rp 1.900.000</option>
@@ -1375,7 +1394,7 @@ select.form-input option {
                   <label for="tgl" class="font-orbitron text-[10px] uppercase tracking-widest text-zinc-400 pl-1">
                     Tanggal Rencana Inspeksi
                   </label>
-                  <input type="date" id="tgl" name="tgl" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" required>
+                  <input type="date" id="tgl" name="tgl" class="form-input bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors" required>
                   <p class="err text-xs text-rose-400 hidden">Tentukan tanggal inspeksi.</p>
                 </div>
               </div>
@@ -1384,11 +1403,11 @@ select.form-input option {
                 <label for="note" class="font-orbitron text-[10px] uppercase tracking-widest text-zinc-400 pl-1">
                   Catatan Khusus untuk Tim Lapangan (Opsional)
                 </label>
-                <textarea id="note" name="note" rows="2" class="form-input resize-none bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#bbcf1d] focus:bg-transparent focus:shadow-none transition-colors" placeholder="cth. Penjual minta inspeksi jam 14.00 WITA..."></textarea>
+                <textarea id="note" name="note" rows="2" class="form-input resize-none bg-transparent border-t-0 border-x-0 border-b-white/10 rounded-none px-1 py-3 focus:border-b-[#E5C287] focus:bg-transparent focus:shadow-none transition-colors" placeholder="cth. Penjual minta inspeksi jam 14.00 WITA..."></textarea>
               </div>
 
               <div class="pt-4">
-                <button type="submit" class="w-full group relative inline-flex items-center justify-center gap-3 bg-[#bbcf1d] text-black font-orbitron font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-500 hover:bg-white border-none hover:scale-[1.02] shadow-[0_0_20px_rgba(187,207,29,0.25)]">
+                <button type="submit" class="w-full group relative inline-flex items-center justify-center gap-3 bg-[#E5C287] text-black font-orbitron font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-500 hover:bg-white border-none hover:scale-[1.02] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <span>Terbitkan Surat Tugas &amp; Jadwalkan</span>
                   <iconify-icon icon="solar:plain-3-linear" width="20" class="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></iconify-icon>
                 </button>
@@ -1399,16 +1418,16 @@ select.form-input option {
               </div>
 
               <!-- Dynamic Confirmation Ticket Card -->
-              <div id="okMsg" class="hidden mt-6 bg-black/60 border border-[#bbcf1d]/40 rounded-2xl p-6 text-left">
+              <div id="okMsg" class="hidden mt-6 bg-black/60 border border-[#E5C287]/40 rounded-2xl p-6 text-left">
                 <div class="flex items-center gap-3 mb-4">
-                  <div class="w-8 h-8 rounded-full bg-[#bbcf1d] text-black flex items-center justify-center font-bold">✓</div>
+                  <div class="w-8 h-8 rounded-full bg-[#E5C287] text-black flex items-center justify-center font-bold">✓</div>
                   <div>
                     <h4 class="font-orbitron text-sm font-bold text-white uppercase">Permohonan Jadwal Diterima</h4>
-                    <span id="okTicketId" class="font-mono text-xs text-[#bbcf1d]">NO. TIKET: INSP-2026-XXXX</span>
+                    <span id="okTicketId" class="font-mono text-xs text-[#E5C287]">NO. TIKET: INSP-2026-XXXX</span>
                   </div>
                 </div>
                 <div id="okMetaList" class="space-y-1 text-xs text-zinc-300 font-light mb-4"></div>
-                <a id="okWaSyncBtn" href="#" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-[#bbcf1d] text-black font-orbitron text-xs uppercase tracking-widest py-3 rounded-full font-bold hover:bg-white transition-all">
+                <a id="okWaSyncBtn" href="#" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-[#E5C287] text-black font-orbitron text-xs uppercase tracking-widest py-3 rounded-full font-bold hover:bg-white transition-all">
                   <span>Sinkronkan Jadwal ke WhatsApp</span>
                   <iconify-icon icon="solar:alt-arrow-right-linear" width="16"></iconify-icon>
                 </a>
@@ -1426,11 +1445,11 @@ select.form-input option {
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div class="md:col-span-2">
           <a href="#home" class="inline-flex items-center gap-3 mb-6">
-            <div class="w-8 h-8 rounded-full bg-[#bbcf1d] flex items-center justify-center text-black font-orbitron font-extrabold text-sm">
+            <div class="w-8 h-8 rounded-full bg-[#E5C287] flex items-center justify-center text-black font-orbitron font-extrabold text-sm">
               Z
             </div>
             <span class="font-orbitron font-bold text-lg tracking-wider text-white uppercase">
-              zal<span class="text-[#bbcf1d]">Inspection</span>
+              zal<span class="text-[#E5C287]">Inspection</span>
             </span>
           </a>
           <p class="text-zinc-500 font-light text-sm max-w-sm mb-6 leading-relaxed">
@@ -1460,7 +1479,7 @@ select.form-input option {
             Operasional
           </h4>
           <ul class="space-y-2 text-sm font-light text-zinc-400">
-            <li><a href="admin.html" class="text-[#bbcf1d] font-semibold hover:underline">Portal Admin Inspektor</a></li>
+            <li><a href="admin.html" class="text-[#E5C287] font-semibold hover:underline">Portal Admin Inspektor</a></li>
             <li><a href="laporan.html" class="hover:text-white transition-colors">Laporan Digital Demo</a></li>
             <li><a href="#harga" class="hover:text-white transition-colors">Paket Biaya</a></li>
             <li><a href="https://wa.me/62895634361840" target="_blank" rel="noopener" class="hover:text-white transition-colors">Hotline WhatsApp</a></li>
@@ -1477,10 +1496,10 @@ select.form-input option {
 
   <!-- SAMPLE REPORT PREVIEW MODAL -->
   <div class="fixed inset-0 bg-black/80 backdrop-blur-md z-[150] hidden items-center justify-center p-4" id="sampleModal" role="dialog" aria-modal="true">
-    <div class="glass-panel bg-[#0a0a0a] border border-white/10 rounded-[2rem] max-w-lg w-full p-8 shadow-2xl">
+    <div class="glass-panel bg-black border border-white/10 rounded-[2rem] max-w-lg w-full p-8 shadow-2xl">
       <div class="flex justify-between items-start border-b border-white/10 pb-4 mb-6">
         <div>
-          <span class="text-[10px] font-orbitron uppercase tracking-widest text-[#bbcf1d]">CONTOH AUDIT DIGITAL RESMI</span>
+          <span class="text-[10px] font-orbitron uppercase tracking-widest text-[#E5C287]">CONTOH AUDIT DIGITAL RESMI</span>
           <h3 class="font-orbitron text-lg font-bold text-white uppercase mt-1">Honda CR-V 1.5 Turbo 2019</h3>
         </div>
         <button type="button" id="closeSampleModalBtn" class="text-zinc-400 hover:text-white text-xl">✕</button>
@@ -1488,7 +1507,7 @@ select.form-input option {
       <div class="space-y-4 text-sm text-zinc-300 font-light mb-6">
         <div class="flex justify-between items-center bg-white/[0.02] p-3 rounded-xl border border-white/5">
           <span class="text-xs font-orbitron uppercase">Grade Keseluruhan:</span>
-          <span class="font-orbitron font-bold text-[#bbcf1d]">GRADE B+ (88/100)</span>
+          <span class="font-orbitron font-bold text-[#E5C287]">GRADE B+ (88/100)</span>
         </div>
         <div class="flex justify-between items-center bg-white/[0.02] p-3 rounded-xl border border-white/5">
           <span class="text-xs font-orbitron uppercase">Status Sasis &amp; Rangka:</span>
@@ -1504,7 +1523,7 @@ select.form-input option {
         </div>
       </div>
       <div class="flex gap-3">
-        <a href="laporan.html" class="flex-1 text-center bg-[#bbcf1d] text-black font-orbitron text-xs uppercase tracking-widest py-3 rounded-full font-bold hover:bg-white transition-all">
+        <a href="laporan.html" class="flex-1 text-center bg-[#E5C287] text-black font-orbitron text-xs uppercase tracking-widest py-3 rounded-full font-bold hover:bg-white transition-all">
           Buka Laporan Lengkap
         </a>
         <button type="button" id="closeModalActionBtn" class="px-5 border border-white/20 text-white font-orbitron text-xs uppercase tracking-widest rounded-full hover:bg-white/10">
@@ -1630,8 +1649,8 @@ select.form-input option {
       ],
       showroomAlert: 'Komponen vital (timing belt, transmisi, shock absorber) yang sudah mencapai masa lelah 100.000+ km berisiko rusak mendadak.',
       zalBadge: 'Manipulasi Jarak Tempuh Terbukti',
-      zalTitle: 'Log Komputer Transmisi (TCU) Mencatat 138.400 km',
-      zalDesc: 'Bi-directional OBD-II scanner kami menembus chip modul transmisi dan ABS, membongkar selisih jarak tempuh riil 84.000 km yang sengaja diputar mundur.',
+      zalTitle: 'Audit Fisik Odometer: Jarak Tempuh Riil Diperkirakan 138.400 km',
+      zalDesc: 'Audit fisik mendalam terhadap pola keausan setir, karet pedal, tapak ban, dan verifikasi histori buku servis bengkel resmi membongkar indikasi selisih jarak tempuh riil hingga 84.000 km yang sengaja dimundurkan.',
       zalItems: [
         'Data freeze-frame TCU transmisi: 138.420 km tercatat pada riwayat pergantian gigi.',
         'Keausan fisik karet pedal gas dan permukaan setir setara pemakaian di atas 120.000 km.',
@@ -1674,12 +1693,12 @@ select.form-input option {
       const btn = e.target.closest('.ft-btn');
       if (!btn) return;
       forensicTabs.querySelectorAll('.ft-btn').forEach(b => {
-        b.classList.remove('active', 'bg-white/[0.02]', 'border-b-[#bbcf1d]');
-        b.querySelector('span:first-child').classList.replace('text-[#bbcf1d]', 'text-zinc-500');
+        b.classList.remove('active', 'bg-white/[0.02]', 'border-b-[#E5C287]');
+        b.querySelector('span:first-child').classList.replace('text-[#E5C287]', 'text-zinc-500');
         b.querySelector('span:last-child').classList.replace('text-white', 'text-zinc-400');
       });
-      btn.classList.add('active', 'bg-white/[0.02]', 'border-b-[#bbcf1d]');
-      btn.querySelector('span:first-child').classList.replace('text-zinc-500', 'text-[#bbcf1d]');
+      btn.classList.add('active', 'bg-white/[0.02]', 'border-b-[#E5C287]');
+      btn.querySelector('span:first-child').classList.replace('text-zinc-500', 'text-[#E5C287]');
       btn.querySelector('span:last-child').classList.replace('text-zinc-400', 'text-white');
       updateForensicTab(btn.dataset.tab);
     });
@@ -1698,17 +1717,17 @@ select.form-input option {
       "Seluruh modul elektrikal: AC climate control, audio dan power window",
       "Kesiapan sistem airbag, seatbelt pretensioner dan cluster indikator",
       "Kondisi material jok, plafon kabin dan seal kebocoran sunroof",
-      "Sensor kelembaban dan aroma residu lumpur tersembunyi"]},
+      "Indikasi banjir: cek kolong jok, kolong dashboard (bebas karat banjir), karpet dasar & celah karet pilar pintu"]},
     {zone:"Zona 3: 41 Titik Pemeriksaan", title:"Dapur Pacu & Sistem Transmisi", pts:41, items:[
-      "Analisis akustik cold start mesin dan kestabilan putaran idle",
-      "Scanning komputer OBD-II: pembacaan riwayat freeze-frame DTC",
-      "Pemeriksaan kebocoran oli mesin, oli transmisi dan water pump",
-      "Kehalusan perpindahan rasio gigi matik saat uji jalan",
-      "Kondisi resistansi aki, sistem alternator dan kabel kelistrikan"]},
+      "Analisis akustik cold start mesin, kestabilan putaran idle & kebocoran oli",
+      "Pemeriksaan lampu indikator malfungsi (MIL/Check Engine, ABS, Airbag) pada panel instrumen speedometer",
+      "Pemeriksaan kopling (tidak keras) & perpindahan transmisi smooth tanpa bunyi abnormal (case unit manual)",
+      "Pengecekan lubang pengisian oli & dipstik: deteksi kepulan asap / indikasi ngobos (case unit diesel)",
+      "Kondisi pengisian aki alternator, sistem radiator pendingin & kelistrikan"]},
     {zone:"Zona 4: 26 Titik Pemeriksaan", title:"Kaki-kaki & Uji Jalan Dinamis", pts:26, items:[
       "Kondisi fisik suspensi, shockbreaker, link stabilizer dan bushing",
       "Sistem pengereman: ketebalan kampas rem, piringan cakram dan ABS",
-      "Kelurusan sudut kemudi: tidak menarik ke kiri atau kanan",
+      "Pemeriksaan fisik setir (bocel/sobek), bunyi kemudi saat diputar & kelurusan stir saat jalan",
       "Kondisi ban: ketebalan alur telapak, tahun produksi dan keausan tapak",
       "Deteksi bunyi abnormal pada permukaan jalan tidak rata"]},
     {zone:"Zona 5: 13 Titik Pemeriksaan", title:"Dokumen Legalitas & Riwayat", pts:13, items:[
@@ -1739,11 +1758,11 @@ select.form-input option {
     if(zcZone) zcZone.textContent = z.zone;
     if(zcTitle) zcTitle.textContent = z.title;
     if(zcPts) zcPts.textContent = z.pts + ' titik uji terdokumentasi dalam lembar foto digital';
-    if(zcList) zcList.innerHTML = z.items.map(t => '<li class="flex items-start gap-2"><span class="text-[#bbcf1d]">✓</span> ' + t + '</li>').join('');
+    if(zcList) zcList.innerHTML = z.items.map(t => '<li class="flex items-start gap-2"><span class="text-[#E5C287]">✓</span> ' + t + '</li>').join('');
     zoneTabs.querySelectorAll('button').forEach(b => {
       const active = +b.dataset.zone === i;
       b.className = active
-        ? 'text-xs font-orbitron uppercase px-3 py-1.5 rounded-full border border-[#bbcf1d] bg-[#bbcf1d]/10 text-[#bbcf1d] font-semibold'
+        ? 'text-xs font-orbitron uppercase px-3 py-1.5 rounded-full border border-[#E5C287] bg-[#E5C287]/10 text-[#E5C287] font-semibold'
         : 'text-xs font-orbitron uppercase px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-zinc-400 hover:text-white transition-all';
     });
   }
@@ -1776,7 +1795,7 @@ select.form-input option {
       badgeClass: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30',
       layerText: 'Struktur: Cat Asli Pabrik (80 - 130 µm)',
       width: '24%',
-      barColor: '#bbcf1d',
+      barColor: '#E5C287',
       notes: 'Ketebalan berada pada rentang standar robot perakitan pabrik. Tidak ada indikasi pembongkaran panel atau perataan dempul.'
     },
     '175': {
@@ -1806,7 +1825,7 @@ select.form-input option {
       badgeClass: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30',
       layerText: 'Struktur: Cat Asli Pabrik (80 - 130 µm)',
       width: '26%',
-      barColor: '#bbcf1d',
+      barColor: '#E5C287',
       notes: 'Ketebalan cat orisinil merata di seluruh bidang pintu bagasi. Baut engsel utuh tanpa bekas lecet kunci bongkar.'
     }
   };
@@ -1840,10 +1859,10 @@ select.form-input option {
       const btn = e.target.closest('.panel-btn');
       if(!btn) return;
       simPicker.querySelectorAll('.panel-btn').forEach(b => {
-        b.classList.remove('active', 'border-[#bbcf1d]', 'bg-[#bbcf1d]/10');
+        b.classList.remove('active', 'border-[#E5C287]', 'bg-[#E5C287]/10');
         b.classList.add('border-white/10', 'bg-white/[0.02]');
       });
-      btn.classList.add('active', 'border-[#bbcf1d]', 'bg-[#bbcf1d]/10');
+      btn.classList.add('active', 'border-[#E5C287]', 'bg-[#E5C287]/10');
       btn.classList.remove('border-white/10', 'bg-white/[0.02]');
 
       const d = SIM_DATA[btn.dataset.um];
@@ -1899,7 +1918,7 @@ select.form-input option {
   if(carPriceInput) {
     carPriceInput.addEventListener('input', () => {
       document.querySelectorAll('.price-chip').forEach(c => {
-        c.classList.remove('active', 'border-[#bbcf1d]', 'bg-[#bbcf1d]/10', 'text-[#bbcf1d]');
+        c.classList.remove('active', 'border-[#E5C287]', 'bg-[#E5C287]/10', 'text-[#E5C287]');
         c.classList.add('border-white/10', 'bg-white/[0.02]', 'text-zinc-400');
       });
       calculateNego();
@@ -1908,10 +1927,10 @@ select.form-input option {
     document.querySelectorAll('.price-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         document.querySelectorAll('.price-chip').forEach(c => {
-          c.classList.remove('active', 'border-[#bbcf1d]', 'bg-[#bbcf1d]/10', 'text-[#bbcf1d]');
+          c.classList.remove('active', 'border-[#E5C287]', 'bg-[#E5C287]/10', 'text-[#E5C287]');
           c.classList.add('border-white/10', 'bg-white/[0.02]', 'text-zinc-400');
         });
-        chip.classList.add('active', 'border-[#bbcf1d]', 'bg-[#bbcf1d]/10', 'text-[#bbcf1d]');
+        chip.classList.add('active', 'border-[#E5C287]', 'bg-[#E5C287]/10', 'text-[#E5C287]');
         chip.classList.remove('border-white/10', 'bg-white/[0.02]', 'text-zinc-400');
         carPriceInput.value = chip.dataset.val;
         calculateNego();
@@ -2024,7 +2043,7 @@ select.form-input option {
       const metaListEl = document.getElementById('okMetaList');
       if(metaListEl) {
         const mapsLinkHtml = custMapUrl
-          ? `<div style="margin-top:4px"><a href="${custMapUrl}" target="_blank" rel="noopener" style="color:#bbcf1d; font-size:11px; font-family:'Orbitron',sans-serif; text-transform:uppercase; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:4px"><iconify-icon icon="solar:map-point-wave-linear" width="14"></iconify-icon> Buka Lokasi di Google Maps ↗</a></div>`
+          ? `<div style="margin-top:4px"><a href="${custMapUrl}" target="_blank" rel="noopener" style="color:#E5C287; font-size:11px; font-family:'Orbitron',sans-serif; text-transform:uppercase; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:4px"><iconify-icon icon="solar:map-point-wave-linear" width="14"></iconify-icon> Buka Lokasi di Google Maps ↗</a></div>`
           : '';
         metaListEl.innerHTML = `
           <div><b>Pemohon:</b> ${custName} (${custPhone})</div>

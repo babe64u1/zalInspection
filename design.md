@@ -94,7 +94,7 @@ Use a compact, responsive grid of 8–12 check chips or mini-cards. Categories t
 - engine and transmission;
 - brakes, suspension, tyres, and battery;
 - AC and electrical;
-- OBD diagnostics;
+- instrument cluster & MIL diagnostics;
 - document verification.
 
 Add a link to the full inspection checklist. The reference uses a dense horizontal grid; use larger touch targets and clearer category labels.
@@ -233,7 +233,7 @@ About: mission, independence policy, inspector standards, tools/process, and ori
 
 ### `/artikel`
 
-Use a card grid with article image, category, date, title, teaser, and read link. Editorial topics should answer actual purchase questions: flood signs, OBD meaning, document checks, used-car negotiation, buying remotely, and city-specific buying guides. This supports SEO without filling the site with thin city pages.
+Use a card grid with article image, category, date, title, teaser, and read link. Editorial topics should answer actual purchase questions: flood signs, instrument indicator meaning, document checks, used-car negotiation, buying remotely, and city-specific buying guides. This supports SEO without filling the site with thin city pages.
 
 ## 6. Design system
 
